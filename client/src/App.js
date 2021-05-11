@@ -7,11 +7,14 @@ import TiffsTemporaryComponent from "./components/homePage/TiffsTemporaryCompone
 
 function App() {
   return (
-    <NavBar />
-    <div className="App">
-      {/* Added below code for testing */}
-     <TiffsTemporaryComponent />
+    <div>
+      <NavBar />
+      <div className="App">
+        {/* Added below code for testing */}
+        <TiffsTemporaryComponent />
+      </div>
     </div>
+
   );
 }
 
