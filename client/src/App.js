@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar/MyNavBar';
+import Navbar from './components/NavBar/MyNavBar';
 import TiffsTemporaryComponent from "./components/homePage/TiffsTemporaryComponent"
 // import { fetchMovies } from "../src/utils/API";
 
@@ -8,12 +8,9 @@ import TiffsTemporaryComponent from "./components/homePage/TiffsTemporaryCompone
 function App() {
   return (
     <div>
-      
-      <div className="App">
-      <NavBar />
+      <Navbar />
         {/* Added below code for testing */}
         <TiffsTemporaryComponent />
-      </div>
     </div>
 
   );
