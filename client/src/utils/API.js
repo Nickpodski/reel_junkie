@@ -28,6 +28,7 @@ export const moviesPlayingNow = async () => {
       poster: posterUrl + m['poster_path'],
       overview: m['overview'],
       rating: m['vote_average']
+      
     }))
     return modifiedData;
   } catch(err) {}

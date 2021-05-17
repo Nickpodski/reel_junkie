@@ -4,7 +4,7 @@
 // we can paste what we need into the right docs.
 
 import React, { useState, useEffect } from "react";
-import {  moviesPlayingNow, fetchGenreList, fetchMoviesByGenre, searchMovies } from "../../utils/API";
+import {  moviesPlayingNow, fetchGenreList, fetchMoviesByGenre, searchMovies, } from "../../utils/API";
 
 
 export function Home() {
@@ -71,6 +71,7 @@ export function Home() {
 
     return (
         <div className="container mw-100">
+            <Carousel />
             {moviesInCarousel}
             {genreList}
             {movieListByGenre}
@@ -79,6 +80,8 @@ export function Home() {
 
         
     )
+    
 }
+
 
 export default Home;
