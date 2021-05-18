@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import "./MyNavBar.css";
+import React from "react";
+// import "./MyNavBar.css";
 import Button from "react-bootstrap/Button";
+// import Row from "react-bootstrap/Row";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
 import { searchMovies } from '../../utils/API';
+// // import Col from "react-bootstrap/Col";
+// import Container from "react-bootstrap/Container";
+
 
 const NavBar = () => {
   const [searchMovie, setSearchMovie] = useState([]);
@@ -29,19 +33,18 @@ const NavBar = () => {
 
   return (
     <>
-  <Container fluid>
       <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">Reel Junkies</Navbar.Brand>
           <Form inline value={searchMovie} onSubmit={handleSumbit}>
             <FormControl onChange={handleInputChange} type="text" placeholder="Search" className="mr-sm-2 justify-content-center"/>
             <Button variant="outline-info" onClick={handleSumbit}>Search</Button>
           </Form>
-          <Nav className="mr-auto">
+        <Nav>
+          <Nav.Item>
             <Nav.Link href="#home">Home</Nav.Link>
-          </Nav>
-        
+          </Nav.Item>
+        </Nav>
       </Navbar>
-      </Container>
     </>
   );
 };
