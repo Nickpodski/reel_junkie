@@ -1,30 +1,30 @@
 import React from "react";
-import "./MyNavBar.css";
+// import "./MyNavBar.css";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
+// import Row from "react-bootstrap/Row";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+// // import Col from "react-bootstrap/Col";
+// import Container from "react-bootstrap/Container";
 
 const NavBar = () => {
   return (
     <>
-  <Container fluid>
-      <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2 justify-content-center" />
-            <Button variant="outline-info">Search</Button>
-          </Form>
-          <Nav className="mr-auto">
+      <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="justify-content-between">
+        <Navbar.Brand href="#home">Reel Junkies</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-info">Search</Button>
+              </Form>
+        <Nav>
+          <Nav.Item>
             <Nav.Link href="#home">Home</Nav.Link>
-          </Nav>
-        
+          </Nav.Item>
+        </Nav>
       </Navbar>
-      </Container>
     </>
   );
 };
