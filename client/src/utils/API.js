@@ -87,9 +87,8 @@ export const searchMovies = async (title) => {
       params: {
         api_key: apiKey,
         language: 'en_US',
-        include_adult: false
-        // page: 1,
-        // name: 'name',
+        include_adult: false,
+        query:title,
       }
 
     })
