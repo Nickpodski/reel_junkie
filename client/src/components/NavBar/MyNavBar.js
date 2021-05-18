@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import "./MyNavBar.css";
 import Button from "react-bootstrap/Button";
 // import Row from "react-bootstrap/Row";
@@ -39,7 +39,7 @@ const NavBar = () => {
             <FormControl onChange={handleInputChange} type="text" placeholder="Search" className="mr-sm-2 justify-content-center"/>
             <Button variant="outline-info" onClick={handleSumbit}>Search</Button>
           </Form>
-        <Nav>
+        <Nav className="ml-auto">
           <Nav.Item>
             <Nav.Link href="#home">Home</Nav.Link>
           </Nav.Item>
