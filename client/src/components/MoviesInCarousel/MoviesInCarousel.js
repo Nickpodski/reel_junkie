@@ -19,7 +19,7 @@ const moviesInCarousel = nowPlaying.map((item, index) => {
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src={item.poster}
+        src={item.backPoster}
         alt={item.title}
       />
       <Carousel.Caption>
