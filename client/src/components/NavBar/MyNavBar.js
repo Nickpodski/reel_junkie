@@ -33,13 +33,13 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="justify-content-between">
           <Navbar.Brand href="#home">Reel Junkies</Navbar.Brand>
           <Form inline value={searchMovie} onSubmit={handleSumbit}>
             <FormControl onChange={handleInputChange} type="text" placeholder="Search" className="mr-sm-2 justify-content-center"/>
             <Button variant="outline-info" onClick={handleSumbit}>Search</Button>
           </Form>
-        <Nav className="ml-auto">
+        <Nav>
           <Nav.Item>
             <Nav.Link href="#home">Home</Nav.Link>
           </Nav.Item>

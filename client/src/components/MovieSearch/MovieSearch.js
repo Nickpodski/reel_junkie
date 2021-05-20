@@ -1,4 +1,5 @@
 import React from 'react'
+import "./MoviesInCarousel.css"
 import Card from "react-bootstrap/Card"
 import Nav from "react-bootstrap/Nav"
 
