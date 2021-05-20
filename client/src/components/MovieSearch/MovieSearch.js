@@ -1,39 +1,35 @@
-import React from 'react'
-import "./MovieSearch.css"
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
+import React from 'react';
+import "./MovieSearch.css";
+import { Card, Row, Col, Container, } from "react-bootstrap";
 
-function MovieSearch() {
+function MovieSearch(props) {
+  const renderResults = props.results.map((item, index) => {
+    return(
+      <Card key={index}>
+      <Row noGutters={true}>
+        <Col md={2}>
+          <Card.Img src={item.poster} alt={item.title} style={{width:'6rem'}}/>
+        </Col>
+        <Col md={10}>
+          <Card.Body>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{item.releaseDate}</Card.Subtitle>
+            <Card.Text>{item.overview}</Card.Text>
+          </Card.Body>
+        </Col>
+      </Row>
+    </Card>
+    )
+  })
+
+  
+
     return (
       <>
-    <Container>
-    <Image src="holder.js/100px250" fluid />
-    <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
-    <Tab eventKey="description" title="Descripton">
-
-            
-            </Tab>
-            <Tab eventKey="Reviews" title="Reviews">
-              
-            </Tab>
-            <Tab eventKey="Cast" title="Cast">
-            
-            </Tab>
-            <Tab eventKey="Add to Watch List" title="Contact">
-            
-            </Tab>
-            <Tab eventKey="Add to Watched List" title="Contact">
-            
-            </Tab>
-            <Tab eventKey="Streaming" title="Streaming">
-            
-            </Tab>
-          </Tabs>
-
-    </Container>
-    </>
+        <Container fluid={true}>
+          {renderResults}
+        </Container>
+      </>
     );
 }
 
