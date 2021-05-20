@@ -1,4 +1,4 @@
 module.exports = {
-  User: require("./User.js.tmp"),
+  User: require("./User.js"),
   Badge: require("./Badge")
 }; 
