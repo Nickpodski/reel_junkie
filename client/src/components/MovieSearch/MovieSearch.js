@@ -1,21 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, } from "react-bootstrap";
-import { searchMovies } from '../../utils/API';
-import SearchContext from '../../utils/SearchContext';
 
-function MovieSearch() {
-  const {term} = useContext(SearchContext)
-  const [ searchResults, setSearchResults] = useState([]);
-  
-
-
-  const renderResults = searchResults.map((item, index) => {
+function MovieSearch(props) {
+  const renderResults = props.results.map((item, index) => {
     return(
-      <Card>
+      <Card key={index}>
       <Row noGutters={true}>
         <Col md={2}>
-          <Card.Img src={item.backPoster} alt={item.title} style={{width:'6rem'}}/>
+          <Card.Img src={item.poster} alt={item.title} style={{width:'6rem'}}/>
         </Col>
         <Col md={10}>
           <Card.Body>
@@ -29,25 +22,12 @@ function MovieSearch() {
     )
   })
 
-  const getResults = () => {
-    const getSearchResults = async () => {
-      const res = await searchMovies(term);
-      setSearchResults(res);
-      console.log(res);
-    };
-    getSearchResults();
-    return(
-      <>
-      {renderResults}
-      </>
-    )
-  }
   
 
     return (
       <>
         <Container fluid={true}>
-          {getResults}
+          {renderResults}
         </Container>
       </>
     );
