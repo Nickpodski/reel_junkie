@@ -12,7 +12,7 @@ router.get("/totalhours", ({ body }, res) => {
   User.aggregate([
     {
       $addFields: {
-        totalMovieHours: {
+        totalHoursWatched: {
           $sum: "$movies_watched.movie_runtime"
         }
       }
