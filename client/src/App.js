@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div>
+    
       <Router>
         <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
         <div>
