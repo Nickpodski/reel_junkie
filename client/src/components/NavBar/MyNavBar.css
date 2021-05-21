@@ -1,3 +1,6 @@
-.container-nav {
-    width: 100%;
+.link {
+    color:orange !important;
+}
+.navbar{
+    background-color: black;
 }
