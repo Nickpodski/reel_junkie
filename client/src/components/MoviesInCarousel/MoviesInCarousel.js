@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./MoviesInCarousel.css";
 import Carousel from "react-bootstrap/Carousel";
 import { moviesPlayingNow } from "../../utils/API";
-
+import Container from "react-bootstrap/Container";
 const MoviesInCarousel = () => {
 
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -16,10 +16,10 @@ const MoviesInCarousel = () => {
 const moviesInCarousel = nowPlaying.map((item, index) => {
   return (
     
-    <Carousel.Item>
+    <Carousel.Item className="carousel-border">
       <img
         className="d-block w-100"
-        src={item.poster}
+        src={item.backPoster}
         alt={item.title}
       />
       <Carousel.Caption>
@@ -31,9 +31,11 @@ const moviesInCarousel = nowPlaying.map((item, index) => {
 })
   return (
     <div>
+      <Container className=" p-5">
       <Carousel fade>
       {moviesInCarousel}
       </Carousel>
+      </Container>
      </div>
   );
 };

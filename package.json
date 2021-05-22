@@ -30,6 +30,7 @@
     "mongoose": "^5.12.8",
     "react-bootstrap": "^1.6.0",
     "react-device-detect": "^1.17.0",
+    "react-router-dom": "^5.2.0",
     "validator": "^13.6.0"
   }
 }
