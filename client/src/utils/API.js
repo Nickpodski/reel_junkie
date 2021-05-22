@@ -81,7 +81,7 @@ export const fetchMoviesByGenre = async (genre_id) => {
 }
 
 // will be connected to search bar
-export const searchMovies = async (title) => {
+export const searchMovies = async (title, pageNum) => {
   try {
     const { data } = await axios.get(searchMoviesUrl, {
       params: {
@@ -89,6 +89,7 @@ export const searchMovies = async (title) => {
         language: 'en_US',
         include_adult: false,
         query:title,
+        page: pageNum
       }
 
     })
@@ -108,8 +109,23 @@ export const searchMovies = async (title) => {
       originalLang: m['original_language'],
       voteCount: m['vote_count'],
       voteAvg: m['vote_average']
-    }))
-
+    }));
     return modifiedData;
   } catch(err) {}
 }
+
+export const fetchTotalPages = async (title) => {
+  try {
+    const { data } = await axios.get(searchMoviesUrl, {
+      params: {
+        api_key: apiKey,
+        language: 'en_US',
+        include_adult: false,
+        query:title
+      }
+
+    })
+    return data.total_pages;
+  } catch(err) {}
+}
+

@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, } from "react-bootstrap";
+import PaginationItems from '../PaginationItems/PaginationItems';
 
 function MovieSearch(props) {
+  const [activePage, setActivePage] = useState([]);
+
+  useEffect(() => {
+    setActivePage(props.active);
+    props.setActive(activePage);
+  })
+
+  const pageItemClick = (e) => {
+    console.log("testing!");
+    props.handlePageClick(e)
+  }
+
   const renderResults = props.results.map((item, index) => {
     return(
       <Card key={index}>
@@ -20,14 +33,25 @@ function MovieSearch(props) {
       </Row>
     </Card>
     )
-  })
-
-  
-
+  });
     return (
       <>
         <Container fluid={true}>
+          <Container>
+            <Row className="justify-content-sm-center m-5">
+              <PaginationItems pages={props.pages}/>
+            </Row>
+          </Container>
           {renderResults}
+          <Container fluid={true}>
+            <Row className="justify-content-md-center m-5">
+              <PaginationItems 
+              pages={props.pages} 
+              setActivePage={setActivePage} 
+              active={props.currentActive}
+              />
+            </Row>
+          </Container>
         </Container>
       </>
     );
