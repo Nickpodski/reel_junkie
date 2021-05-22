@@ -1,43 +1,37 @@
-import React from 'react'
-// import "./MoviesInCarousel.css"
-import Card from "react-bootstrap/Card"
-import Nav from "react-bootstrap/Nav"
+import React from 'react';
+import "./MovieSearch.css";
+import { Card, Row, Col, Container, } from "react-bootstrap";
 
-function MovieSearch() {
+function MovieSearch(props) {
+  const renderResults = props.results.map((item, index) => {
+    return(
+      <Card key={index}>
+      <Row noGutters={true}>
+        <Col md={2}>
+          <Card.Img src={item.poster} alt={item.title} style={{width:'6rem'}}/>
+        </Col>
+        <Col md={10}>
+          <Card.Body>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{item.releaseDate}</Card.Subtitle>
+            <Card.Text>{item.overview}</Card.Text>
+          </Card.Body>
+        </Col>
+      </Row>
+    </Card>
+    )
+  })
+
+  
+
     return (
       <>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Body>
-            <Nav variant="tabs" defaultActiveKey="#first">
-              <Nav.Item>
-                <Nav.Link href="#first">Plot</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#link">Add to Watch List</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#disabled">Reviews</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#link">Cast</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#link">Watched</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#link">Streaming</Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Card.Body>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-        </Card>
+        <Container fluid={true}>
+          {renderResults}
+        </Container>
       </>
     );
 }
 
-export default MovieSearch
+export default MovieSearch;
 
