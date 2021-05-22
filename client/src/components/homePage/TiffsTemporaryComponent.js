@@ -71,7 +71,7 @@ export function Home() {
 
     return (
         <div className="container mw-100">
-            <Carousel />
+            {/* <Carousel /> */}
             {moviesInCarousel}
             {genreList}
             {movieListByGenre}
