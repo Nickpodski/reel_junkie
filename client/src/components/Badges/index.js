@@ -12,6 +12,7 @@ function Badges() {
     };
 
     fetchAPI();
+    
   }, []);
 
 //   when user clicks ADD to 'Watched' list,

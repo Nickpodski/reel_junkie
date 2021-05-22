@@ -49,7 +49,9 @@ export const fetchGenreList = async () => {
       id: g['id'],
       name: g['name']
     }))
+    console.log(modifiedData)
     return modifiedData;
+    
   } catch(err) {}
 }
 

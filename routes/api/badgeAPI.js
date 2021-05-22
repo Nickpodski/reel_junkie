@@ -5,10 +5,41 @@ const { User, Badge } = require('../../models');
 // let possibleBadges = [];
 // let ticket = ".public.badges/023-ticket.png"
 // ticket = false;
+const testArr28 = [];
 
 // CRUD : Create, Read, Update, Delete
 //        Post    Get    Put    Delete
-router.get("/totalhours", ({ body }, res) => {
+
+// Works - gets total number of movies watched
+router.get('/numwatched', (req, res) => {
+  User.aggregate([
+    {
+      $project: {
+           _id:1,
+        
+           movies_watched: {
+              $size: {
+                  $filter: {
+                     input: "$movies_watched",
+                     as: "e",
+                     cond:{ $gte: [ "$$e.movie_genres", 1 ]}
+                  }
+              }
+           }
+  
+        }
+  }
+  ])
+    .then((userData) => {
+      res.json(userData);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+// WORKS!!
+router.get("/hourswatched", (req , res) => {
   User.aggregate([
     {
       $addFields: {
@@ -26,29 +57,87 @@ router.get("/totalhours", ({ body }, res) => {
     });
 });
 // (GET)  last workout
-router.get("/badges", (req, res) => {
+// router.get("/badges", (req, res) => {
+//   User.aggregate([
+//     {
+//       movies_watched: {
+//         genre_id: {
+//           $sum: "$movies_watched.genre_id",
+//         },
+//       },
+//     },
+//   ])
+//     .then((dbBadge) => {
+//       res.json(dbBadge);
+//     })
+//     .catch((err) => {
+//       res.status(400).json(err);
+//     });
+// });
+
+// Works - gives back full array of genre id's
+router.get('/badgeidcount', (req, res) => {
   User.aggregate([
-    {
-      user_badges: {
-        genre_id: {
-          $sum: "$user_badges.genre_id",
-        },
-      },
-    },
+      // optionaly filter records to apply on
+      //{
+      //    $match: { email: /rambo/ }
+      //},
+      {
+        $project: {
+          // project values you want to see in result
+          // record id is present by default
+          email: "$email",
+          genres: {
+            // brand new field with desired output
+            $reduce: {
+              // reduce like Array.reduce in javascript
+              input: "$movies_watched",
+              // array to reduce
+              initialValue: [],
+              in: {
+                "$concatArrays": // the function doing the magic
+                // if you use $concatArrays instead - it will contain duplicities
+                [
+                  "$$value",
+                  // destination in initialValue
+                  "$$this.movie_genres"// field to take items from
+                  
+                ]
+              }
+            }
+          }
+        }
+      }
   ])
-    .then((dbBadge) => {
-      res.json(dbBadge);
+
+  function getOccurrence(array, value) {
+      var count = 0;
+      array.forEach((v) => (v === value && count++));
+      return count;
+  }
+  
+  console.log(getOccurrence(genres, 28));  // 2
+  console.log(getOccurrence(genres, 52))  // 3
+  
+then((userData) => {
+      res.json(userData);
     })
     .catch((err) => {
       res.status(400).json(err);
-    });
+    })
 });
+
+// router.get('/getbynum', (req,res) => {
+//   User.find({
+//     movies_watched: {$elemMatch: {
+//     movie_genres:18}}})
+// })
 
 // // (PUT)   add badge
 // router.put("/badges/:id", (req, res) => {
 //   User.findByIdAndUpdate(
 //     req.params.id,
-//     { $push: { user_badges: req.body } },
+//     { $push: { movies_watched: req.body } },
 //     { new: true, runValidators: true }
 //   )
 //     .then((dbBadge) => {

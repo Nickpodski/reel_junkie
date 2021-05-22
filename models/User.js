@@ -36,7 +36,7 @@ const UserSchema = new Schema( {
         },
         movie_genres: [
           {
-          type: Number
+          type: Array
         }
       ],
       },
