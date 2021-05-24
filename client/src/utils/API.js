@@ -115,3 +115,18 @@ export const searchMovies = async (title) => {
     return modifiedData;
   } catch(err) {}
 }
+
+export const fetchTotalPages = async (title) => {
+  try {
+    const { data } = await axios.get(searchMoviesUrl, {
+      params: {
+        api_key: apiKey,
+        language: 'en_US',
+        include_adult: false,
+        query:title
+      }
+
+    })
+    return data.total_pages;
+  } catch(err) {}
+}
