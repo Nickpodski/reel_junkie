@@ -39,9 +39,9 @@ const NavBar = (props) => {
             onChange={onChange}
             type="text"
             placeholder="Search"
-            className="mr-sm-2 justify-content-center"
+            className="mr-sm-2 justify-content-center search-input"
           />
-          <Button variant="warning" onClick={handleSumbit}>
+          <Button className= "search-btn" variant="warning" onClick={handleSumbit}>
             Search
           </Button>
         </Form>

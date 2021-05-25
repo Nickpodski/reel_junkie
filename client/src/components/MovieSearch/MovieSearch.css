@@ -2,3 +2,15 @@
     border: solid;
     border-color: orange !important;
 }
+
+.card-desc{
+    background-color: black !important;
+    color:silver !important;
+}
+
+
+.row{
+    background-color: black;
+    border: solid;
+    border-color: white !important;  
+}
