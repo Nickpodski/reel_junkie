@@ -36,7 +36,7 @@ function MovieSearch(props) {
                 style={{ width: "11rem" }}
               />
             </Col>
-            <Col className="col" md={10}>
+            <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
