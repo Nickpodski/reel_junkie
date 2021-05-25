@@ -6,27 +6,55 @@ import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
-import { searchMovies } from "../src/utils/API";
+import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
 // import { fetchMovies } from "../src/utils/API";
 
 function App() {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-
+  const [totalPages, setTotalPages] = useState([]);
+  const [currentPage, setCurrentPage] = useState();
+ 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     setSearchMovie(newValue);
-    console.log(searchMovie);
+  };
+
+  // const checkMoreResults = () => {
+  //   if (currentPage <= totalPages) {
+  //     setIsMoreResults(true);
+  //   } else if(currentPage >= totalPages) {
+  //     setIsMoreResults(false);
+  //   }
+  // }
+
+  const moreResultsClick = async () => {
+    console.log("is this triggering?")
+    let p = currentPage;
+    let newPage = p + 1;
+    setCurrentPage(currentPage + 1);
+    const res = await searchMovies(searchMovie, newPage);
+    const newSearchRes = searchResults.concat(res);
+    setSearchResults(newSearchRes);
+  }
+
+  const getSearchResults = async (page) => {
+    const res = await searchMovies(searchMovie, page);
+    setSearchResults(res);
+  };
+
+  const getTotalPages = async () => {
+    const res = await fetchTotalPages(searchMovie);
+    setTotalPages(res);
   };
 
   const handleSumbit = () => {
-    const getSearchResults = async () => {
-      const res = await searchMovies(searchMovie);
-      setSearchResults(res);
-      console.log(res);
-    };
-    getSearchResults();
+    window.scrollTo(0, 0);
+    setCurrentPage(1);
+    getSearchResults(1);
+    getTotalPages();
+    // checkMoreResults();
   };
 
   return (
@@ -45,7 +73,7 @@ function App() {
                 <Register />
               </Route>
             <Route exact path={["/moviesearch"]}>
-              <MovieSearch results={searchResults} />
+              <MovieSearch results={searchResults} currentPage={currentPage}  onClick={moreResultsClick} totalPages={totalPages}/>
             </Route>
             <Route exact path={["/profile"]}>
               <Profile />

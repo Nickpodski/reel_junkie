@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./MyNavBar.css";
 import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -6,11 +6,13 @@ import { Link, useHistory } from "react-router-dom";
 const NavBar = (props) => {
   const { onChange, onSubmit } = props;
   let history = useHistory();
+  const formRef = useRef();
 
   const handleSumbit = (event) => {
     event.preventDefault();
     history.push("/moviesearch");
     onSubmit();
+    formRef.current.reset();
   };
 
   return (
@@ -32,7 +34,7 @@ const NavBar = (props) => {
             />
           </Media>
         </Navbar.Brand>
-        <Form inline onSubmit={handleSumbit}>
+        <Form inline onSubmit={handleSumbit} ref={formRef}>
           <FormControl
             onChange={onChange}
             type="text"

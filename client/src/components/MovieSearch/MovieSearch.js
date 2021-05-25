@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./MovieSearch.css";
-import { Card, Row, Col, Container, } from "react-bootstrap";
+import { Card, Row, Col, Container, Button, } from "react-bootstrap";
 
 function MovieSearch(props) {
+  const [moreResults, setMoreResults] = useState(false);
+  // const [propsMoreResults] = useReducer(props.isMoreResults);
+
+  const checkMoreResults = () => {
+    props.onClick();
+    if (props.currentPage < props.totalPages) {
+      setMoreResults(true);
+    } else if(props.currentPage >= props.totalPages) {
+      setMoreResults(false);
+    }
+  }
+
+  useEffect(() => {
+    if (props.currentPage < props.totalPages) {
+      setMoreResults(true);
+    } else if(props.currentPage >= props.totalPages) {
+      setMoreResults(false);
+    }
+  }, [props.currentPage, props.totalPages])
+
+
+
   const renderResults = props.results.map((item, index) => {
     return(
       <Card key={index}>
@@ -21,13 +43,14 @@ function MovieSearch(props) {
     </Card>
     )
   })
-
-  
-
     return (
       <>
         <Container fluid={true}>
           {renderResults}
+          {moreResults
+          ? <Button onClick={checkMoreResults}>More Results</Button>
+          : <p>End of the Line!</p>
+          }
         </Container>
       </>
     );
