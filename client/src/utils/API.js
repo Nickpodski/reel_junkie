@@ -83,7 +83,7 @@ export const fetchMoviesByGenre = async (genre_id) => {
 }
 
 // will be connected to search bar
-export const searchMovies = async (title) => {
+export const searchMovies = async (title, page) => {
   try {
     const { data } = await axios.get(searchMoviesUrl, {
       params: {
@@ -91,6 +91,7 @@ export const searchMovies = async (title) => {
         language: 'en_US',
         include_adult: false,
         query:title,
+        page: page
       }
 
     })
