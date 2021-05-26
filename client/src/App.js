@@ -24,14 +24,6 @@ function App() {
     setSearchMovie(newValue);
   };
 
-  // const checkMoreResults = () => {
-  //   if (currentPage <= totalPages) {
-  //     setIsMoreResults(true);
-  //   } else if(currentPage >= totalPages) {
-  //     setIsMoreResults(false);
-  //   }
-  // }
-
   const moreResultsClick = async () => {
     console.log("is this triggering?")
     let p = currentPage;
@@ -57,7 +49,6 @@ function App() {
     setCurrentPage(1);
     getSearchResults(1);
     getTotalPages();
-    // checkMoreResults();
   };
 
   const addMovie = (e) => {
