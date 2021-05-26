@@ -4,7 +4,7 @@ import { Button, Form, Container } from "react-bootstrap";
 
 function Register() {
     return (
-        <Container className="container-border p-5">
+        <Container className="container-border p-5 mt-5">
         <Form>
         <Form.Group controlId="formBasicEmail">
         <Form.Label className="form-text">Register Email address</Form.Label>
@@ -19,7 +19,7 @@ function Register() {
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
       <Form.Group controlId="formBasicPassword">
-        <Form.Label >Verfiy Password</Form.Label>
+        <Form.Label className="form-text" >Verfiy Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
       <Button variant="warning" type="register">

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Profile.css";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import Media from "react-bootstrap/Media";
@@ -31,17 +32,18 @@ function profile() {
 
   return (
     <div>
-      <Container className="justify-content-center mt-5">
-        <Media>
-          <img
-            width={250}
-            height={250}
-            className="mr-3 mt-5 mb-2"
-            src=""
-            alt=""
-          />
-        </Media>
+      <Container className=" p-5">
+      <Media>
+        <img
+          width={250}
+          height={250}
+          className="mr-3 mt-5 mb-2"
+          src=""
+          alt=""
+        />
+      </Media>
       </Container>
+      <Container>
       <Badge variant="primary">Primary</Badge>{" "}
       <Badge variant="secondary">Secondary</Badge>{" "}
       <Badge variant="success">Success</Badge>{" "}
@@ -52,10 +54,11 @@ function profile() {
 
       <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
         <Tab eventKey="description" title="Description"></Tab>
-        <Tab eventKey="Movies Watched" title="Profile"></Tab>
-        <Tab eventKey="Watch List" title="Contact"></Tab>
-        <Tab eventKey="Reviews" title="Contact"></Tab>
+        <Tab eventKey="Movies Watched" title="Movies Watched"></Tab>
+        <Tab eventKey="Watch List" title="Watch List"></Tab>
+        <Tab eventKey="Reviews" title="Reviews"></Tab>
       </Tabs>
+      </Container>
     </div>
   );
 }

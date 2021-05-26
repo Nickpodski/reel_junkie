@@ -10,7 +10,7 @@ function Login() {
     history.push("/register");
   };
   return (
-    <Container className="container-border p-5">
+    <Container className="container-border p-5 mt-5">
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="form-text">Email address</Form.Label>
@@ -24,10 +24,10 @@ function Login() {
           <Form.Label className="form-text">Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <Button variant="warning" type="submit">
+        <Button className="sub-btn m-2"variant="warning" type="submit">
           Submit
         </Button>
-        <Button variant="warning" onClick={handleSumbit}>
+        <Button className="reg-btn m-2" variant="warning" onClick={handleSumbit}>
           Register
         </Button>
       </Form>
