@@ -32,6 +32,21 @@ function App() {
     getSearchResults();
   };
 
+  const addMovie = (e) => {
+    const genreArr = e.target.value.split(",");
+console.log(genreArr)
+    genreArr.forEach(genre_id => {
+      parseInt(genre_id);
+      // const movieObj = {
+      //   _id: genre_id,
+      //   title: "Up"
+      // }
+      console.log(genre_id)
+
+
+    })
+  }
+
   return (
     <UserProvider>
       <div>
@@ -49,7 +64,7 @@ function App() {
                 <Register />
               </Route>
               <Route exact path={["/moviesearch"]}>
-                <MovieSearch results={searchResults} />
+                <MovieSearch results={searchResults} addMovie={addMovie} />
               </Route>
               <Route exact path={["/profile"]}>
                 <Profile />
