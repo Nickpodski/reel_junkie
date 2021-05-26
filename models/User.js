@@ -53,13 +53,14 @@ const UserSchema = new Schema( {
       },
     ],
 
-    user_badges: [
-      {
-        genre_id: {
-          type: Number,
-        },
-      },
-    ],
+    // user_badges: [
+    //   {
+    //     genre_id: {
+    //       type: Number,
+    //     },
+    //   },
+    // ],
+    // will create new field in api routes
     // timestamps: true
 });
 

@@ -8,6 +8,9 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import { searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
+import Buttons from "./components/Buttons/Buttons";
+
+import { UserProvider } from "./utils/UserContext";
 // import { fetchMovies } from "../src/utils/API";
 
 function App() {
@@ -30,30 +33,33 @@ function App() {
   };
 
   return (
-    <div>
-      <Router>
-        <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
-        <div>
-          <Switch>
-            <Route exact path={["/", "/home"]}>
-              <MoviesInCarousel />
-            </Route>
-            <Route exact path={["/login"]}>
-              <Login />
-            </Route>
-            <Route exact path={["/register"]}>
+    <UserProvider>
+      <div>
+        <Router>
+          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
+          <div>
+            <Switch>
+              <Route exact path={["/", "/home"]}>
+                <MoviesInCarousel />
+              </Route>
+              <Route exact path={["/login"]}>
+                <Login />
+              </Route>
+              <Route exact path={["/register"]}>
                 <Register />
               </Route>
-            <Route exact path={["/moviesearch"]}>
-              <MovieSearch results={searchResults} />
-            </Route>
-            <Route exact path={["/profile"]}>
-              <Profile />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </div>
+              <Route exact path={["/moviesearch"]}>
+                <MovieSearch results={searchResults} />
+              </Route>
+              <Route exact path={["/profile"]}>
+                <Profile />
+                <Buttons />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    </UserProvider>
   );
 }
 

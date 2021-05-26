@@ -8,6 +8,9 @@ const BadgeSchema = new Schema({
     },
     badge_ID: {
         type: Number
+    },
+    image_name: {
+        type: String
     }
     
 });

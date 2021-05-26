@@ -5,7 +5,7 @@ const { User, Badge } = require('../../models');
 // let possibleBadges = [];
 // let ticket = ".public.badges/023-ticket.png"
 // ticket = false;
-const testArr28 = [];
+// const testArr28 = [];
 
 // CRUD : Create, Read, Update, Delete
 //        Post    Get    Put    Delete
@@ -32,6 +32,7 @@ router.get('/numwatched', (req, res) => {
   ])
     .then((userData) => {
       res.json(userData);
+      
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -75,12 +76,13 @@ router.get("/hourswatched", (req , res) => {
 //     });
 // });
 
-// Works - gives back full array of genre id's
+// Works - gives back count for each id
 router.get('/badgeidcount', (req, res) => {
   User.aggregate([
       // optionaly filter records to apply on
       //{
       //    $match: { email: /rambo/ }
+      //             ^  logged in(user's id)
       //},
       {
         $project: {
@@ -107,25 +109,53 @@ router.get('/badgeidcount', (req, res) => {
             }
           }
         }
+      },
+      {
+        $unwind: "$genres"
+      },
+      {
+        $group: {
+          _id: "$genres",
+          count: {
+            $sum: 1
+          }
+        }
       }
   ])
-
-  function getOccurrence(array, value) {
-      var count = 0;
-      array.forEach((v) => (v === value && count++));
-      return count;
-  }
-  
-  console.log(getOccurrence(genres, 28));  // 2
-  console.log(getOccurrence(genres, 52))  // 3
-  
-then((userData) => {
+  // something like: select genres.count()
+.then((userData) => {
       res.json(userData);
     })
     .catch((err) => {
       res.status(400).json(err);
     })
 });
+
+// Not working yet
+router.put("/addMovie/:id", (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    { $push: { movies_watched: req.body } },
+    { new: true, runValidators: true }
+  )
+    .then((userData) => {
+      res.json(userData);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+// not working yet
+// router.post("/addMovie", ({ body }, res) => {
+//   User.create({})
+//     .then((userData) => {
+//       res.json(userData);
+//     })
+//     .catch((err) => {
+//       res.status(400).json(err);
+//     });
+// });
 
 // router.get('/getbynum', (req,res) => {
 //   User.find({
@@ -140,17 +170,6 @@ then((userData) => {
 //     { $push: { movies_watched: req.body } },
 //     { new: true, runValidators: true }
 //   )
-//     .then((dbBadge) => {
-//       res.json(dbBadge);
-//     })
-//     .catch((err) => {
-//       res.status(400).json(err);
-//     });
-// });
-
-// // (POST)  create workout
-// router.post("/badges", ({ body }, res) => {
-//   Workout.create({})
 //     .then((dbBadge) => {
 //       res.json(dbBadge);
 //     })

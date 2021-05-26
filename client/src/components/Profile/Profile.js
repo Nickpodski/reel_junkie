@@ -5,7 +5,30 @@ import Media from "react-bootstrap/Media";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
+
+
 function profile() {
+  let userBadges = [];
+    
+  // componentWillMount() {
+  //   fetch("http://localhost:5000/api/badges/badgeidcount")
+  //     .then(res => res.json())
+  //     .then(data => this.setState({ _id: data }));
+// }
+  //              ^  ???????
+// need to check user badges
+  switch(userBadges) {
+    // or do case for if id_28 =10 display this icon
+    case 28:
+      // display this icon
+      break;
+    case 9:
+      // display that icon
+      break;
+    default:
+      // always display ticket icon
+  }
+
   return (
     <div>
       <Container className="justify-content-center mt-5">
@@ -26,6 +49,7 @@ function profile() {
       <Badge variant="warning">Warning</Badge>{" "}
       <Badge variant="info">Info</Badge> <Badge variant="light">Light</Badge>{" "}
       <Badge variant="dark">Dark</Badge>
+
       <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
         <Tab eventKey="description" title="Description"></Tab>
         <Tab eventKey="Movies Watched" title="Profile"></Tab>
