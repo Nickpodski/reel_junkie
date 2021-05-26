@@ -15,6 +15,10 @@ function MovieSearch(props) {
     }
   };
 
+  const backToTop = () => {
+    window.scrollTo(0, 0);
+  }
+
   useEffect(() => {
     if (props.currentPage < props.totalPages) {
       setMoreResults(true);
@@ -33,7 +37,7 @@ function MovieSearch(props) {
                 className="card-img"
                 src={item.poster}
                 alt={item.title}
-                style={{ width: "11rem" }}
+                style={{ width: "15rem" }}
               />
             </Col>
             <Col className="col" md={12}>
@@ -65,7 +69,15 @@ function MovieSearch(props) {
             More Results
           </Button>
         ) : (
-          <p>End of the Line!</p>
+          <Button
+          variant="warning"
+          size="lg"
+          block
+          className="results-btn mb-5"
+          onClick={backToTop}
+        >
+          Back To Top
+        </Button>
         )}
       </Container>
     </>
