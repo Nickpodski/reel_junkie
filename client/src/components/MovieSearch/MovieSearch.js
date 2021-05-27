@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
+  let history = useHistory();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
@@ -19,6 +21,21 @@ function MovieSearch(props) {
     window.scrollTo(0, 0);
   }
 
+  const addMovie = (e) => {
+    console.log("heeeere")
+    const genreArr = e.target.value.split(",");
+    console.log(genreArr)
+    genreArr.forEach(genre_id => {
+      const idCollection = parseInt(genre_id);
+      // const movieObj = {
+      //   _id: genre_id,
+      //   title: "Up"
+      // }
+      console.log(idCollection)
+      
+    })
+  }
+
   useEffect(() => {
     if (props.currentPage < props.totalPages) {
       setMoreResults(true);
@@ -27,10 +44,23 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
+  const handleMovieClick = (e) => {
+    e.preventDefault();
+    const index = e.currentTarget.id;
+    const movie = props.results[index];
+    history.push("/moviedisplay");
+    props.clickMovieRender(movie);
+  };
+
   const renderResults = props.results.map((item, index) => {
     return (
-      <Container className="p-5">
-        <Card className="card" key={index}>
+      <Container
+        id={index}
+        className="p-5 "
+        key={index}
+        onClick={handleMovieClick}
+      >
+        <Card className="card">
           <Row className="row" noGutters={true}>
             <Col className="col" md={2}>
               <Card.Img
@@ -39,7 +69,9 @@ function MovieSearch(props) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
+            <Button value={item.genres} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
+            
             <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
@@ -82,6 +114,7 @@ function MovieSearch(props) {
       </Container>
     </>
   );
+    
 }
 
 export default MovieSearch;
