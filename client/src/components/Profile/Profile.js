@@ -5,6 +5,7 @@ import Badge from "react-bootstrap/Badge";
 import Media from "react-bootstrap/Media";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import Image from 'react-bootstrap/Image';
 import axios from "axios";
 
 class Profile extends React.Component {
@@ -19,21 +20,23 @@ class Profile extends React.Component {
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {
       console.log(badgeCounts);
-      // console.log(badgeCounts.data._id)
+      
      
     // _id:count
       this.setState({ badgeCounts: badgeCounts.data });
+      console.log(badgeCounts.data)
   // console.log(badgeCounts.data[0].count)
   // =1 (as it should)
   // if id# had count = 10
-  // for (let key in badgeCounts.data) {
-  //   let value = badgeCounts.data[key];
-  //   console.log(value.count);
-  //   // let idCount = value.count;
-  //   if (value.count === 2){
-  //     console.log(value._id + "genreID")
-  //   }
-  // }
+  for (let key in badgeCounts.data) {
+    let value = badgeCounts.data[key];
+    console.log(value.count);
+    // let idCount = value.count;
+    if (value.count === 2){
+      console.log(value._id + "genreID")
+    }
+  }
+ 
     });
     
   };
@@ -58,21 +61,23 @@ class Profile extends React.Component {
         </Container>
         <Container>
           {this.state.badgeCounts.map((value) => {
-            console.log(value.count); 
-            // for (let key in badgeCounts.data) {
-            //   let value = badgeCounts.data[key];
-            //   console.log(value.count);
-              // let idCount = value.count;
-              if (value.count === 1){
+            console.log(value._id);
+            console.log(value.count);
+            // let dataArr = [];
+            // // for (let key in badgeCounts.data) {
+            // //   let value = badgeCounts.data[key];
+            // //   console.log(value.count);
+            //   // let idCount = value.count;
+              if (value.count === 2){
                 console.log(value._id + " genreID")
-            }
+          
             switch (value._id){
               // && genId.count = 1
               // or do case for if id_28 =10 display this icon
               case 28:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/001-killer.png"/>;
               case 12:
-                return <Badge variant="primary">Action</Badge>;
+                return <Badge variant="primary">Comedy</Badge>;
               case 16:
                 return <Badge variant="primary">Action</Badge>;
               case 35:
@@ -110,7 +115,7 @@ class Profile extends React.Component {
               default:
                 return "";
               // always display ticket icon
-            }
+             }} 
           })}
           <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
             <Tab eventKey="description" title="Description"></Tab>
