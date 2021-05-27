@@ -117,9 +117,6 @@ const addMovie = (e) => {
             <Route exact path={["/profile"]}>
               <Profile />
             </Route>
-            {/* <Route exact path={["/moviedisplay"]}>
-              <MovieDisplay movie={singleMovie} />
-            </Route> */}
           </Switch>
         </div>
       </Router>

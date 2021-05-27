@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 // import { isEmail } from "validator";
 const SALT_WORK_FACTOR = 10;
 
@@ -66,24 +66,19 @@ const UserSchema = new Schema( {
 
 // $group, $match, $aggregate
 
-UserSchema.pre("save", function (next) {
-  let user = this;
-  if (!user.isModified("password")) return next();
-  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
-  });
+UserSchema.pre('save', async function save(next) {
+  if (!this.isModified('password')) return next();
+  try {
+    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+    this.password = await bcrypt.hash(this.password, salt);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
-  });
+UserSchema.methods.validatePassword = async function validatePassword(data) {
+  return bcrypt.compare(data, this.password);
 };
 
 const User = mongoose.model("User", UserSchema);
