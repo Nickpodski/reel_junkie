@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
-  // const [watched, setWatched] = setState();
-  
+
   let history = useHistory();
   const checkMoreResults = () => {
     props.onClick();

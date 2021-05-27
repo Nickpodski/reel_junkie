@@ -13,8 +13,9 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
+
 import { UserProvider } from "./utils/UserContext";
-import MovieDisplay from "./components/MovieDisplay/MovieDisplay";
+
 
 // import { fetchMovies } from "../src/utils/API";
 
@@ -81,6 +82,7 @@ const addMovie = (e) => {
     
   };
 
+
   
 
   return (
@@ -101,12 +103,15 @@ const addMovie = (e) => {
               </Route>
             <Route exact path={["/moviesearch"]}>
             <MovieSearch
+
                 results={searchResults}
                 currentPage={currentPage}
                 onClick={moreResultsClick}
                 totalPages={totalPages}
                 clickMovieRender={clickMovieRender}
+
                 addMovie={addMovie}
+
               />
             </Route>
             <Route exact path={["/profile"]}>
