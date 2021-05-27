@@ -11,7 +11,7 @@ const { User, Badge } = require('../../models');
 //        Post    Get    Put    Delete
 
 // Works - gets total number of movies watched
-router.get('/numwatched', (req, res) => {
+router.get('/amountwatched', (req, res) => {
   User.aggregate([
     {
       $project: {

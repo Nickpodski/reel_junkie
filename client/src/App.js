@@ -8,7 +8,7 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
-import Buttons from "./components/Buttons/Buttons";
+// import Buttons from "./components/Buttons/Buttons";
 
 import { UserProvider } from "./utils/UserContext";
 // import { fetchMovies } from "../src/utils/API";
@@ -44,16 +44,12 @@ function App() {
     setTotalPages(res);
   };
 
-  const handleSumbit = () => {
-    window.scrollTo(0, 0);
-    setCurrentPage(1);
-    getSearchResults(1);
-    getTotalPages();
-  };
-
-  const addMovie = (e) => {
+  // not sure if code here is needed
+  // as well as below (MovieSearch addMovie)
+const addMovie = (e) => {
+    console.log("heeeere")
     const genreArr = e.target.value.split(",");
-console.log(genreArr)
+    console.log(genreArr)
     genreArr.forEach(genre_id => {
       parseInt(genre_id);
       // const movieObj = {
@@ -65,6 +61,15 @@ console.log(genreArr)
 
     })
   }
+  
+  const handleSumbit = () => {
+    window.scrollTo(0, 0);
+    setCurrentPage(1);
+    getSearchResults(1);
+    getTotalPages();
+  };
+
+  
 
   return (
     <UserProvider>
@@ -83,11 +88,11 @@ console.log(genreArr)
                 <Register />
               </Route>
             <Route exact path={["/moviesearch"]}>
-              <MovieSearch results={searchResults} currentPage={currentPage}  onClick={moreResultsClick} totalPages={totalPages} addMovie={addMovie}/>
+              <MovieSearch results={searchResults} addMovie={addMovie} currentPage={currentPage}  onClick={moreResultsClick} totalPages={totalPages}/>
             </Route>
             <Route exact path={["/profile"]}>
               <Profile />
-              <Buttons />
+              {/* <Buttons /> */}
             </Route>
           </Switch>
         </div>

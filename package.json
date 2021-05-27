@@ -32,5 +32,14 @@
     "react-device-detect": "^1.17.0",
     "react-router-dom": "^5.2.0",
     "validator": "^13.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickpodski/reel_junkie.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Nickpodski/reel_junkie/issues"
+  },
+  "homepage": "https://github.com/Nickpodski/reel_junkie#readme"
 }

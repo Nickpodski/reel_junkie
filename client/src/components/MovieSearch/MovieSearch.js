@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
-function MovieSearch({props, addMovie}) {
+function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
-   
+  // const [watched, setWatched] = setState();
+  
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
@@ -17,6 +18,21 @@ function MovieSearch({props, addMovie}) {
 
   const backToTop = () => {
     window.scrollTo(0, 0);
+  }
+
+  const addMovie = (e) => {
+    console.log("heeeere")
+    const genreArr = e.target.value.split(",");
+    console.log(genreArr)
+    genreArr.forEach(genre_id => {
+      const idCollection = parseInt(genre_id);
+      // const movieObj = {
+      //   _id: genre_id,
+      //   title: "Up"
+      // }
+      console.log(idCollection)
+      
+    })
   }
 
   useEffect(() => {
@@ -39,8 +55,9 @@ function MovieSearch({props, addMovie}) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
+            <Button value={item.genres} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
-            <Button value={item.genres} onClick={e => addMovie(e)}>Save</ Button>
+            
             <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
