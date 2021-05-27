@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -8,6 +13,8 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
+import MovieDisplay from "./components/MovieDisplay/MovieDisplay";
+
 // import { fetchMovies } from "../src/utils/API";
 
 function App() {
@@ -15,21 +22,23 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
+  const [singleMovie, setSingleMovie] = useState([]);
  
+
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     setSearchMovie(newValue);
   };
 
   const moreResultsClick = async () => {
-    console.log("is this triggering?")
+    console.log("is this triggering?");
     let p = currentPage;
     let newPage = p + 1;
     setCurrentPage(currentPage + 1);
     const res = await searchMovies(searchMovie, newPage);
     const newSearchRes = searchResults.concat(res);
     setSearchResults(newSearchRes);
-  }
+  };
 
   const getSearchResults = async (page) => {
     const res = await searchMovies(searchMovie, page);
@@ -47,6 +56,11 @@ function App() {
     getSearchResults(1);
     getTotalPages();
   };
+  
+  const clickMovieRender = (movie) => {
+    setSingleMovie(movie);
+    
+  };
 
   return (
     <div>
@@ -61,13 +75,22 @@ function App() {
               <Login />
             </Route>
             <Route exact path={["/register"]}>
-                <Register />
-              </Route>
+              <Register />
+            </Route>
             <Route exact path={["/moviesearch"]}>
-              <MovieSearch results={searchResults} currentPage={currentPage}  onClick={moreResultsClick} totalPages={totalPages}/>
+              <MovieSearch
+                results={searchResults}
+                currentPage={currentPage}
+                onClick={moreResultsClick}
+                totalPages={totalPages}
+                clickMovieRender={clickMovieRender}
+              />
             </Route>
             <Route exact path={["/profile"]}>
               <Profile />
+            </Route>
+            <Route exact path={["/moviedisplay"]}>
+              <MovieDisplay movie={singleMovie} />
             </Route>
           </Switch>
         </div>

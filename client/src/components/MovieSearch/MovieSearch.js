@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
-
+  let history = useHistory();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
@@ -27,10 +28,23 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
+  const handleMovieClick = (e) => {
+    e.preventDefault();
+    const index = e.currentTarget.id;
+    const movie = props.results[index];
+    history.push("/moviedisplay");
+    props.clickMovieRender(movie);
+  };
+
   const renderResults = props.results.map((item, index) => {
     return (
-      <Container className="p-5">
-        <Card className="card" key={index}>
+      <Container
+        id={index}
+        className="p-5 "
+        key={index}
+        onClick={handleMovieClick}
+      >
+        <Card className="card">
           <Row className="row" noGutters={true}>
             <Col className="col" md={2}>
               <Card.Img
