@@ -13,7 +13,9 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
-import MovieDisplay from "./components/MovieDisplay/MovieDisplay";
+
+import { UserProvider } from "./utils/UserContext";
+
 
 // import { fetchMovies } from "../src/utils/API";
 
@@ -50,6 +52,24 @@ function App() {
     setTotalPages(res);
   };
 
+  // not sure if code here is needed
+  // as well as below (MovieSearch addMovie)
+const addMovie = (e) => {
+    console.log("heeeere")
+    const genreArr = e.target.value.split(",");
+    console.log(genreArr)
+    genreArr.forEach(genre_id => {
+      parseInt(genre_id);
+      // const movieObj = {
+      //   _id: genre_id,
+      //   title: "Up"
+      // }
+      console.log(genre_id)
+
+
+    })
+  }
+  
   const handleSumbit = () => {
     window.scrollTo(0, 0);
     setCurrentPage(1);
@@ -62,28 +82,36 @@ function App() {
     
   };
 
+
+  
+
   return (
-    <div>
-      <Router>
-        <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
-        <div>
-          <Switch>
-            <Route exact path={["/", "/home"]}>
-              <MoviesInCarousel />
-            </Route>
-            <Route exact path={["/login"]}>
-              <Login />
-            </Route>
-            <Route exact path={["/register"]}>
-              <Register />
-            </Route>
+    <UserProvider>
+      <div>
+        <Router>
+          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
+          <div>
+            <Switch>
+              <Route exact path={["/", "/home"]}>
+                <MoviesInCarousel />
+              </Route>
+              <Route exact path={["/login"]}>
+                <Login />
+              </Route>
+              <Route exact path={["/register"]}>
+                <Register />
+              </Route>
             <Route exact path={["/moviesearch"]}>
-              <MovieSearch
+            <MovieSearch
+
                 results={searchResults}
                 currentPage={currentPage}
                 onClick={moreResultsClick}
                 totalPages={totalPages}
                 clickMovieRender={clickMovieRender}
+
+                addMovie={addMovie}
+
               />
             </Route>
             <Route exact path={["/profile"]}>
@@ -96,6 +124,7 @@ function App() {
         </div>
       </Router>
     </div>
+    </UserProvider>
   );
 }
 

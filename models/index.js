@@ -1,4 +1,4 @@
 module.exports = {
   User: require("./User.js"),
-  Badge: require("./Badge")
+  Badge: require("./Badge.js")
 }; 

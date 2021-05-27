@@ -18,7 +18,7 @@ const NavBar = (props) => {
   return (
     <>
       <Navbar
-        className="navbar"
+        // className="navbar"
         bg="black"
         variant="dark"
         sticky="top"

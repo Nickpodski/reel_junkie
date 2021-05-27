@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
+
   let history = useHistory();
   const checkMoreResults = () => {
     props.onClick();
@@ -18,6 +19,21 @@ function MovieSearch(props) {
 
   const backToTop = () => {
     window.scrollTo(0, 0);
+  }
+
+  const addMovie = (e) => {
+    console.log("heeeere")
+    const genreArr = e.target.value.split(",");
+    console.log(genreArr)
+    genreArr.forEach(genre_id => {
+      const idCollection = parseInt(genre_id);
+      // const movieObj = {
+      //   _id: genre_id,
+      //   title: "Up"
+      // }
+      console.log(idCollection)
+      
+    })
   }
 
   useEffect(() => {
@@ -53,7 +69,9 @@ function MovieSearch(props) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
+            <Button value={item.genres} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
+            
             <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
@@ -96,6 +114,7 @@ function MovieSearch(props) {
       </Container>
     </>
   );
+    
 }
 
 export default MovieSearch;
