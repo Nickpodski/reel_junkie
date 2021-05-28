@@ -1,0 +1,90 @@
+header {
+    -o-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    padding:  0px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #333;
+    border-bottom: 3px solid #dad;
+  }
+  /* GRADIEND */
+  .ap {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #333;
+  background: #222;
+  border-top: 2px solid #f0f;
+  z-index: 9999;
+  }  
+  /*END*/
+  
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* html, body {
+    height: 100%;
+  }
+  
+  body {
+    background: radial-gradient(ellipse at top left, #334455 0%, #112233 100%);
+    overflow: hidden;
+  } */
+  
+  .wrapper {
+    position: absolute;
+    top: 100%;
+    width: 400px;
+    margin-left: -200px;
+    font: 300 30px/1 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    animation: 560s credits linear infinite;
+   
+    background-color: lightgreen;
+  }
+  
+ul {
+      text-decoration: none;  
+  }
+
+  .movie {
+    margin-bottom: 50px;
+    font-size: 50px;
+  }
+  
+  .job {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+  
+  .name {
+    margin-bottom: 50px;
+    font-size: 35px;
+  }
+  
+  @keyframes credits {
+    0% {
+      top: 100%;
+    }
+    100% {
+      top: -500%;
+    }
+  }
