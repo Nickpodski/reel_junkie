@@ -11,6 +11,8 @@ import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer"
+import Credits from "./components/Credits/Credits";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
 
@@ -117,8 +119,12 @@ const addMovie = (e) => {
             <Route exact path={["/profile"]}>
               <Profile />
             </Route>
+            <Route exact path={["/credits"]}>
+              <Credits />
+            </Route>
           </Switch>
         </div>
+        <Footer />
       </Router>
     </div>
     </UserProvider>
