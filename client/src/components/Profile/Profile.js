@@ -59,7 +59,7 @@ class Profile extends React.Component {
             />
           </Media>
         </Container>
-        <Container>
+        <Container className="badgeContainer">
           {this.state.badgeCounts.map((value) => {
             console.log(value._id);
             console.log(value.count);
@@ -68,55 +68,57 @@ class Profile extends React.Component {
             // //   let value = badgeCounts.data[key];
             // //   console.log(value.count);
             //   // let idCount = value.count;
-              if (value.count === 2){
+              if (value.count === 10){
                 console.log(value._id + " genreID")
           
             switch (value._id){
               // && genId.count = 1
               // or do case for if id_28 =10 display this icon
               case 28:
-                return <Image className="test p-2" src="./badges/001-killer.png"/>;
+                return <Image className="test p-2" src="./badges/action-rambo.png"/>;
               case 12:
-                return <Badge variant="primary">Comedy</Badge>;
+                return <Image className="test p-2" src="./badges/adventure-map.png"/>;
               case 16:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/animation-mouseToy.png"/>;
               case 35:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/comedy-lolCat.png"/>;
               case 80:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/crime-handcuffs.png"/>;
               case 99:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/documentary-camera.png"/>;
               case 18:
-                return <Badge variant="primary">1 Action</Badge>;
+                return <Image className="test p-2" src="./badges/drama-skull.png"/>;
               case 10751:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/family-badge.png"/>;
               case 14:
-                return <Badge variant="primary">Action</Badge>;
+                return <Image className="test p-2" src="./badges/fantasy-wizard.png"/>;
               case 36:
-                return <Badge variant="primary">Drama</Badge>;
+                return <Image className="test p-2" src="./badges/history-columns.png"/>;
               case 27:
-                return <Badge variant="primary">Thriller</Badge>;
+                return <Image className="test p-2" src="./badges/horror-knife.png"/>;
               case 10402:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/musical-notes.png"/>;
               case 9648:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/mystery-sherlock.png"/>;
               case 10749:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/romance-heartMail.png"/>;
               case 878:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/sci-fi-laserGun.png"/>;
               case 10770:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/tv-movie-tv.png"/>;
               case 53:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/thriller-rollerCoaster.png"/>;
               case 10752:
-                return <Badge variant="primary">Animation</Badge>;
+                return <Image className="test p-2" src="./badges/war-helmut.png"/>;
               case 37:
-                return <Badge variant="primary">Animation</Badge>;  
+                return <Image className="test p-2" src="./badges/western-sheriffStar.png"/>;  
               default:
                 return "";
               // always display ticket icon
              }} 
           })}
+           </Container>
+           <Container>
           <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
             <Tab eventKey="description" title="Description"></Tab>
             <Tab eventKey="Movies Watched" title="Movies Watched"></Tab>
