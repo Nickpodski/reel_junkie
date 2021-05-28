@@ -6,6 +6,8 @@ import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer"
+import Credits from "./components/Credits/Credits";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
 // import UserContext from "./utils/UserContext";
@@ -52,20 +54,14 @@ function App() {
     setTotalPages(res);
   };
 
-  // not sure if code here is needed
-  // as well as below (MovieSearch addMovie)
-const addMovie = (e) => {
-    console.log("heeeere")
-    const genreArr = e.target.value.split(",");
-    console.log(genreArr)
-    genreArr.forEach(genre_id => {
-      parseInt(genre_id);
-      // const movieObj = {
-      //   _id: genre_id,
-      //   title: "Up"
-      // }
-      console.log(genre_id)
-    })
+  const saveUserMoviesWatched = (data) => {
+    console.log(data);
+    setUserData({
+      email: data.email,
+      movies_watched: data.movies_watched,
+      watchlist: data.watchlist,
+      isLoggedIn: true
+    });
   }
   
   const handleSumbit = () => {
@@ -112,14 +108,21 @@ const addMovie = (e) => {
                 onClick={moreResultsClick}
                 totalPages={totalPages}
                 // clickMovieRender={clickMovieRender}
-                addMovie={addMovie}
+                // addMovie={addMovie}
+                user={userData}
+                setUserMW={saveUserMoviesWatched}
               />
             </Route>
             <Route exact path={["/profile"]}>
               <Profile user={userData}/>
             </Route>
+            <Route exact path={["/credits"]}>
+              <Credits />
+            </Route>
           </Switch>
+          <Footer />
         </div>
+       
       </Router>
     </div>
     // </UserContext.Provider>

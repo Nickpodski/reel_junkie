@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function MovieSearch(props) {
+  const { user } = props;
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
@@ -19,24 +21,49 @@ function MovieSearch(props) {
 
   const backToTop = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
-  const addMovie = (e) => {
+  const addMovieWatched = (e) => {
+    const index = e.target.value;
+    const movie = props.results[index];
+    const title = movie.title;
+    const email = user.email;
+    const id = movie.id;
+    const movieData = {
+      "title":title,
+      "movie_id":id
+    }
+    const moviesWatched = props.user.movies_watched;
+    if (moviesWatched.some(e => e.movie_id === id)) {
+      console.log(`You've alredy watched this movie`);
+    } else {
+      moviesWatched.push(movieData);
+      console.log(moviesWatched);
+      props.setUserMW(user);
+      axios.put('/api/user/addmoviewatched', { email, moviesWatched })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        })
+    }
+  };
+
+  const addMovieWatchList = (e) => {
     const index = e.target.value;
     const movie = props.results[index];
     console.log(movie);
-    const genreArr = movie.genres;
-    console.log(genreArr);
-    genreArr.forEach(genre_id => {
-      const idCollection = parseInt(genre_id);
-      // const movieObj = {
-      //   _id: genre_id,
-      //   title: "Up"
-      // }
-      console.log(idCollection)
-      
-    })
-  }
+  };
 
   useEffect(() => {
     if (props.currentPage < props.totalPages) {
@@ -63,7 +90,7 @@ function MovieSearch(props) {
         // onClick={handleMovieClick}
       >
         <Card className="card">
-          <Row className="row" noGutters={true}>
+          <Row className="row1" noGutters={true}>
             <Col className="col" md={2}>
               <Card.Img
                 className="card-img"
@@ -71,9 +98,30 @@ function MovieSearch(props) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
-            <Button value={index} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
-            
+          </Row>
+
+          <Row className="row2" noGutters={true}>
+            <Col>
+              <Button
+                className="watched-btn ml-2 mr-2"
+                variant="success"
+                value={index}
+                onClick={(e) => addMovieWatched(e)}
+              >
+                Have Watched
+              </Button>
+              <Button
+                variant="danger"
+                value={index}
+                onClick={(e) => addMovieWatchList(e)}
+              >
+                + To Movie List
+              </Button>
+            </Col>
+          </Row>
+
+          <Row>
             <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
@@ -104,19 +152,18 @@ function MovieSearch(props) {
           </Button>
         ) : (
           <Button
-          variant="warning"
-          size="lg"
-          block
-          className="results-btn mb-5"
-          onClick={backToTop}
-        >
-          Back To Top
-        </Button>
+            variant="warning"
+            size="lg"
+            block
+            className="results-btn mb-5"
+            onClick={backToTop}
+          >
+            Back To Top
+          </Button>
         )}
       </Container>
     </>
   );
-    
 }
 
 export default MovieSearch;

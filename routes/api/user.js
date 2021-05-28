@@ -3,8 +3,8 @@ const User = require('../../models/User');
 
 router.post('/register' , async (req, res) => {
   const user = new User({
-    email: req.body.user.email,
-    password: req.body.user.password
+    email: req.body.email,
+    password: req.body.password
   })
   try{
     const newUser = await user.save();
@@ -48,22 +48,14 @@ router.post('/login', async (req, res) => {
 
 router.put('/addmoviewatched', async (req, res) =>  {
   try {
-    const userData = await User.findOne({ email: req.body.email });
-    const userMoviesWatched = userData.movies_watched;
-    if (userMoviesWatched.includes(req.body.movie)) {
-      res.status(409).json({message: `You've already added this movie!`});
-      return;
-    } else {
-      userMoviesWatched.push(req.body.movie);
-      await User.updateOne({
+      await User.updateMany({
         email: req.body.email
       }, {
         $set: {
-          movies_watched: userMoviesWatched
+          movies_watched: req.body.moviesWatched
         }  
       },);
       res.status(200).json({message: 'Successfully added your movie!'})
-    }
   } catch (err) {
     res.status(400).json({message: err.message});
   }
