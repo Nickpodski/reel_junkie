@@ -8,9 +8,12 @@
     color:silver !important;
 }
 
+.row1{
+    background-color: black
+}
+ 
 
-.row{
-    background-color: black;
-    border: solid;
-    border-color: white !important;  
+.row2{
+    
+    background-color:black
 }
