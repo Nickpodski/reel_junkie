@@ -19,22 +19,21 @@ function MovieSearch(props) {
 
   const backToTop = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
   const addMovie = (e) => {
-    console.log("heeeere")
+    console.log("heeeere");
     const genreArr = e.target.value.split(",");
-    console.log(genreArr)
-    genreArr.forEach(genre_id => {
+    console.log(genreArr);
+    genreArr.forEach((genre_id) => {
       const idCollection = parseInt(genre_id);
       // const movieObj = {
       //   _id: genre_id,
       //   title: "Up"
       // }
-      console.log(idCollection)
-      
-    })
-  }
+      console.log(idCollection);
+    });
+  };
 
   useEffect(() => {
     if (props.currentPage < props.totalPages) {
@@ -61,7 +60,7 @@ function MovieSearch(props) {
         onClick={handleMovieClick}
       >
         <Card className="card">
-          <Row className="row" noGutters={true}>
+          <Row className="row1" noGutters={true}>
             <Col className="col" md={2}>
               <Card.Img
                 className="card-img"
@@ -69,9 +68,30 @@ function MovieSearch(props) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
-            <Button value={item.genres} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
-            
+          </Row>
+
+          <Row className="row2" noGutters={true}>
+            <Col>
+              <Button
+                className="watched-btn ml-2 mr-2"
+                variant="success"
+                value={item.genres}
+                onClick={(e) => addMovie(e)}
+              >
+                Have Watched
+              </Button>
+              <Button
+                variant="danger"
+                value={item.genres}
+                onClick={(e) => addMovie(e)}
+              >
+                + To Movie List
+              </Button>
+            </Col>
+          </Row>
+
+          <Row>
             <Col className="col" md={12}>
               <Card.Body className="card-desc">
                 <Card.Title>{item.title}</Card.Title>
@@ -102,19 +122,18 @@ function MovieSearch(props) {
           </Button>
         ) : (
           <Button
-          variant="warning"
-          size="lg"
-          block
-          className="results-btn mb-5"
-          onClick={backToTop}
-        >
-          Back To Top
-        </Button>
+            variant="warning"
+            size="lg"
+            block
+            className="results-btn mb-5"
+            onClick={backToTop}
+          >
+            Back To Top
+          </Button>
         )}
       </Container>
     </>
   );
-    
 }
 
 export default MovieSearch;
