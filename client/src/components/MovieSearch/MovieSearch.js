@@ -22,9 +22,11 @@ function MovieSearch(props) {
   }
 
   const addMovie = (e) => {
-    console.log("heeeere")
-    const genreArr = e.target.value.split(",");
-    console.log(genreArr)
+    const index = e.target.value;
+    const movie = props.results[index];
+    console.log(movie);
+    const genreArr = movie.genres;
+    console.log(genreArr);
     genreArr.forEach(genre_id => {
       const idCollection = parseInt(genre_id);
       // const movieObj = {
@@ -44,13 +46,13 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
-  const handleMovieClick = (e) => {
-    e.preventDefault();
-    const index = e.currentTarget.id;
-    const movie = props.results[index];
-    history.push("/moviedisplay");
-    props.clickMovieRender(movie);
-  };
+  // const handleMovieClick = (e) => {
+  //   e.preventDefault();
+  //   const index = e.currentTarget.id;
+  //   const movie = props.results[index];
+  //   history.push("/moviedisplay");
+  //   props.clickMovieRender(movie);
+  // };
 
   const renderResults = props.results.map((item, index) => {
     return (
@@ -58,7 +60,7 @@ function MovieSearch(props) {
         id={index}
         className="p-5 "
         key={index}
-        onClick={handleMovieClick}
+        // onClick={handleMovieClick}
       >
         <Card className="card">
           <Row className="row" noGutters={true}>
@@ -69,7 +71,7 @@ function MovieSearch(props) {
                 alt={item.title}
                 style={{ width: "15rem" }}
               />
-            <Button value={item.genres} onClick={e => addMovie(e)}>Have Watched</ Button>
+            <Button value={index} onClick={e => addMovie(e)}>Have Watched</ Button>
             </Col>
             
             <Col className="col" md={12}>

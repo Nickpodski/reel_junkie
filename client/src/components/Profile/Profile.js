@@ -20,25 +20,25 @@ class Profile extends React.Component {
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {
       console.log(badgeCounts);
-      
-     
-    // _id:count
+
+
+      // _id:count
       this.setState({ badgeCounts: badgeCounts.data });
       console.log(badgeCounts.data)
-  // console.log(badgeCounts.data[0].count)
-  // =1 (as it should)
-  // if id# had count = 10
-  for (let key in badgeCounts.data) {
-    let value = badgeCounts.data[key];
-    console.log(value.count);
-    // let idCount = value.count;
-    if (value.count === 2){
-      console.log(value._id + "genreID")
-    }
-  }
- 
+      // console.log(badgeCounts.data[0].count)
+      // =1 (as it should)
+      // if id# had count = 10
+      for (let key in badgeCounts.data) {
+        let value = badgeCounts.data[key];
+        console.log(value.count);
+        // let idCount = value.count;
+        if (value.count === 2) {
+          console.log(value._id + "genreID")
+        }
+      }
+
     });
-    
+
   };
 
   // for in?
@@ -68,62 +68,77 @@ class Profile extends React.Component {
             // //   let value = badgeCounts.data[key];
             // //   console.log(value.count);
             //   // let idCount = value.count;
-              if (value.count === 10){
-                console.log(value._id + " genreID")
-          
-            switch (value._id){
-              // && genId.count = 1
-              // or do case for if id_28 =10 display this icon
-              case 28:
-                return <Image className="test p-2" src="./badges/action-rambo.png"/>;
-              case 12:
-                return <Image className="test p-2" src="./badges/adventure-map.png"/>;
-              case 16:
-                return <Image className="test p-2" src="./badges/animation-mouseToy.png"/>;
-              case 35:
-                return <Image className="test p-2" src="./badges/comedy-lolCat.png"/>;
-              case 80:
-                return <Image className="test p-2" src="./badges/crime-handcuffs.png"/>;
-              case 99:
-                return <Image className="test p-2" src="./badges/documentary-camera.png"/>;
-              case 18:
-                return <Image className="test p-2" src="./badges/drama-skull.png"/>;
-              case 10751:
-                return <Image className="test p-2" src="./badges/family-badge.png"/>;
-              case 14:
-                return <Image className="test p-2" src="./badges/fantasy-wizard.png"/>;
-              case 36:
-                return <Image className="test p-2" src="./badges/history-columns.png"/>;
-              case 27:
-                return <Image className="test p-2" src="./badges/horror-knife.png"/>;
-              case 10402:
-                return <Image className="test p-2" src="./badges/musical-notes.png"/>;
-              case 9648:
-                return <Image className="test p-2" src="./badges/mystery-sherlock.png"/>;
-              case 10749:
-                return <Image className="test p-2" src="./badges/romance-heartMail.png"/>;
-              case 878:
-                return <Image className="test p-2" src="./badges/sci-fi-laserGun.png"/>;
-              case 10770:
-                return <Image className="test p-2" src="./badges/tv-movie-tv.png"/>;
-              case 53:
-                return <Image className="test p-2" src="./badges/thriller-rollerCoaster.png"/>;
-              case 10752:
-                return <Image className="test p-2" src="./badges/war-helmut.png"/>;
-              case 37:
-                return <Image className="test p-2" src="./badges/western-sheriffStar.png"/>;  
-              default:
-                return "";
-              // always display ticket icon
-             }} 
+            if (value.count === 10) {
+              console.log(value._id + " genreID")
+
+              switch (value._id) {
+                // && genId.count = 1
+                // or do case for if id_28 =10 display this icon
+                case 28:
+                  return <Image className="test p-2" src="./badges/action-rambo.png" />;
+                case 12:
+                  return <Image className="test p-2" src="./badges/adventure-map.png" />;
+                case 16:
+                  return <Image className="test p-2" src="./badges/animation-mouseToy.png" />;
+                case 35:
+                  return <Image className="test p-2" src="./badges/comedy-lolCat.png" />;
+                case 80:
+                  return <Image className="test p-2" src="./badges/crime-handcuffs.png" />;
+                case 99:
+                  return <Image className="test p-2" src="./badges/documentary-camera.png" />;
+                case 18:
+                  return <Image className="test p-2" src="./badges/drama-skull.png" />;
+                case 10751:
+                  return <Image className="test p-2" src="./badges/family-badge.png" />;
+                case 14:
+                  return <Image className="test p-2" src="./badges/fantasy-wizard.png" />;
+                case 36:
+                  return <Image className="test p-2" src="./badges/history-columns.png" />;
+                case 27:
+                  return <Image className="test p-2" src="./badges/horror-knife.png" />;
+                case 10402:
+                  return <Image className="test p-2" src="./badges/musical-notes.png" />;
+                case 9648:
+                  return <Image className="test p-2" src="./badges/mystery-sherlock.png" />;
+                case 10749:
+                  return <Image className="test p-2" src="./badges/romance-heartMail.png" />;
+                case 878:
+                  return <Image className="test p-2" src="./badges/sci-fi-laserGun.png" />;
+                case 10770:
+                  return <Image className="test p-2" src="./badges/tv-movie-tv.png" />;
+                case 53:
+                  return <Image className="test p-2" src="./badges/thriller-rollerCoaster.png" />;
+                case 10752:
+                  return <Image className="test p-2" src="./badges/war-helmut.png" />;
+                case 37:
+                  return <Image className="test p-2" src="./badges/western-sheriffStar.png" />;
+                default:
+                  return "";
+                // always display ticket icon
+              }
+            }
           })}
-           </Container>
-           <Container>
+        </Container>
+        <Container>
           <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
-            <Tab eventKey="description" title="Description"></Tab>
-            <Tab eventKey="Movies Watched" title="Movies Watched"></Tab>
-            <Tab eventKey="Watch List" title="Watch List"></Tab>
-            <Tab eventKey="Reviews" title="Reviews"></Tab>
+            <Tab eventKey="description" title="Description">
+              <h3>Your Email: {this.props.user.email}</h3>
+              <h5>Movies Wached: {this.props.user.movies_watched.length}</h5>
+              <h5>Movies on Watchlist: {this.props.user.watchlist.length}</h5>
+            </Tab>
+            <Tab eventKey="Movies Watched" title="Movies Watched">
+              {this.props.movies_watched_length > 0 
+              ? ( this.props.movies_watched )
+              : ( <h5>Go watch some movies and tell us about it!</h5>)
+              }
+            </Tab>
+            <Tab eventKey="Watch List" title="Watch List">
+              {this.props.movies_watchlist > 0 
+              ? ( this.props.watchlist )
+              : ( <h5>Go find some movies to add to your watchlist!</h5>)
+              }
+            </Tab>
+            {/* <Tab eventKey="Reviews" title="Reviews"></Tab> */}
           </Tabs>
         </Container>
       </div>

@@ -4,7 +4,7 @@ import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const NavBar = (props) => {
-  const { onChange, onSubmit } = props;
+  const { onChange, onSubmit, user, logout } = props;
   let history = useHistory();
   const formRef = useRef();
 
@@ -14,6 +14,15 @@ const NavBar = (props) => {
     onSubmit();
     formRef.current.reset();
   };
+
+  const handleLogout = () => {
+    logout({
+      email: "",
+      movies_watched: [],
+      watchlist:[],
+      isLoggedIn: false
+    });
+  }
 
   return (
     <>
@@ -47,9 +56,14 @@ const NavBar = (props) => {
         </Form>
         <Nav>
           <Nav.Item>
-            <Nav.Link className="link" as={Link} to="/login">
-              Login
-            </Nav.Link>
+            {user.isLoggedIn === false
+            ? ( <Nav.Link className="link" as={Link} to="/login">
+                  Login
+                </Nav.Link>)
+            : ( <Nav.Link className="link" as={Link} to='/home' onClick=    {handleLogout}>
+                  Logout
+                </Nav.Link>)
+            }
           </Nav.Item>
         </Nav>
       </Navbar>

@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 // import axios from 'axios';
 
-function Login() {
+function Login(props) {
+  const { saveUserData } = props;
   let history = useHistory();
   const formRef = useRef();
   const [user, setUser] = useState(
@@ -27,17 +28,19 @@ function Login() {
     setPassWord(newPassWord);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setUser({
+     setUser({
       "email":email,
       "password":password
     });
     formRef.current.reset();
-    axios.post('/api/user/logIn', { user } )
+    axios.post('/api/user/logIn', { email, password } )
       .then(res => {
         console.log(res);
         console.log(res.data);
+        saveUserData(res.data);
+        history.push('/profile');
       })
       .catch((error) => {
         if (error.response) {

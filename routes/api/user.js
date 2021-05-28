@@ -16,21 +16,21 @@ router.post('/register' , async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ email: req.body.user.email });
+    const userData = await User.findOne({ email: req.body.email });
 
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    const validPassword = await userData.validatePassword(req.body.user.password);
+    const validPassword = await userData.validatePassword(req.body.password);
 
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
@@ -45,5 +45,28 @@ router.post('/login', async (req, res) => {
     res.status(400).json({message: err.message});
   }
 });
+
+router.put('/addmoviewatched', async (req, res) =>  {
+  try {
+    const userData = await User.findOne({ email: req.body.email });
+    const userMoviesWatched = userData.movies_watched;
+    if (userMoviesWatched.includes(req.body.movie)) {
+      res.status(409).json({message: `You've already added this movie!`});
+      return;
+    } else {
+      userMoviesWatched.push(req.body.movie);
+      await User.updateOne({
+        email: req.body.email
+      }, {
+        $set: {
+          movies_watched: userMoviesWatched
+        }  
+      },);
+      res.status(200).json({message: 'Successfully added your movie!'})
+    }
+  } catch (err) {
+    res.status(400).json({message: err.message});
+  }
+})
 
 module.exports = router;
