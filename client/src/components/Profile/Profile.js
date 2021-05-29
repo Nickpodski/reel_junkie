@@ -18,6 +18,18 @@ class Profile extends React.Component {
     this.getBadgeCount();
   }
 
+  renderMoviesWatched = this.props.user.movies_watched.map((item, index) => {
+    return(
+      <h5 key={index}>{item.title}</h5>
+    )
+  })
+
+  renderMovieWatchList = this.props.user.watchlist.map((item, index) => {
+    return(
+      <h5 key={index}>{item.title}</h5>
+    )
+  })
+
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {
       console.log(badgeCounts);
@@ -38,11 +50,6 @@ class Profile extends React.Component {
       }
     });
   };
-
-  // for in?
-  //              ^  ???????
-  // need to check user badges
-
   render() {
     return (
       <div>
@@ -269,10 +276,24 @@ class Profile extends React.Component {
         </Container>
         <Container>
           <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
-            <Tab eventKey="description" title="Description"></Tab>
-            <Tab eventKey="Movies Watched" title="Movies Watched"></Tab>
-            <Tab eventKey="Watch List" title="Watch List"></Tab>
-            <Tab eventKey="Reviews" title="Reviews"></Tab>
+            <Tab eventKey="description" title="Description">
+              <h3>Your Email: {this.props.user.email}</h3>
+              <h5>Movies Wached: {this.props.user.movies_watched.length}</h5>
+              <h5>Movies on Watchlist: {this.props.user.watchlist.length}</h5>
+            </Tab>
+            <Tab eventKey="Movies Watched" title="Movies Watched">
+              {this.props.user.movies_watched.length > 0 
+              ? ( this.renderMoviesWatched )
+              : ( <h5>Go watch some movies and tell us about it!</h5>)
+              }
+            </Tab>
+            <Tab eventKey="Watch List" title="Watch List">
+              {this.props.user.watchlist.length > 0 
+              ? ( this.renderMovieWatchList )
+              : ( <h5>Go find some movies to add to your watchlist!</h5>)
+              }
+            </Tab>
+            {/* <Tab eventKey="Reviews" title="Reviews"></Tab> */}
           </Tabs>
         </Container>
       </div>

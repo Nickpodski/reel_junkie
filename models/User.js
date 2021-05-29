@@ -10,7 +10,7 @@ const UserSchema = new Schema( {
       trim: true,
       lowercase: true,
       unique: true,
-      required: "Email address is required",
+      required: true,
       // validate: { validator: isEmail, message: "Invalid email." },
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -30,15 +30,15 @@ const UserSchema = new Schema( {
         movie_id: {
           type: Number,
         },
-        movie_runtime: {
-          type: Number,
-          required: "In minutes"
-        },
-        movie_genres: [
-          {
-          type: Array
-        }
-      ],
+      //   movie_runtime: {
+      //     type: Number,
+      //     required: "In minutes"
+      //   },
+      //   movie_genres: [
+      //     {
+      //     type: Array
+      //   }
+      // ],
       },
     ],
   

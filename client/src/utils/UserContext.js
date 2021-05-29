@@ -6,7 +6,9 @@ const UsersInfoContext = createContext({
   email: "",
   password: "",
   movies_watched: [],
-  watchlist:[]
+  watchlist:[],
+  id:"",
+  isLoggedIn: false
 });
 
 const { Provider } = UsersInfoContext;

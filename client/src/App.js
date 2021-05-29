@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -15,8 +10,7 @@ import Footer from "./components/Footer/Footer"
 import Credits from "./components/Credits/Credits";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
-
-import { UserProvider } from "./utils/UserContext";
+// import UserContext from "./utils/UserContext";
 
 
 // import { fetchMovies } from "../src/utils/API";
@@ -26,7 +20,13 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const [singleMovie, setSingleMovie] = useState([]);
+  const [userData, setUserData] = useState({
+    email: "",
+    movies_watched: [],
+    watchlist:[],
+    isLoggedIn: false
+  });
+  // const [singleMovie, setSingleMovie] = useState([]);
  
 
   const handleInputChange = (event) => {
@@ -54,23 +54,17 @@ function App() {
     setTotalPages(res);
   };
 
-  // not sure if code here is needed
-  // as well as below (MovieSearch addMovie)
-const addMovie = (e) => {
-    console.log("heeeere")
-    const genreArr = e.target.value.split(",");
-    console.log(genreArr)
-    genreArr.forEach(genre_id => {
-      parseInt(genre_id);
-      // const movieObj = {
-      //   _id: genre_id,
-      //   title: "Up"
-      // }
-      console.log(genre_id)
+  const saveUserMoviesWatched = (data) => {
+    console.log(data);
+    setUserData({
+      email: data.email,
+      movies_watched: data.movies_watched,
+      watchlist: data.watchlist,
+      isLoggedIn: true
+    });
+  };
 
 
-    })
-  }
   
   const handleSumbit = () => {
     window.scrollTo(0, 0);
@@ -78,56 +72,62 @@ const addMovie = (e) => {
     getSearchResults(1);
     getTotalPages();
   };
+
+  const saveUserData = (data) => {
+    setUserData({
+      email: data.user.email,
+      movies_watched: data.user.movies_watched,
+      watchlist: data.user.watchlist,
+      isLoggedIn: true
+    });
+  }
   
-  const clickMovieRender = (movie) => {
-    setSingleMovie(movie);
+  // const clickMovieRender = (movie) => {
+  //   setSingleMovie(movie);
     
-  };
-
-
-  
+  // };
 
   return (
-    <UserProvider>
+    // <UserContext.Provider>
       <div>
         <Router>
-          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} />
+          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData}/>
           <div>
             <Switch>
               <Route exact path={["/", "/home"]}>
                 <MoviesInCarousel />
               </Route>
               <Route exact path={["/login"]}>
-                <Login />
+                <Login saveUserData={saveUserData}/>
               </Route>
               <Route exact path={["/register"]}>
                 <Register />
               </Route>
             <Route exact path={["/moviesearch"]}>
             <MovieSearch
-
                 results={searchResults}
                 currentPage={currentPage}
                 onClick={moreResultsClick}
                 totalPages={totalPages}
-                clickMovieRender={clickMovieRender}
-
-                addMovie={addMovie}
-
+                // clickMovieRender={clickMovieRender}
+                // addMovie={addMovie}
+                user={userData}
+                setUserMW={saveUserMoviesWatched}
               />
             </Route>
             <Route exact path={["/profile"]}>
-              <Profile />
+              <Profile user={userData}/>
             </Route>
             <Route exact path={["/credits"]}>
               <Credits />
             </Route>
           </Switch>
+          <Footer />
         </div>
-        <Footer />
+       
       </Router>
     </div>
-    </UserProvider>
+    // </UserContext.Provider>
   );
 }
 

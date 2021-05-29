@@ -9,7 +9,7 @@ function Footer() {
     return (
        <>
          
-  <Navbar fixed="bottom" className= "nav-footer justify-content-between bottom">
+  <Navbar className= "nav-footer justify-content-between bottom">
   
          
           <Nav.Item >
