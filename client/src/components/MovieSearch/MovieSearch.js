@@ -162,6 +162,10 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
+  const onError = (e) => {
+    console.log(e.target)
+  }
+
   const renderResults = props.results.map((item, index) => {
     return (
       <Container
@@ -178,6 +182,7 @@ function MovieSearch(props) {
                 src={item.poster}
                 alt={item.title}
                 style={{ width: "15rem" }}
+                onError={(e) =>{e.target.onerror = null; e.target.src="./images/reel-junkie-logo-2.jpg"}}
               />
             </Col>
           </Row>
