@@ -40,10 +40,11 @@ function Register() {
         "password": password
       });
       formRef.current.reset();
-      axios.post('/api/user/register', { user })
+      axios.post('/api/user/register', { email, password })
         .then(res => {
           console.log(res);
           console.log(res.data);
+          history.push('/login');
         })
         .catch((error) => {
           if (error.response) {
@@ -56,7 +57,6 @@ function Register() {
             console.log('Error', error.message);
           }
         });
-      history.push('/login');
     } else {
       console.log("Passwords must Match!");
     }
