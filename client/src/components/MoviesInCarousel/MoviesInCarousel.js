@@ -16,7 +16,7 @@ const MoviesInCarousel = () => {
   }, []);
   const moviesInCarousel = nowPlaying.map((item, index) => {
     return (
-      <Carousel.Item className="carousel-border">
+      <Carousel.Item key={index} className="carousel-border">
         <img className="d-block w-100" src={item.backPoster} alt={item.title} />
         <Carousel.Caption>
           <h3>{item.title}</h3>
