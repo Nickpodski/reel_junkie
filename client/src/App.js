@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
@@ -20,14 +20,16 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || {
     email: "",
     movies_watched: [],
     watchlist:[],
     isLoggedIn: false
   });
-  // const [singleMovie, setSingleMovie] = useState([]);
- 
+
+  useEffect(() => {
+    localStorage.setItem('userData', JSON.stringify(userData));
+  }, [userData]);
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
@@ -46,7 +48,9 @@ function App() {
 
   const getSearchResults = async (page) => {
     const res = await searchMovies(searchMovie, page);
-    setSearchResults(res);
+    if (res) {
+      setSearchResults(res);
+    }
   };
 
   const getTotalPages = async () => {
@@ -64,8 +68,6 @@ function App() {
     });
   };
 
-
-  
   const handleSumbit = () => {
     window.scrollTo(0, 0);
     setCurrentPage(1);

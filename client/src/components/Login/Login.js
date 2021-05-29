@@ -9,12 +9,6 @@ function Login(props) {
   const { saveUserData } = props;
   let history = useHistory();
   const formRef = useRef();
-  const [user, setUser] = useState(
-    {
-      "email": "",
-      "password": ""
-    }
-  );
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
 
@@ -30,10 +24,6 @@ function Login(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-     setUser({
-      "email":email,
-      "password":password
-    });
     formRef.current.reset();
     axios.post('/api/user/logIn', { email, password } )
       .then(res => {
