@@ -1,12 +1,13 @@
 import React from "react";
 import "./Profile.css";
 import Container from "react-bootstrap/Container";
-import Badge from "react-bootstrap/Badge";
 import Media from "react-bootstrap/Media";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Image from 'react-bootstrap/Image';
 import axios from "axios";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 class Profile extends React.Component {
   state = {
@@ -68,50 +69,53 @@ class Profile extends React.Component {
             // //   let value = badgeCounts.data[key];
             // //   console.log(value.count);
             //   // let idCount = value.count;
-              if (value.count === 10){
+              if (value.count >= 1){
                 console.log(value._id + " genreID")
           
-            switch (value._id){
+            switch (value._id){  
               // && genId.count = 1
               // or do case for if id_28 =10 display this icon
               case 28:
-                return <Image className="test p-2" src="./badges/action-rambo.png"/>;
+                return  <Tippy content="You've got to ask yourself one question: 'Do I feel lucky I earned a badge?'
+                         Well, do ya, junkie? You earned this badge for watching 10 action movies">
+                          <Image className="badgeIcon p-2" src="./badges/action-rambo.png"/>
+                        </Tippy>;
               case 12:
-                return <Image className="test p-2" src="./badges/adventure-map.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/adventure-map.png"/>;
               case 16:
-                return <Image className="test p-2" src="./badges/animation-mouseToy.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/animation-mouseToy.png"/>;
               case 35:
-                return <Image className="test p-2" src="./badges/comedy-lolCat.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/comedy-lolCat.png"/>;
               case 80:
-                return <Image className="test p-2" src="./badges/crime-handcuffs.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/crime-handcuffs.png"/>;
               case 99:
-                return <Image className="test p-2" src="./badges/documentary-camera.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/documentary-camera.png"/>;
               case 18:
-                return <Image className="test p-2" src="./badges/drama-skull.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/drama-skull.png"/>;
               case 10751:
-                return <Image className="test p-2" src="./badges/family-badge.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/family-badge.png"/>;
               case 14:
-                return <Image className="test p-2" src="./badges/fantasy-wizard.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/fantasy-wizard.png"/>;
               case 36:
-                return <Image className="test p-2" src="./badges/history-columns.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/history-columns.png"/>;
               case 27:
-                return <Image className="test p-2" src="./badges/horror-knife.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/horror-knife.png"/>;
               case 10402:
-                return <Image className="test p-2" src="./badges/musical-notes.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/musical-notes.png"/>;
               case 9648:
-                return <Image className="test p-2" src="./badges/mystery-sherlock.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/mystery-sherlock.png"/>;
               case 10749:
-                return <Image className="test p-2" src="./badges/romance-heartMail.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/romance-heartMail.png"/>;
               case 878:
-                return <Image className="test p-2" src="./badges/sci-fi-laserGun.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/sci-fi-laserGun.png"/>;
               case 10770:
-                return <Image className="test p-2" src="./badges/tv-movie-tv.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/tv-movie-tv.png"/>;
               case 53:
-                return <Image className="test p-2" src="./badges/thriller-rollerCoaster.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/thriller-rollerCoaster.png"/>;
               case 10752:
-                return <Image className="test p-2" src="./badges/war-helmut.png"/>;
+                return <Image className="badgeIcon p-2" src="./badges/war-helmut.png"/>;
               case 37:
-                return <Image className="test p-2" src="./badges/western-sheriffStar.png"/>;  
+                return <Image className="badgeIcon p-2" src="./badges/western-sheriffStar.png"/>;  
               default:
                 return "";
               // always display ticket icon
