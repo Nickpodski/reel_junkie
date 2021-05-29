@@ -10,12 +10,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
   const [passwordVer, setPassWordVer] = useState("");
-  const [user, setUser] = useState(
-    {
-      "email": "",
-      "password": ""
-    }
-  );
+ 
 
   const onEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -35,10 +30,6 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (password === passwordVer) {
-      setUser({
-        "email": email,
-        "password": password
-      });
       formRef.current.reset();
       axios.post('/api/user/register', { email, password })
         .then(res => {
@@ -77,7 +68,7 @@ function Register() {
         <Form.Label className="form-text">Register Password</Form.Label>
         <Form.Control type="password" placeholder="Password"  onChange={onPassWordChange}/>
       </Form.Group>
-      <Form.Group onSubmit={handleSubmit} controlId="formBasicPassword">
+      <Form.Group onSubmit={handleSubmit} controlId="formBasicPassword2">
         <Form.Label className="form-text" >Verfiy Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={onPassWordVerChange}/>
       </Form.Group>

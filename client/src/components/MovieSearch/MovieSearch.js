@@ -162,7 +162,6 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
-
   const renderResults = props.results.map((item, index) => {
     return (
       <Container
