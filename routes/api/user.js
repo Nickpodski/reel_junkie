@@ -48,11 +48,26 @@ router.post('/login', async (req, res) => {
 
 router.put('/addmoviewatched', async (req, res) =>  {
   try {
-      await User.updateMany({
+      await User.updateOne({
         email: req.body.email
       }, {
         $set: {
           movies_watched: req.body.moviesWatched
+        }  
+      },);
+      res.status(200).json({message: 'Successfully added your movie!'})
+  } catch (err) {
+    res.status(400).json({message: err.message});
+  }
+})
+
+router.put('/addmoviewatchlist', async (req, res) =>  {
+  try {
+      await User.updateOne({
+        email: req.body.email
+      }, {
+        $set: {
+          watchlist: req.body.movieWatchList
         }  
       },);
       res.status(200).json({message: 'Successfully added your movie!'})

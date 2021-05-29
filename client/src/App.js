@@ -62,7 +62,9 @@ function App() {
       watchlist: data.watchlist,
       isLoggedIn: true
     });
-  }
+  };
+
+
   
   const handleSumbit = () => {
     window.scrollTo(0, 0);

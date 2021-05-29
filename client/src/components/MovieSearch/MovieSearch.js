@@ -23,46 +23,135 @@ function MovieSearch(props) {
     window.scrollTo(0, 0);
   };
 
-  const addMovieWatched = (e) => {
-    const index = e.target.value;
-    const movie = props.results[index];
-    const title = movie.title;
-    const email = user.email;
-    const id = movie.id;
-    const movieData = {
-      "title":title,
-      "movie_id":id
-    }
-    const moviesWatched = props.user.movies_watched;
-    if (moviesWatched.some(e => e.movie_id === id)) {
-      console.log(`You've alredy watched this movie`);
+  const renderButtons = (id, index) => {
+    const mW = props.user.movies_watched;
+    const mWL = props.user.watchlist;
+    if (mW.some(e => e.movie_id === id)) {
+      return (
+        <Row className="row2" noGutters={true}>
+          <Col>
+            <h5>You've Seen This movie!</h5>
+          </Col>
+        </Row>
+      )
+    } else if (mWL.some(e => e.movie_id === id)) {
+      return (
+        <Row className="row2" noGutters={true}>
+          <Col>
+            <Button
+              className="watched-btn ml-2 mr-2"
+              variant="success"
+              value={index}
+              onClick={(e) => addMovieWatched(e)}
+            >
+              Have Watched
+          </Button>
+          </Col>
+        </Row>
+      )
     } else {
-      moviesWatched.push(movieData);
+      return (
+        <Row className="row2" noGutters={true}>
+          <Col>
+            <Button
+              className="watched-btn ml-2 mr-2"
+              variant="success"
+              value={index}
+              onClick={(e) => addMovieWatched(e)}
+            >
+              Have Watched
+          </Button>
+            <Button
+              variant="danger"
+              value={index}
+              onClick={(e) => addMovieWatchList(e)}
+            >
+              + To Movie List
+      </Button>
+          </Col>
+        </Row>
+
+      )
+    }
+  }
+
+  const addMovieWatched = (e) => {
+    if (!user.isLoggedIn) {
+      history.push('/login');
+    } else {
+      const index = e.target.value;
+      const movie = props.results[index];
+      const title = movie.title;
+      const email = user.email;
+      const id = movie.id;
+      const movieData = {
+        "title": title,
+        "movie_id": id
+      }
+      const moviesWatched = props.user.movies_watched;
       console.log(moviesWatched);
-      props.setUserMW(user);
-      axios.put('/api/user/addmoviewatched', { email, moviesWatched })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-        })
+      if (moviesWatched.some(e => e.movie_id === id)) {
+        console.log(`You've alredy watched this movie`);
+      } else {
+        moviesWatched.push(movieData);
+        props.setUserMW(user);
+        axios.put('/api/user/addmoviewatched', { email, moviesWatched })
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log('Error', error.message);
+            }
+          })
+      }
     }
   };
 
   const addMovieWatchList = (e) => {
-    const index = e.target.value;
-    const movie = props.results[index];
-    console.log(movie);
+    if (!user.isLoggedIn) {
+      history.push('/login');
+    } else {
+      const index = e.target.value;
+      const movie = props.results[index];
+      const title = movie.title;
+      const email = user.email;
+      const id = movie.id;
+      const movieData = {
+        "title": title,
+        "movie_id": id
+      }
+      const movieWatchList = user.watchlist;
+      if (movieWatchList.some(e => e.movie_id === id)) {
+        console.log("Already on your watchlist!");
+      } else {
+        movieWatchList.push(movieData);
+        props.setUserMW(user);
+        axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log('Error', error.message);
+            }
+          })
+      }
+    }
   };
 
   useEffect(() => {
@@ -73,13 +162,6 @@ function MovieSearch(props) {
     }
   }, [props.currentPage, props.totalPages]);
 
-  // const handleMovieClick = (e) => {
-  //   e.preventDefault();
-  //   const index = e.currentTarget.id;
-  //   const movie = props.results[index];
-  //   history.push("/moviedisplay");
-  //   props.clickMovieRender(movie);
-  // };
 
   const renderResults = props.results.map((item, index) => {
     return (
@@ -87,7 +169,7 @@ function MovieSearch(props) {
         id={index}
         className="p-5 "
         key={index}
-        // onClick={handleMovieClick}
+      // onClick={handleMovieClick}
       >
         <Card className="card">
           <Row className="row1" noGutters={true}>
@@ -101,25 +183,7 @@ function MovieSearch(props) {
             </Col>
           </Row>
 
-          <Row className="row2" noGutters={true}>
-            <Col>
-              <Button
-                className="watched-btn ml-2 mr-2"
-                variant="success"
-                value={index}
-                onClick={(e) => addMovieWatched(e)}
-              >
-                Have Watched
-              </Button>
-              <Button
-                variant="danger"
-                value={index}
-                onClick={(e) => addMovieWatchList(e)}
-              >
-                + To Movie List
-              </Button>
-            </Col>
-          </Row>
+          {renderButtons(item.id, index)}
 
           <Row>
             <Col className="col" md={12}>
