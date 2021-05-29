@@ -12,7 +12,8 @@ body {
 
 body {
   background: radial-gradient(ellipse at top left, #334455 0%, #112233 100%);
-} */
+  /* overflow: hidden; */
+/* } */
 
 .wrapper {
   position: absolute;
