@@ -4,7 +4,7 @@ import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const NavBar = (props) => {
-  const { onChange, onSubmit, user, logout } = props;
+  const { onChange, onSubmit, user, logout, notifySuccess } = props;
   let history = useHistory();
   const formRef = useRef();
 
@@ -16,6 +16,7 @@ const NavBar = (props) => {
   };
 
   const handleLogout = () => {
+    notifySuccess(`You've successfully logged out!`);
     logout({
       email: "",
       movies_watched: [],

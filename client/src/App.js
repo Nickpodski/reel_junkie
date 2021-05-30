@@ -10,7 +10,9 @@ import Footer from "./components/Footer/Footer"
 import Credits from "./components/Credits/Credits";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
+import { ToastContainer, toast } from 'react-toastify';
 // import UserContext from "./utils/UserContext";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // import { fetchMovies } from "../src/utils/API";
@@ -20,6 +22,30 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
+
+  const notifyError = (mes) => {
+    toast.error(mes, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); 
+  }
+
+  const notifySuccess = (mes) => {
+    toast.success(mes, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
 
   const getWithExpiry = (key) => {
     const itemStr = localStorage.getItem(key);
@@ -83,7 +109,6 @@ function App() {
   };
 
   const saveUserMoviesWatched = (data) => {
-    console.log(data);
     setUserData({
       email: data.email,
       movies_watched: data.movies_watched,
@@ -117,17 +142,24 @@ function App() {
     // <UserContext.Provider>
       <div>
         <Router>
-          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData}/>
+          <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData} notifySuccess={notifySuccess}/>
           <div>
             <Switch>
               <Route exact path={["/", "/home"]}>
                 <MoviesInCarousel />
               </Route>
               <Route exact path={["/login"]}>
-                <Login saveUserData={saveUserData}/>
+                <Login 
+                saveUserData={saveUserData} 
+                notifyError={notifyError}
+                notifySuccess={notifySuccess}
+                />
               </Route>
               <Route exact path={["/register"]}>
-                <Register />
+                <Register 
+                notifyError={notifyError}
+                notifySuccess={notifySuccess} 
+                />
               </Route>
             <Route exact path={["/moviesearch"]}>
             <MovieSearch
@@ -139,6 +171,8 @@ function App() {
                 // addMovie={addMovie}
                 user={userData}
                 setUserMW={saveUserMoviesWatched}
+                notifyError={notifyError}
+                notifySuccess={notifySuccess} 
               />
             </Route>
             <Route exact path={["/profile"]}>
@@ -153,7 +187,7 @@ function App() {
           </Switch>
           <Footer />
         </div>
-       
+       <ToastContainer />
       </Router>
     </div>
     // </UserContext.Provider>

@@ -6,7 +6,7 @@ import axios from "axios";
 // import axios from 'axios';
 
 function Login(props) {
-  const { saveUserData } = props;
+  const { saveUserData, notifyError, notifySuccess } = props;
   let history = useHistory();
   const formRef = useRef();
   const [email, setEmail] = useState("");
@@ -27,20 +27,17 @@ function Login(props) {
     formRef.current.reset();
     axios.post('/api/user/logIn', { email, password } )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        notifySuccess(res.data.message);
         saveUserData(res.data);
         history.push('/profile');
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          notifyError(error.response.data.message);
         } else if (error.request) {
-          console.log(error.request);
+          notifyError('Server connection Issue!');
         } else {
-          console.log('Error', error.message);
+          notifyError(error.message);
         }
       })
   }
