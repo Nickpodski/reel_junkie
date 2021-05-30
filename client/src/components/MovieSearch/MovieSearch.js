@@ -91,13 +91,25 @@ function MovieSearch(props) {
         "movie_genres": genres
       }
       const moviesWatched = props.user.movies_watched;
-      console.log(moviesWatched);
+      const movieWatchList = user.watchlist;
+      if (movieWatchList.some(e => e.movie_id === id)) {
+        let index = movieWatchList.findIndex(p => p.movie_id === id);
+        movieWatchList.splice(index, 1);
+        props.setUserMW(user);
+        addMovieWLReq(email, movieWatchList);
+      }
       if (moviesWatched.some(e => e.movie_id === id)) {
         console.log(`You've alredy watched this movie`);
       } else {
         moviesWatched.push(movieData);
         props.setUserMW(user);
-        axios.put('/api/user/addmoviewatched', { email, moviesWatched })
+        addMovieHWLReq(email, moviesWatched);
+      }
+    }
+  };
+
+  const addMovieHWLReq = (email, moviesWatched) => {
+    axios.put('/api/user/addmoviewatched', { email, moviesWatched })
           .then(res => {
             console.log(res);
             console.log(res.data);
@@ -113,9 +125,7 @@ function MovieSearch(props) {
               console.log('Error', error.message);
             }
           })
-      }
-    }
-  };
+  }
 
   const addMovieWatchList = (e) => {
     if (!user.isLoggedIn) {
@@ -136,25 +146,29 @@ function MovieSearch(props) {
       } else {
         movieWatchList.push(movieData);
         props.setUserMW(user);
-        axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
-          .then(res => {
-            console.log(res);
-            console.log(res.data);
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            } else if (error.request) {
-              console.log(error.request);
-            } else {
-              console.log('Error', error.message);
-            }
-          })
+        addMovieWLReq(email, movieWatchList);
       }
     }
   };
+
+  const addMovieWLReq = (email, movieWatchList) => {
+    axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    })
+  }
 
   useEffect(() => {
     if (props.currentPage < props.totalPages) {
