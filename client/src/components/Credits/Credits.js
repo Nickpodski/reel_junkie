@@ -6,35 +6,34 @@ function Credits() {
   return (
     <Container fluid> 
     <div className="wrapper">
-      <ul>
-        <li className="title">Reel Junkies</li>
-        <li className="broughtToYou">Brought to by</li>
-        <li>
+        <div className="title">Reel Junkies</div>
+        <div className="broughtToYou">Brought to by</div>
+        <div>
         <a 
         className="devCreditsLinks"
         href="https://github.com/Nickpodski" 
         target="_blank" rel="noreferrer">Nick Podniestrzanski</a>
-        </li>
-        <li>
+        </div>
+        <div>
         <a 
         className="devCreditsLinks"
         href="https://github.com/wchenausky"
         target="_blank" rel="noreferrer">William Chenausky</a>
-        </li>
-        <li>
+        </div>
+        <div>
         <a 
         className="devCreditsLinks"
         href="https://github.com/Tianwes"
         target="_blank" rel="noreferrer">Tiffany Weaver</a>
-        </li>
+        </div>
         <br />
         <br />
         <h3>Reel Junkies Logo Designed by .......</h3>
         <br />
-        <li>
+        <div>
           <span className="madeBy">Icons from </span>
-        </li>
-        <li>
+        </div>
+        <div>
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/"
@@ -43,12 +42,12 @@ function Credits() {
           >
             www.flaticon.com
           </a>
-        </li>
-        <li>
+        </div>
+        <div>
           <span className="madeBy">were made by</span>
-        </li>
+        </div>
         <br />
-        <li className="artistName">
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/roundicons"
@@ -57,8 +56,8 @@ function Credits() {
           >
             Roundicons
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/pause08"
@@ -67,8 +66,8 @@ function Credits() {
           >
             Pause08
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/smashicons"
@@ -77,8 +76,8 @@ function Credits() {
           >
             Smashicons
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/monkik"
@@ -87,8 +86,8 @@ function Credits() {
           >
             monkik
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/good-ware"
@@ -97,8 +96,8 @@ function Credits() {
           >
             Good Ware
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/smalllikeart"
@@ -107,8 +106,8 @@ function Credits() {
           >
             smalllikeart
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/xnimrodx"
@@ -117,8 +116,8 @@ function Credits() {
           >
             xnimrodx
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/icongeek26"
@@ -127,8 +126,8 @@ function Credits() {
           >
             Icongeek26
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/catkuro"
@@ -137,8 +136,8 @@ function Credits() {
           >
             catkuro
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.freepik.com"
@@ -147,8 +146,8 @@ function Credits() {
           >
             Freepik
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/darius-dan"
@@ -157,8 +156,8 @@ function Credits() {
           >
             Darius Dan
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/roundicons"
@@ -167,8 +166,8 @@ function Credits() {
           >
             Roundicons
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/pongsakornred"
@@ -177,8 +176,8 @@ function Credits() {
           >
             pongsakornRed
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/nikita-golubev"
@@ -187,8 +186,8 @@ function Credits() {
           >
             Nikita Golubev
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/eucalyp"
@@ -197,8 +196,8 @@ function Credits() {
           >
             Eucalyp
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/icongeek26"
@@ -207,8 +206,8 @@ function Credits() {
           >
             Icongeek26
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.flaticon.com/authors/iconixar"
@@ -217,8 +216,8 @@ function Credits() {
           >
             iconixar
           </a>
-        </li>
-        <li className="artistName">
+        </div>
+        <div className="artistName">
           <a
             className="creditsLinks"
             href="https://www.freepik.com"
@@ -227,12 +226,11 @@ function Credits() {
           >
             Freepik
           </a>
-        </li>
+        </div>
         <br />
         <br />
         <br />
-        <li>Thanks for watching!</li>
-      </ul>
+        <div>Thanks for watching!</div>
     </div>
     </Container> 
   );
