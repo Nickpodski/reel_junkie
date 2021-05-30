@@ -67,8 +67,7 @@ class Profile extends React.Component {
             // //   let value = badgeCounts.data[key];
             // //   console.log(value.count);
             //   // let idCount = value.count;
-            if (value.count >= 1) {
-              console.log(value._id + " genreID");
+            if (value.count >= 10) {
               switch (parseInt(value._id)) {
                 // && genId.count = 1
                 // or do case for if id_28 =10 display this icon
@@ -77,7 +76,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy" 
                     content="You've got to ask yourself one question: 'Do I feel lucky I earned a badge?'
-                         Well, do ya, junkie?  \n You earned this badge for watching 10 action movies.">
+                         Well, do ya, junkie?  You earned this badge for watching 10 action movies.">
                       <Image
                         className="badgeIcon p-2"
                         src="./badges/action-rambo.png"/>
@@ -121,7 +120,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="I'm gonna make you an offer you can't refuse...
-                    This badge for watching 10 crime movies.">
+                    this badge for watching 10 crime movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/crime-handcuffs.png"/>
@@ -131,7 +130,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="See the Reel Junkie in their natural habitat, notice how the graze the popcorn. 
+                    content="See the Reel Junkie in their natural habitat, notice how they graze the popcorn. 
                     You earned this badge for watching 10 documentaries.">
                     <Image
                       className="badgeIcon p-2"
@@ -142,7 +141,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="To watch or not to watch? There is no question.  You earned this badge for watching 10 dramas.">
+                    content="To watch or not to watch? Was there ever really a question?  You earned this badge for watching 10 dramas.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/drama-skull.png"
@@ -153,7 +152,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="No awkwardness on this couch. You earned this badge for watching 10 family movies.">
+                    content="No awkwardness on this couch! You earned this badge for watching 10 family movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/family-badge.png"/>
