@@ -34,7 +34,7 @@ const NavBar = (props) => {
         sticky="top"
         className="navbar border-bottom border-warning justify-content-between"
       >
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/home" onClick={() => window.scrollTo(0, 0)}>
           <Media>
             <img
               width={100}

@@ -1,30 +1,30 @@
 import React from "react";
 import "./Credits.css";
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
 
 function Credits() {
   return (
-    <Container fluid> 
-    <div className="wrapper">
+    <Container fluid>
+      <div className="wrapper">
         <div className="title">Reel Junkie</div>
         <div className="broughtToYou">Brought to you by</div>
         <div>
-        <a 
-        className="devCreditsLinks"
-        href="https://github.com/Nickpodski" 
-        target="_blank" rel="noreferrer">Nick Podniestrzanski</a>
+          <a
+            className="devCreditsLinks"
+            href="https://github.com/Nickpodski"
+            target="_blank" rel="noreferrer">Nick Podniestrzanski</a>
         </div>
         <div>
-        <a 
-        className="devCreditsLinks"
-        href="https://github.com/wchenausky"
-        target="_blank" rel="noreferrer">William Chenausky</a>
+          <a
+            className="devCreditsLinks"
+            href="https://github.com/wchenausky"
+            target="_blank" rel="noreferrer">William Chenausky</a>
         </div>
         <div>
-        <a 
-        className="devCreditsLinks"
-        href="https://github.com/Tianwes"
-        target="_blank" rel="noreferrer">Tiffany Weaver</a>
+          <a
+            className="devCreditsLinks"
+            href="https://github.com/Tianwes"
+            target="_blank" rel="noreferrer">Tiffany Weaver</a>
         </div>
         <br />
         <br />
@@ -233,8 +233,8 @@ function Credits() {
         <br />
         <br />
         <div className="thanks">Thanks for watching!</div>
-    </div>
-    </Container> 
+      </div>
+    </Container>
   );
 }
 
