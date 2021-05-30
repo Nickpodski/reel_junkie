@@ -32,30 +32,30 @@ body {
 }
 
 .title {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     margin-bottom: 60px;
     font-family: 'Poppins', sans-serif;
     color:orange;    
 }
 
 .broughtToYou {
-    font-size: 1.25rem;
+    font-size: 1.00rem;
     margin-bottom: 60px;
 }
 
 .devCreditsLinks {
-    font-size: 2.25rem;
+    font-size: 2.00rem;
     margin-bottom: 100px;
 }
 
 .logoDesigner {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .artistName {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   
 }

@@ -30,6 +30,7 @@ const MoviesInCarousel = () => {
       <div>
         <Container className="movie-container justify-content-center  d-flex">
           <Image
+            fluid
             className="now-showing p-5"
             src="./images/Now_Showing_New.png"
           />
