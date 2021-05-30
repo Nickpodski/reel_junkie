@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -118,7 +118,10 @@ function App() {
               />
             </Route>
             <Route exact path={["/profile"]}>
-              <Profile user={userData}/>
+              {userData.isLoggedIn 
+              ? ( <Profile user={userData}/> ) 
+              : ( <Redirect to='/login' />)
+              }
             </Route>
             <Route exact path={["/credits"]}>
               <Credits />
