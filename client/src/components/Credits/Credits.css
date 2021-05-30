@@ -1,9 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+/* @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 /* html,
 body {
@@ -26,10 +26,6 @@ body {
   text-transform: uppercase;
   color: #fff;
   animation: 50s credits linear infinite;
-}
-
-ul {
-  text-decoration: none;
 }
 
 .title {
