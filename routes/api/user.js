@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again!' });
       return;
     }
 
@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again!' });
       return;
     }
 
@@ -55,7 +55,7 @@ router.put('/addmoviewatched', async (req, res) =>  {
           movies_watched: req.body.moviesWatched
         }  
       },);
-      res.status(200).json({message: 'Successfully added your movie!'})
+      res.status(200).json({message: 'Successfully updated your have seen list!'})
   } catch (err) {
     res.status(400).json({message: err.message});
   }
@@ -70,7 +70,7 @@ router.put('/addmoviewatchlist', async (req, res) =>  {
           watchlist: req.body.movieWatchList
         }  
       },);
-      res.status(200).json({message: 'Successfully added your movie!'})
+      res.status(200).json({message: 'Successfully updated your watchlist!'})
   } catch (err) {
     res.status(400).json({message: err.message});
   }
