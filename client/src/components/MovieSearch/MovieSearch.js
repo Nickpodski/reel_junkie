@@ -81,12 +81,14 @@ function MovieSearch(props) {
     } else {
       const index = e.target.value;
       const movie = props.results[index];
+      const genres = movie.genres;
       const title = movie.title;
       const email = user.email;
       const id = movie.id;
       const movieData = {
         "title": title,
-        "movie_id": id
+        "movie_id": id,
+        "movie_genres": genres
       }
       const moviesWatched = props.user.movies_watched;
       console.log(moviesWatched);
@@ -161,10 +163,6 @@ function MovieSearch(props) {
       setMoreResults(false);
     }
   }, [props.currentPage, props.totalPages]);
-
-  const onError = (e) => {
-    console.log(e.target)
-  }
 
   const renderResults = props.results.map((item, index) => {
     return (

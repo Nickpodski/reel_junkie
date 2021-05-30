@@ -19,30 +19,26 @@ class Profile extends React.Component {
   }
 
   renderMoviesWatched = this.props.user.movies_watched.map((item, index) => {
-    return(
+    return (
       <h5 key={index}>{item.title}</h5>
     )
   })
 
   renderMovieWatchList = this.props.user.watchlist.map((item, index) => {
-    return(
+    return (
       <h5 key={index}>{item.title}</h5>
     )
   })
 
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {
-      console.log(badgeCounts);
-
       // _id:count
       this.setState({ badgeCounts: badgeCounts.data });
-      console.log(badgeCounts.data);
       // console.log(badgeCounts.data[0].count)
       // =1 (as it should)
       // if id# had count = 10
       for (let key in badgeCounts.data) {
         let value = badgeCounts.data[key];
-        console.log(value.count);
         // let idCount = value.count;
         if (value.count === 2) {
           console.log(value._id + "genreID");
@@ -66,8 +62,6 @@ class Profile extends React.Component {
         </Container>
         <Container className="badgeContainer">
           {this.state.badgeCounts.map((value) => {
-            console.log(value._id);
-            console.log(value.count);
             // let dataArr = [];
             // // for (let key in badgeCounts.data) {
             // //   let value = badgeCounts.data[key];
@@ -75,8 +69,7 @@ class Profile extends React.Component {
             //   // let idCount = value.count;
             if (value.count >= 1) {
               console.log(value._id + " genreID");
-
-              switch (value._id) {
+              switch (parseInt(value._id)) {
                 // && genId.count = 1
                 // or do case for if id_28 =10 display this icon
                 case 28:
@@ -283,6 +276,8 @@ class Profile extends React.Component {
                   return "";
                 // always display ticket icon
               }
+            } else {
+              return "";
             }
           })}
         </Container>
@@ -294,15 +289,15 @@ class Profile extends React.Component {
               <h5>Movies on Watchlist: {this.props.user.watchlist.length}</h5>
             </Tab>
             <Tab eventKey="Movies Watched" title="Movies Watched">
-              {this.props.user.movies_watched.length > 0 
-              ? ( this.renderMoviesWatched )
-              : ( <h5>Go watch some movies and tell us about it!</h5>)
+              {this.props.user.movies_watched.length > 0
+                ? (this.renderMoviesWatched)
+                : (<h5>Go watch some movies and tell us about it!</h5>)
               }
             </Tab>
             <Tab eventKey="Watch List" title="Watch List">
-              {this.props.user.watchlist.length > 0 
-              ? ( this.renderMovieWatchList )
-              : ( <h5>Go find some movies to add to your watchlist!</h5>)
+              {this.props.user.watchlist.length > 0
+                ? (this.renderMovieWatchList)
+                : (<h5>Go find some movies to add to your watchlist!</h5>)
               }
             </Tab>
             {/* <Tab eventKey="Reviews" title="Reviews"></Tab> */}
