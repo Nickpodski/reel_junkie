@@ -34,11 +34,11 @@ const UserSchema = new Schema( {
       //     type: Number,
       //     required: "In minutes"
       //   },
-      //   movie_genres: [
-      //     {
-      //     type: Array
-      //   }
-      // ],
+        movie_genres: [
+          {
+          type: Array
+        }
+      ],
       },
     ],
   
