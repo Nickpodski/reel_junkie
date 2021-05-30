@@ -1,4 +1,32 @@
 .tippy {
     color: orange !important;
 }
+.badgeIcon{
+    height:4rem;
+}
+.tab {
+background-color: black!important;
+color:orange !important;
+font-family: Arial;
+}
 
+.nav-item{
+    background-color: black!important;
+color:orange !important;
+border-color: orange !important;
+}
+
+.tabs{
+    border-color:orange !important;
+}
+
+.tabs .active{
+    background-color: orange !important;
+    color: black !important;
+    font-family: Arial;
+    border-color:orange !important;
+}
+.cont-tab{
+    border:solid !important;
+    border: orange !important;
+}

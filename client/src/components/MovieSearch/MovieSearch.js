@@ -30,7 +30,7 @@ function MovieSearch(props) {
       return (
         <Row className="row2" noGutters={true}>
           <Col>
-            <h5>You've Seen This movie!</h5>
+            <h5 className="seen">You've Seen This movie!</h5>
           </Col>
         </Row>
       )
