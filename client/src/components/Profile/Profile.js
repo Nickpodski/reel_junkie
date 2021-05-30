@@ -54,7 +54,7 @@ class Profile extends React.Component {
             <img
               width={250}
               height={250}
-              className="mr-3 mt-5 mb-2"
+              className=" image-cont mr-3 mt-5 mb-2"
               src=""
               alt=""
             />
@@ -182,7 +182,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="Brains- I mean Badges! You earned this badge for watching 10 horro movies.">
+                    content="Brains- I mean Badges! You earned this badge for watching 10 horror movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/horror-knife.png"/>
@@ -280,20 +280,20 @@ class Profile extends React.Component {
             }
           })}
         </Container>
-        <Container>
-          <Tabs defaultActiveKey="description" id="uncontrolled-tab-example">
-            <Tab eventKey="description" title="Description">
-              <h3>Your Email: {this.props.user.email}</h3>
-              <h5>Movies Wached: {this.props.user.movies_watched.length}</h5>
-              <h5>Movies on Watchlist: {this.props.user.watchlist.length}</h5>
+        <Container className="cont-tab p-5">
+          <Tabs className="tabs"  defaultActiveKey="description" >
+            <Tab className="tab" eventKey="description" title="Description">
+              <h3 className="text">Your Email: {this.props.user.email}</h3>
+              <h5 className="text">Movies Wached: {this.props.user.movies_watched.length}</h5>
+              <h5 className="text">Movies on Watchlist: {this.props.user.watchlist.length}</h5>
             </Tab>
-            <Tab eventKey="Movies Watched" title="Movies Watched">
+            <Tab className="tab" variant="warning" eventKey="Movies Watched" title="Movies Watched">
               {this.props.user.movies_watched.length > 0
                 ? (this.renderMoviesWatched)
                 : (<h5>Go watch some movies and tell us about it!</h5>)
               }
             </Tab>
-            <Tab eventKey="Watch List" title="Watch List">
+            <Tab className="tab" eventKey="Watch List" title="Watch List">
               {this.props.user.watchlist.length > 0
                 ? (this.renderMovieWatchList)
                 : (<h5>Go find some movies to add to your watchlist!</h5>)

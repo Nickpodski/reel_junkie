@@ -2,14 +2,15 @@ import React from 'react'
 import "./Footer.css"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
+import Container from "react-bootstrap/Container"
 
 
 
 function Footer() {
     return (
        <>
-         
-  <Navbar className= "nav-footer justify-content-between bottom">
+         <Container  className="foot-cont">
+  <Navbar fixed="bottom" className= "nav-footer justify-content-between bottom">
   
          
           <Nav.Item >
@@ -23,7 +24,7 @@ function Footer() {
       
      
   </Navbar>
-  
+  </Container>
      </>
     )
 }
