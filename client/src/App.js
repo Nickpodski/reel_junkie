@@ -20,7 +20,22 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || {
+
+  const getWithExpiry = (key) => {
+    const itemStr = localStorage.getItem(key);
+    if(!itemStr) {
+      return null;
+    }
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value;
+  }
+
+  const [userData, setUserData] = useState(getWithExpiry('userData') || {
     email: "",
     movies_watched: [],
     watchlist:[],
@@ -28,13 +43,22 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem('userData', JSON.stringify(userData));
+    setWithExpiry('userData', userData, 3600000);
   }, [userData]);
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     setSearchMovie(newValue);
   };
+
+  const setWithExpiry = (key, value, ttl) => {
+    const now = new Date();
+    const item = {
+      value: value,
+      expiry: now.getTime() + ttl,
+    }
+    localStorage.setItem(key, JSON.stringify(item));
+  }
 
   const moreResultsClick = async () => {
     console.log("is this triggering?");
