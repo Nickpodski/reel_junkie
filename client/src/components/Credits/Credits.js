@@ -6,8 +6,8 @@ function Credits() {
   return (
     <Container fluid> 
     <div className="wrapper">
-        <div className="title">Reel Junkies</div>
-        <div className="broughtToYou">Brought to by</div>
+        <div className="title">Reel Junkie</div>
+        <div className="broughtToYou">Brought to you by</div>
         <div>
         <a 
         className="devCreditsLinks"
@@ -28,7 +28,7 @@ function Credits() {
         </div>
         <br />
         <br />
-        <h3>Reel Junkies Logo Designed by .......</h3>
+        <div className="logoDesigner">Reel Junkies Logo Designed by .......</div>
         <br />
         <div>
           <span className="madeBy">Icons from </span>
@@ -46,6 +46,8 @@ function Credits() {
         <div>
           <span className="madeBy">were made by</span>
         </div>
+        <br />
+        <div>...</div>
         <br />
         <div className="artistName">
           <a
@@ -230,7 +232,7 @@ function Credits() {
         <br />
         <br />
         <br />
-        <div>Thanks for watching!</div>
+        <div className="thanks">Thanks for watching!</div>
     </div>
     </Container> 
   );

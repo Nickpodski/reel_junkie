@@ -14,6 +14,8 @@ body {
   background: radial-gradient(ellipse at top left, #334455 0%, #112233 100%);
   /* overflow: hidden; */
 /* } */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
 
 .wrapper {
   position: absolute;
@@ -21,35 +23,46 @@ body {
   width: 800px;
   left: 50%;
   margin-left: -400px;
-  font: 300 30px/1 "Open Sans Condensed", sans-serif;
+  /* font: 300 30px/1 "Open Sans Condensed", sans-serif; */
   text-align: center;
   text-transform: uppercase;
   color: #fff;
   animation: 50s credits linear infinite;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .title {
-    font-size: 4rem;
-    font-weight: bold;
+    font-size: 4.5rem;
     margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
+    color:orange;    
 }
 
 .broughtToYou {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     margin-bottom: 60px;
 }
 
 .devCreditsLinks {
-    font-size: 2.35rem;
-    margin-bottom: 60px;
+    font-size: 2.25rem;
+    margin-bottom: 100px;
+}
+
+.logoDesigner {
+  font-size: 1.4rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .artistName {
+  font-size: 1.4rem;
   line-height: 1.5;
+  
 }
 
 .creditsLinks, .devCreditsLinks {
   color: orange;
+  font-weight: 300;
 }
 
 .creditsLinks:hover, .devCreditsLinks:hover {
@@ -57,11 +70,16 @@ body {
   text-decoration: none;
 }
 
+.thanks {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+}
+
 @keyframes credits {
   0% {
     top: 80%;
   }
   100% {
-    top: -200%;
+    top: -195%;
   }
 }
