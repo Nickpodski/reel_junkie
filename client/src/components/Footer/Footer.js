@@ -6,8 +6,8 @@ import Nav from "react-bootstrap/Nav"
 
 function Footer() {
     return (
-       <>
-  <Navbar className= "nav-footer justify-content-between bottom">
+      
+  <Navbar  className= "nav-footer justify-content-between bottom">
   
          
           <Nav.Item >
@@ -21,7 +21,7 @@ function Footer() {
       
      
   </Navbar>
-     </>
+    
     )
 }
 

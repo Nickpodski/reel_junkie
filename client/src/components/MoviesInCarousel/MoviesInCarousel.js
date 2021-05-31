@@ -5,7 +5,8 @@ import { moviesPlayingNow } from "../../utils/API";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
-const MoviesInCarousel = () => {
+const MoviesInCarousel = (props) => {
+  const { isMobile } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
   useEffect(() => {
     const getNowPlaying = async () => {
@@ -14,6 +15,7 @@ const MoviesInCarousel = () => {
     };
     getNowPlaying();
   }, []);
+  
   const moviesInCarousel = nowPlaying.map((item, index) => {
     return (
       <Carousel.Item key={index} className="carousel-border">
@@ -25,6 +27,15 @@ const MoviesInCarousel = () => {
       </Carousel.Item>
     );
   });
+
+  const moviesInCarouselMobile = nowPlaying.map((item, index) => {
+    return (
+        <Carousel.Item key={index} className="carousel-border">
+          <img className="d-block w-100" src={item.poster} alt={item.title} />
+        </Carousel.Item>
+    );
+  });
+
   return (
     <>
       <div>
@@ -37,7 +48,10 @@ const MoviesInCarousel = () => {
         </Container>
 
         <Container>
-          <Carousel fade>{moviesInCarousel}</Carousel>
+          <Carousel fade>{isMobile
+          ? moviesInCarouselMobile
+          : moviesInCarousel
+        }</Carousel>
         </Container>
       </div>
     </>

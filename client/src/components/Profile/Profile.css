@@ -30,3 +30,16 @@ border-color: orange !important;
     border:solid !important;
     border: orange !important;
 }
+
+.badgeContainer{
+    display:inline-flex;
+}
+.img-container{
+    display: inline-flex;
+}
+.material-icons-outlined{
+    color:red !important;
+}
+.icon{
+    color:rgb(173, 182, 230) !important;
+}
