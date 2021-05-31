@@ -57,16 +57,16 @@ li {
 }
 
 /* Hamburger menu (individual) li */
-.profile {
- margin-top: 53px;
+.home {
+ margin: 60px 0px 23px;
 }
 
 .credits {
-  margin: 164px 0px 58px;
+  margin-top: 137px;
 }
 
 .logout {
-  margin-top: 130px;
+  margin-top: 180px;
 }
 /* /////////// */
 
