@@ -419,19 +419,18 @@ class Profile extends React.Component {
               title="Movies Watched"
             >
               {this.props.user.movies_watched.length > 0 ? (
-                this.renderMoviesWatched
+                this.renderMoviesWatched()
               ) : (
                 <h5>Go watch some movies and tell us about it!</h5>
               )}
             </Tab>
             <Tab className="tab" eventKey="Watch List" title="Watch List">
               {this.props.user.watchlist.length > 0 ? (
-                this.renderMovieWatchList
+                this.renderMovieWatchList()
               ) : (
                 <h5>Go find some movies to add to your watchlist!</h5>
               )}
             </Tab>
-            {/* <Tab eventKey="Reviews" title="Reviews"></Tab> */}
           </Tabs>
         </Container>
       </>

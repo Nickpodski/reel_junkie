@@ -4,14 +4,14 @@
 .wrapper {
   position: absolute;
   top: 100%;
-  width: 800px;
-  left: 50%;
-  margin-left: -400px;
+  width: 100%;
+  /* left: 50%; */
+  /* margin-left: -400px; */
   /* font: 300 30px/1 "Open Sans Condensed", sans-serif; */
   text-align: center;
   text-transform: uppercase;
   color: #fff;
-  animation: 50s credits linear infinite;
+  animation: 20s credits linear infinite;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
