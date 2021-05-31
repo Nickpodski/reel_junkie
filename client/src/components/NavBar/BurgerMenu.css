@@ -1,0 +1,82 @@
+.hamburger-button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+  background-image: url(https://res.cloudinary.com/dnpyq0ocz/image/upload/v1588441892/icon-hamburger.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger-button.open {
+  background-image: url(https://res.cloudinary.com/dnpyq0ocz/image/upload/v1588441892/icon-hamburger-close.svg);
+
+}
+
+.panel {
+  max-width: 30%;
+  background-color: transparent;
+  background-size: 117px 188px;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.34, 1.01);
+  position: fixed;
+  z-index: 5;
+  right: -100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  padding: 3em;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-blend-mode: color-burn;
+}
+
+.panel.open {
+  visibility: visible;
+  width: 100%;
+  right: 0;
+  opacity: 1;
+}
+
+ul {
+  margin: 4px 0px 0px 29px;
+}
+
+li {
+  list-style: none;
+  font-size: 2em;
+  text-align: center;
+}
+
+/* Hamburger menu (individual) li */
+.profile {
+ margin-top: 53px;
+}
+
+.credits {
+  margin-top: 210px;
+}
+
+.logout {
+  margin-top: 183px;
+}
+/* /////////// */
+
+.burgerLink {
+  color: orange;
+  text-decoration: none;
+  
+}
+
+.burgerLink:hover {
+  color:white;
+  text-decoration: none;
+}

@@ -108,6 +108,7 @@ function App() {
     });
   }
   
+  
   // const clickMovieRender = (movie) => {
   //   setSingleMovie(movie);
     
