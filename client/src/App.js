@@ -13,7 +13,7 @@ import Register from "./components/Register/Register";
 import { ToastContainer, toast } from 'react-toastify';
 // import UserContext from "./utils/UserContext";
 import 'react-toastify/dist/ReactToastify.css';
-
+import useCheckMobileScreen from "./utils/useCheckMobileScreen";
 
 // import { fetchMovies } from "../src/utils/API";
 
@@ -22,6 +22,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
+  const isMobile = useCheckMobileScreen();
 
   const notifyError = (mes) => {
     toast.error(mes, {
@@ -109,7 +110,6 @@ function App() {
   };
 
   const saveUserMoviesWatched = (data) => {
-    console.log(userData);
     setUserData({
       email: data.email,
       movies_watched: data.movies_watched,
@@ -147,7 +147,7 @@ function App() {
           <div>
             <Switch>
               <Route exact path={["/", "/home"]}>
-                <MoviesInCarousel />
+                <MoviesInCarousel isMobile={isMobile} />
               </Route>
               <Route exact path={["/login"]}>
                 <Login 
