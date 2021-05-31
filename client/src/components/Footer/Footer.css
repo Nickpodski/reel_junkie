@@ -2,21 +2,20 @@
   background-color: black;
   border-top: solid;
   border-color: orange;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; 
-  padding-bottom: 2.5rem; 
+  margin-top: 50px;
 }
 .credit-link {
   color: white;
+}
+
+.credit-link:hover {
+  color: orange;
 }
 
 .cr-link {
   color: white;
 }
 
-.foot-cont{
-    position: relative;
-    min-height: 100vh;
+.cr-link:hover {
+  color:orange;
 }
