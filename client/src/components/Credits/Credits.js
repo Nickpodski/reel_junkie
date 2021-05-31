@@ -230,6 +230,17 @@ function Credits() {
           </a>
         </div>
         <br />
+        <span className="madeBy">Reel Image by</span>
+        <div className="artistName">
+          <a
+            className="creditsLinks"
+            href="https://www.vecteezy.com/free-vector/film-strip"
+            title="Freepik"
+            target="_blank" rel="noreferrer"
+          >
+            Freepik from Vecteezy
+          </a>
+        </div>
         <br />
         <br />
         <div className="thanks">Thanks for watching!</div>
@@ -237,5 +248,6 @@ function Credits() {
     </Container>
   );
 }
+
 
 export default Credits;

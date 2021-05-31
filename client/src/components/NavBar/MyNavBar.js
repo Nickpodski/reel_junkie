@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import "./MyNavBar.css";
 import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import BurgerMenu from "./BurgerMenu";
 
 const NavBar = (props) => {
   const { onChange, onSubmit, user, logout, notifySuccess } = props;
@@ -61,9 +62,7 @@ const NavBar = (props) => {
             ? ( <Nav.Link className="link" as={Link} to="/login">
                   Login
                 </Nav.Link>)
-            : ( <Nav.Link className="link" as={Link} to='/home' onClick=    {handleLogout}>
-                  Logout
-                </Nav.Link>)
+            : ( <BurgerMenu />)
             }
           </Nav.Item>
         </Nav>
