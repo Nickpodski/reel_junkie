@@ -26,6 +26,36 @@ import React, { useState } from "react";
 import "./BurgerMenu.css";
 import { Link } from "react-router-dom";
 
+<<<<<<< HEAD
+const BurgerMenu = () => {
+    const [isOpen, setOpen] = useState(false);
+    return (
+      <div>
+        <button
+          onClick={() => setOpen(!isOpen)}
+          className={`hamburger-button ${isOpen ? "open" : "close"}`}
+        />
+        <div className={`panel ${isOpen ? "open" : "close"}`} style={{
+                backgroundImage:
+                  "url(/images/filmReel.jpg)"
+                
+              }}>
+          <ul>
+            <li className="profile">
+            <Link className="burgerLink" as={Link} to="/profile">Profile</Link>
+            </li>
+            <li className="credits">
+            <Link className="burgerLink" as={Link} to="/credits">Credits</Link>
+            </li>
+            <li className="search">
+            <Link className="burgerLink" as={Link} to="/moviesearch">Search</Link>
+            </li>
+            <li className="logout">
+            <Link className="burgerLink" as={Link} to="/login">Logout</Link>
+            </li>
+          </ul>
+        </div>
+=======
 const BurgerMenu = (props) => {
   const { logout } = props;
   const [isOpen, setOpen] = useState(false);
@@ -55,6 +85,7 @@ const BurgerMenu = (props) => {
             <Link className="burgerLink" as={Link} to="/login" onClick={handleLogout}>Logout</Link>
           </li>
         </ul>
+>>>>>>> e32633e2d1216942a13facf4585a5ba729124854
       </div>
     </div>
   );
