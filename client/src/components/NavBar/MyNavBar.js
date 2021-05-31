@@ -62,7 +62,7 @@ const NavBar = (props) => {
             ? ( <Nav.Link className="link" as={Link} to="/login">
                   Login
                 </Nav.Link>)
-            : ( <BurgerMenu />)
+            : ( <BurgerMenu logout={handleLogout} />)
             }
           </Nav.Item>
         </Nav>

@@ -7,8 +7,8 @@
 //   showSettings (event) {
 //     event.preventDefault();
 // }
-    
-    
+
+
 
 //   render () {
 //     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
@@ -26,6 +26,7 @@ import React, { useState } from "react";
 import "./BurgerMenu.css";
 import { Link } from "react-router-dom";
 
+<<<<<<< HEAD
 const BurgerMenu = () => {
     const [isOpen, setOpen] = useState(false);
     return (
@@ -54,8 +55,40 @@ const BurgerMenu = () => {
             </li>
           </ul>
         </div>
-      </div>
-    );
-  };
+=======
+const BurgerMenu = (props) => {
+  const { logout } = props;
+  const [isOpen, setOpen] = useState(false);
 
-  export default BurgerMenu;
+  const handleLogout = () => {
+    setOpen(!isOpen);
+    logout();
+  }
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!isOpen)}
+        className={`hamburger-button ${isOpen ? "open" : "close"}`}
+      />
+      <div className={`panel ${isOpen ? "open" : "close"}`} style={{
+        backgroundImage:
+          "url(/images/filmReel.jpg)"
+      }}>
+        <ul>
+          <li className="profile">
+            <Link className="burgerLink" as={Link} to="/profile" onClick={() => setOpen(!isOpen)}>Profile</Link>
+          </li>
+          <li className="credits">
+            <Link className="burgerLink" as={Link} to="/credits" onClick={() => setOpen(!isOpen)}>Credits</Link>
+          </li>
+          <li className="logout">
+            <Link className="burgerLink" as={Link} to="/login" onClick={handleLogout}>Logout</Link>
+          </li>
+        </ul>
+>>>>>>> e32633e2d1216942a13facf4585a5ba729124854
+      </div>
+    </div>
+  );
+};
+
+export default BurgerMenu;
