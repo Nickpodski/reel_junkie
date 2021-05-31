@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function MovieSearch(props) {
-  const { user } = props;
+  const { user, notifyError, notifySuccess } = props;
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
@@ -111,18 +111,15 @@ function MovieSearch(props) {
   const addMovieHWLReq = (email, moviesWatched) => {
     axios.put('/api/user/addmoviewatched', { email, moviesWatched })
           .then(res => {
-            console.log(res);
-            console.log(res.data);
+            notifySuccess(res.data.message);
           })
           .catch((error) => {
             if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
+              notifyError(error.response.data.message);
             } else if (error.request) {
-              console.log(error.request);
+              notifyError('Server connection Issue!');
             } else {
-              console.log('Error', error.message);
+              notifyError(error.message);
             }
           })
   }
@@ -154,18 +151,15 @@ function MovieSearch(props) {
   const addMovieWLReq = (email, movieWatchList) => {
     axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
     .then(res => {
-      console.log(res);
-      console.log(res.data);
+      notifySuccess(res.data.message);
     })
     .catch((error) => {
       if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        notifyError(error.response.data.message);
       } else if (error.request) {
-        console.log(error.request);
+        notifyError('Server connection Issue!');
       } else {
-        console.log('Error', error.message);
+        notifyError(error.message);
       }
     })
   }

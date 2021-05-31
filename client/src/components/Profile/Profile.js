@@ -21,17 +21,92 @@ class Profile extends React.Component {
     this.getHoursWatched();
   }
 
-  renderMoviesWatched = this.props.user.movies_watched.map((item, index) => {
-    return (
-      <h5 key={index}>{item.title}</h5>
-    )
-  })
+  addMovieHWLReq = (email, moviesWatched) => {
+    axios.put('/api/user/addmoviewatched', { email, moviesWatched })
+          .then(res => {
+            this.props.notifySuccess(res.data.message);
+          })
+          .catch((error) => {
+            if (error.response) {
+              this.props.notifyError(error.response.data.message);
+            } else if (error.request) {
+              this.props.notifyError('Server connection Issue!');
+            } else {
+              this.props.notifyError(error.message);
+            }
+          })
+  }
 
-  renderMovieWatchList = this.props.user.watchlist.map((item, index) => {
+  addMovieWLReq = (email, movieWatchList) => {
+    axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
+          .then(res => {
+            this.props.notifySuccess(res.data.message);
+          })
+          .catch((error) => {
+            if (error.response) {
+              this.props.notifyError(error.response.data.message);
+            } else if (error.request) {
+              this.props.notifyError('Server connection Issue!');
+            } else {
+              this.props.notifyError(error.message);
+            }
+          })
+  }
+
+  removeMHW = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MHWlist = this.props.user.movies_watched;
+    MHWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieHWLReq(email, MHWlist);
+  }
+
+  removeWL = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MWlist = this.props.user.watchlist;
+    MWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieWLReq(email, MWlist);
+  }
+
+  removeWLAddHWL = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MWlist = this.props.user.watchlist;
+    const MHWlist = this.props.user.movies_watched;
+    const movie = this.props.user.watchlist[index];
+    MHWlist.push(movie);
+    MWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieWLReq(email, MWlist);
+    this.addMovieHWLReq(email, MHWlist);
+  }
+
+  renderMoviesWatched = () => {
+    const render = this.props.user.movies_watched.map((item, index) => {
     return (
-      <h5 key={index}>{item.title}</h5>
+      <h5 key={index}>{item.title}<span className="material-icons-outlined" value={index} onClick={(e) => this.removeMHW(e, index)}>
+      clear
+      </span></h5>
     )
   })
+  return render;
+}
+
+  renderMovieWatchList = () => {
+    const render = this.props.user.watchlist.map((item, index) => {
+      return (
+        <h5 key={index}>{item.title}<span className="material-icons-outlined" value={index} onClick={(e) => this.removeWL(e, index)}>
+        clear
+        </span><span title="Add to Have Watched list" className="material-icons-outlined" value={index} onClick={(e) => this.removeWLAddHWL(e, index)}>
+      drive_file_move
+      </span></h5>
+      )
+    })
+    return render;
+  } 
 
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {
@@ -328,13 +403,13 @@ class Profile extends React.Component {
             </Tab>
             <Tab className="tab" variant="warning" eventKey="Movies Watched" title="Movies Watched">
               {this.props.user.movies_watched.length > 0
-                ? (this.renderMoviesWatched)
+                ? (this.renderMoviesWatched())
                 : (<h5>Go watch some movies and tell us about it!</h5>)
               }
             </Tab>
             <Tab className="tab" eventKey="Watch List" title="Watch List">
               {this.props.user.watchlist.length > 0
-                ? (this.renderMovieWatchList)
+                ? (this.renderMovieWatchList())
                 : (<h5>Go find some movies to add to your watchlist!</h5>)
               }
             </Tab>

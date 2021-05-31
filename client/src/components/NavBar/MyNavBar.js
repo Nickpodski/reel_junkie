@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
 
 const NavBar = (props) => {
-  const { onChange, onSubmit, user, logout } = props;
+  const { onChange, onSubmit, user, logout, notifySuccess } = props;
   let history = useHistory();
   const formRef = useRef();
 
@@ -17,6 +17,7 @@ const NavBar = (props) => {
   };
 
   const handleLogout = () => {
+    notifySuccess(`You've successfully logged out!`);
     logout({
       email: "",
       movies_watched: [],
@@ -34,7 +35,7 @@ const NavBar = (props) => {
         sticky="top"
         className="navbar border-bottom border-warning justify-content-between"
       >
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/home" onClick={() => window.scrollTo(0, 0)}>
           <Media>
             <img
               width={100}
