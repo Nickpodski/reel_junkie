@@ -1,10 +1,8 @@
 import React from "react";
 import "./Credits.css";
-import Container from 'react-bootstrap/Container';
 
 function Credits() {
   return (
-    <Container fluid>
       <div className="wrapper">
         <div className="title">Reel Junkie</div>
         <div className="broughtToYou">Brought to you by</div>
@@ -269,7 +267,6 @@ function Credits() {
         <br />
         <div className="thanks">Thanks for watching!</div>
       </div>
-    </Container>
   );
 }
 
