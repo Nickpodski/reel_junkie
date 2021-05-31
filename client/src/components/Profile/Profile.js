@@ -11,6 +11,7 @@ import "tippy.js/dist/tippy.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+
 class Profile extends React.Component {
   state = {
     badgeCounts: [],
@@ -24,9 +25,86 @@ class Profile extends React.Component {
     return <h5 key={index}>{item.title}</h5>;
   });
 
-  renderMovieWatchList = this.props.user.watchlist.map((item, index) => {
-    return <h5 key={index}>{item.title}</h5>;
-  });
+  removeWLAddHWL = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MWlist = this.props.user.watchlist;
+    const MHWlist = this.props.user.movies_watched;
+    const movie = this.props.user.watchlist[index];
+    MHWlist.push(movie);
+    MWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieWLReq(email, MWlist);
+    this.addMovieHWLReq(email, MHWlist);
+  };
+
+  clickMovieHWL = (index) => {
+    const movie = this.props.user.movies_watched[index];
+    const title = movie.title;
+    this.props.setSearchMovie(title);
+    window.scrollTo(0, 0);
+    this.props.setCurrentPage(1);
+    this.props.search(1, title);
+    this.props.getTotalPages(title);
+    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+  }
+
+  clickMovieWL = (index) => {
+    const movie = this.props.user.watchlist[index];
+    const title = movie.title;
+    this.props.setSearchMovie(title);
+    window.scrollTo(0, 0);
+    this.props.setCurrentPage(1);
+    this.props.search(1, title);
+    this.props.getTotalPages(title);
+    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+  }
+
+  renderMoviesWatched = () => {
+    const render = this.props.user.movies_watched.map((item, index) => {
+      return (
+        <h5  title="Search this Movie!"className="movieTitle" key={index} onClick={() => this.clickMovieHWL(index)}>
+          {item.title}
+          <span 
+            title="Remove From Have Watched list"
+            className="material-icons-outlined"
+            value={index}
+            onClick={(e) => this.removeMHW(e, index)}
+          >
+            clear
+          </span>
+        </h5>
+      );
+    });
+    return render;
+  };
+
+  renderMovieWatchList = () => {
+    const render = this.props.user.watchlist.map((item, index) => {
+      return (
+        <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={() => this.clickMovieWL(index)}>
+          {item.title}
+          <span
+            title="Remove From Watchlist"
+            className="material-icons-outlined"
+            value={index}
+            onClick={(e) => this.removeWL(e, index)}
+          >
+            clear
+          </span>
+          <span
+            title="Add to Have Watched list"
+            className="material-icons-outlined icon"
+            value={index}
+            onClick={(e) => this.removeWLAddHWL(e, index)}
+          >
+            drive_file_move
+          </span>
+        </h5>
+      );
+    });
+    return render;
+  };
 
   getBadgeCount = () => {
     axios.get("api/badge/badgeidcount").then((badgeCounts) => {

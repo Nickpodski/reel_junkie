@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation , useHistory} from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -24,6 +24,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState();
   const isMobile = useCheckMobileScreen();
   const location = useLocation();
+  let history = useHistory();
 
   const notifyError = (mes) => {
     toast.error(mes, {
@@ -98,15 +99,15 @@ function App() {
     setSearchResults(newSearchRes);
   };
 
-  const getSearchResults = async (page) => {
-    const res = await searchMovies(searchMovie, page);
+  const getSearchResults = async (page, search) => {
+    const res = await searchMovies(search, page);
     if (res) {
       setSearchResults(res);
     }
   };
 
-  const getTotalPages = async () => {
-    const res = await fetchTotalPages(searchMovie);
+  const getTotalPages = async (search) => {
+    const res = await fetchTotalPages(search);
     setTotalPages(res);
   };
 
@@ -122,8 +123,8 @@ function App() {
   const handleSumbit = () => {
     window.scrollTo(0, 0);
     setCurrentPage(1);
-    getSearchResults(1);
-    getTotalPages();
+    getSearchResults(1, searchMovie);
+    getTotalPages(searchMovie);
   };
 
   const saveUserData = (data) => {
@@ -146,7 +147,13 @@ function App() {
           <div>
             <Switch>
               <Route exact path={["/", "/home"]}>
-                <MoviesInCarousel isMobile={isMobile} />
+                <MoviesInCarousel 
+                isMobile={isMobile}
+                setSearchMovie={setSearchMovie}
+                search={getSearchResults}
+                getTotalPages={getTotalPages}
+                setCurrentPage={setCurrentPage}
+                />
               </Route>
               <Route exact path={["/login"]}>
                 <Login 
@@ -182,6 +189,11 @@ function App() {
                 setUserMW={saveUserMoviesWatched}
                 notifyError={notifyError}
                 notifySuccess={notifySuccess}
+                setSearchMovie={setSearchMovie}
+                search={getSearchResults}
+                getTotalPages={getTotalPages}
+                setCurrentPage={setCurrentPage}
+                history={history}
                 /> ) 
               : ( <Redirect to='/login' />)
               }
