@@ -109,6 +109,7 @@ function App() {
   };
 
   const saveUserMoviesWatched = (data) => {
+    console.log(userData);
     setUserData({
       email: data.email,
       movies_watched: data.movies_watched,
@@ -177,7 +178,12 @@ function App() {
             </Route>
             <Route exact path={["/profile"]}>
               {userData.isLoggedIn 
-              ? ( <Profile user={userData}/> ) 
+              ? ( <Profile 
+                user={userData} 
+                setUserMW={saveUserMoviesWatched}
+                notifyError={notifyError}
+                notifySuccess={notifySuccess}
+                /> ) 
               : ( <Redirect to='/login' />)
               }
             </Route>
