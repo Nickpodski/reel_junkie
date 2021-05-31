@@ -242,6 +242,30 @@ function Credits() {
           </a>
         </div>
         <br />
+        <span className="madeBy">LICENSE</span>
+        <div className="artistName">
+          <a
+            className="creditsLinks"
+            href="https://github.com/Nickpodski/reel_junkie/blob/main/LICENSE"
+            title="LICENSE"
+            target="_blank" rel="noreferrer"
+          >
+            Copyright (c) 2021
+          </a>
+        </div>
+        <br />
+        <span className="madeBy">The Movie Database</span>
+        <div className="artistName">
+          <a
+            className="creditsLinks"
+            href="https://developers.themoviedb.org/3/getting-started/introductionE"
+            title="TMBAPI"
+            target="_blank" rel="noreferrer"
+          >
+           TMDB API
+          </a>
+        </div>
+        <br />
         <br />
         <div className="thanks">Thanks for watching!</div>
       </div>

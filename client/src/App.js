@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -23,6 +23,7 @@ function App() {
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
   const isMobile = useCheckMobileScreen();
+  const location = useLocation();
 
   const notifyError = (mes) => {
     toast.error(mes, {
@@ -133,17 +134,14 @@ function App() {
       isLoggedIn: true
     });
   }
-  
-  
-  // const clickMovieRender = (movie) => {
-  //   setSingleMovie(movie);
-    
-  // };
+
+  // const isCredits = () => {
+
+  // }
 
   return (
     // <UserContext.Provider>
       <div>
-        <Router>
           <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData} notifySuccess={notifySuccess}/>
           <div>
             <Switch>
@@ -192,10 +190,12 @@ function App() {
               <Credits />
             </Route>
           </Switch>
-          <Footer />
+          {location.pathname === '/credits'
+          ? ""
+          : ( <Footer /> )
+          }
         </div>
        <ToastContainer />
-      </Router>
     </div>
     // </UserContext.Provider>
   );
