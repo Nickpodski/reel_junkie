@@ -46,6 +46,9 @@ const BurgerMenu = () => {
             <li className="credits">
             <Link className="burgerLink" as={Link} to="/credits">Credits</Link>
             </li>
+            <li className="search">
+            <Link className="burgerLink" as={Link} to="/moviesearch">Search</Link>
+            </li>
             <li className="logout">
             <Link className="burgerLink" as={Link} to="/login">Logout</Link>
             </li>

@@ -7,15 +7,18 @@ import Tabs from "react-bootstrap/Tabs";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import "tippy.js/dist/tippy.css"; 
 
 class Profile extends React.Component {
   state = {
     badgeCounts: [],
+    numWatched:[],
+    timeWatched: []
   };
   // need class component
   componentDidMount() {
     this.getBadgeCount();
+    this.getHoursWatched();
   }
 
   renderMoviesWatched = this.props.user.movies_watched.map((item, index) => {
@@ -40,12 +43,28 @@ class Profile extends React.Component {
       for (let key in badgeCounts.data) {
         let value = badgeCounts.data[key];
         // let idCount = value.count;
-        if (value.count === 2) {
+        if (value.count === 10) {
           console.log(value._id + "genreID");
         }
       }
     });
   };
+  getHoursWatched = () => {
+    axios.get("api/badge/hourswatched").then((timeWatched) => {
+      // _id:count
+      // this.setState({ timeWatched: timeWatched.totalHoursWatched });
+      console.log(timeWatched.data[0].count)
+      // =1 (as it should)
+      // if id# had count = 10
+      // for (let key in timeWatched.data) {
+      //   let value = timeWatched.data[key];
+      //   // let idCount = value.count;
+      //   if (value.count === 10) {
+          console.log(timeWatched + "sum here");
+        
+      
+      })};
+  // };
   render() {
     return (
       <div>
@@ -55,11 +74,21 @@ class Profile extends React.Component {
               width={250}
               height={250}
               className=" image-cont mr-3 mt-5 mb-2"
-              src=""
+              src="https://cdn.pixabay.com/photo/2014/03/25/15/24/movie-296751__340.png"
               alt=""
             />
           </Media>
         </Container>
+        {/* <Container>
+          {
+            const movieCount = ((count) => {
+          let numWatched = this.props.user.movies_watched.length
+            if(numWatched === 100) {
+              return ("hi");
+            }
+          })
+          }
+        </Container> */}
         <Container className="badgeContainer">
           {this.state.badgeCounts.map((value) => {
             // let dataArr = [];
@@ -67,16 +96,26 @@ class Profile extends React.Component {
             // //   let value = badgeCounts.data[key];
             // //   console.log(value.count);
             //   // let idCount = value.count;
-            if (value.count >= 10) {
+            if (value.count >= 15) {
               switch (parseInt(value._id)) {
                 // && genId.count = 1
                 // or do case for if id_28 =10 display this icon
+                case 0: 
+                  return (
+                    <Tippy
+                    className="tippy" 
+                    content="Sustenance for a dedicated movie watcher! Here's your first badge, just for being a Reel Junkie! ">
+                      <Image
+                        className="badgeIcon p-2"
+                        src="./badges/popcorn.png"/>
+                    </Tippy>
+                );
                 case 28:
                   return (
                     <Tippy
                     className="tippy" 
                     content="You've got to ask yourself one question: 'Do I feel lucky I earned a badge?'
-                         Well, do ya, junkie?  You earned this badge for watching 10 action movies.">
+                         Well, do ya, junkie?  You earned this badge for watching 15 action movies.">
                       <Image
                         className="badgeIcon p-2"
                         src="./badges/action-rambo.png"/>
@@ -87,7 +126,7 @@ class Profile extends React.Component {
                   <Tippy
                   className="tippy" 
                   content="No Ticket! How bout a badge?
-                   You earned this badge for watching 10 adventure movies.">
+                   You earned this badge for watching 15 adventure movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/adventure-map.png"/>
@@ -98,7 +137,7 @@ class Profile extends React.Component {
                   <Tippy
                   className="tippy"
                     content="It's the perfect time to be hysterical! 
-                     You earned this badge for watching 10 animated movies.">
+                     You earned this badge for watching 15 animated movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/animation-mouseToy.png"/>
@@ -109,7 +148,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="The badge has to be at least...three times bigger than this. 
-                    You earned this badge for watching 10 comedies.">
+                    You earned this badge for watching 15 comedies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/comedy-lolCat.png"/>
@@ -120,7 +159,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="I'm gonna make you an offer you can't refuse...
-                    this badge for watching 10 crime movies.">
+                    this badge for watching 15 crime movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/crime-handcuffs.png"/>
@@ -131,7 +170,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="See the Reel Junkie in their natural habitat, notice how they graze the popcorn. 
-                    You earned this badge for watching 10 documentaries.">
+                    You earned this badge for watching 15 documentaries.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/documentary-camera.png"/>
@@ -141,7 +180,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="To watch or not to watch? Was there ever really a question?  You earned this badge for watching 10 dramas.">
+                    content="To watch or not to watch? Was there ever really a question?  You earned this badge for watching 15 dramas.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/drama-skull.png"
@@ -152,7 +191,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="No awkwardness on this couch! You earned this badge for watching 10 family movies.">
+                    content="No awkwardness on this couch! You earned this badge for watching 15 family movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/family-badge.png"/>
@@ -162,7 +201,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="...there’s some badges in this world, Reel Junkie… and they're worth watching for.” You earned this badge for watching 10 fantasy movies.">
+                    content="...there’s some badges in this world, Reel Junkie… and they're worth watching for.” You earned this badge for watching 15 fantasy movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/fantasy-wizard.png"/>
@@ -172,7 +211,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="Veni, vidi...I earned a badge. You earned this badge for watching 10 history movies.">
+                    content="Veni, vidi...I earned a badge. You earned this badge for watching 15 history movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/history-columns.png"/>
@@ -182,7 +221,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="Brains- I mean Badges! You earned this badge for watching 10 horror movies.">
+                    content="Brains- I mean Badges! You earned this badge for watching 15 horror movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/horror-knife.png"/>
@@ -192,7 +231,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="Singoutcuzyouearnedabadgeandcanbebragadocious! You earned this badge for watching 10 musicals.">
+                    content="Singoutcuzyouearnedabadgeandcanbebragadocious! You earned this badge for watching 15 musicals.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/musical-notes.png"/>
@@ -202,7 +241,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="With (or without) a shadow of a doubt, you earned this badge for watching 10 mysteries.">
+                    content="With (or without) a shadow of a doubt, you earned this badge for watching 15 mysteries.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/mystery-sherlock.png"/>
@@ -213,7 +252,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="You've got badge.
-                         You earned this badge for watching 10 ramantic movies">
+                         You earned this badge for watching 15 ramantic movies">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/romance-heartMail.png"/>
@@ -223,7 +262,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="In space no can hear you scream, 'I got a badge!' You earned this badge for watching 10 sci-fi movies.">
+                    content="In space no can hear you scream, 'I got a badge!' You earned this badge for watching 15 sci-fi movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/sci-fi-laserGun.png"/>
@@ -233,7 +272,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="Why leave the couch? No, seriously? You earned this badge for watching 10 made-for-tv movies.">
+                    content="Why leave the couch? No, seriously? You earned this badge for watching 15 made-for-tv movies.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/tv-movie-tv.png"/>
@@ -244,7 +283,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="You're gonna need a bigger badge!-holder, that is.
-                    You earned this badge for watching 10 thrillers.">
+                    You earned this badge for watching 15 thrillers.">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/thriller-rollerCoaster.png"/>
@@ -255,7 +294,7 @@ class Profile extends React.Component {
                     <Tippy
                     className="tippy"
                     content="Man, I love the smell of popcorn in the movie theater.
-                         You earned this badge for watching 10 war movies">
+                         You earned this badge for watching 15 war movies">
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/war-helmut.png"/>
@@ -265,7 +304,7 @@ class Profile extends React.Component {
                   return (
                     <Tippy
                     className="tippy"
-                    content="You see, in this world, there’s two kinds of people, my friend; those without Screen Junkie accounts and those who save movies thay dig. You dig? You earned this badge for watching 10 westerns." >
+                    content="You see, in this world, there’s two kinds of people, my friend; those without Screen Junkie accounts and those who save movies thay dig. You dig? You earned this badge for watching 15 westerns." >
                     <Image
                       className="badgeIcon p-2"
                       src="./badges/western-sheriffStar.png"/>
