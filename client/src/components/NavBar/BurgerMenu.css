@@ -20,7 +20,6 @@
 }
 
 .panel {
-  max-width: 30%;
   background-color: transparent;
   background-size: 117px 188px;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.34, 1.01);
@@ -29,7 +28,6 @@
   right: -100%;
   top: 0;
   height: 100%;
-  width: 100%;
   visibility: hidden;
   opacity: 0;
   padding: 3em;
@@ -41,14 +39,15 @@
 
 .panel.open {
   visibility: visible;
-  width: 100%;
+  height: 100%;
+  width: auto;
   right: 0;
   opacity: 1;
 }
 
-ul {
+/* ul {
   margin: 4px 0px 0px 29px;
-}
+} */
 
 li {
   list-style: none;
@@ -57,7 +56,7 @@ li {
 }
 
 /* Hamburger menu (individual) li */
-.profile {
+/* .profile {
  margin-top: 53px;
 }
 
@@ -67,7 +66,7 @@ li {
 
 .logout {
   margin-top: 130px;
-}
+} */
 /* /////////// */
 
 .burgerLink {
