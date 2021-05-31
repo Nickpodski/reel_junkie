@@ -11,7 +11,7 @@ function Footer() {
   
          
           <Nav.Item >
-      <Nav.Link className="cr-link mr-4 footerLink"  href="https://github.com/Nickpodski/reel_junkie/blob/main/LICENSE">Copyright (c) 2021 Nick Podniestrzanski</Nav.Link>
+      <Nav.Link className="cr-link mr-4 footerLink"  href="https://github.com/Nickpodski/reel_junkie/blob/main/LICENSE" target="_blank" rel='noopener noreferrer'>Copyright (c) 2021</Nav.Link>
       </Nav.Item>
  
  
