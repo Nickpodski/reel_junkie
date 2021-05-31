@@ -9,6 +9,7 @@ import axios from "axios";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
+
 class Profile extends React.Component {
   state = {
     badgeCounts: [],
@@ -83,12 +84,35 @@ class Profile extends React.Component {
     this.addMovieHWLReq(email, MHWlist);
   };
 
+  clickMovieHWL = (index) => {
+    const movie = this.props.user.movies_watched[index];
+    const title = movie.title;
+    this.props.setSearchMovie(title);
+    window.scrollTo(0, 0);
+    this.props.setCurrentPage(1);
+    this.props.search(1, title);
+    this.props.getTotalPages(title);
+    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+  }
+
+  clickMovieWL = (index) => {
+    const movie = this.props.user.watchlist[index];
+    const title = movie.title;
+    this.props.setSearchMovie(title);
+    window.scrollTo(0, 0);
+    this.props.setCurrentPage(1);
+    this.props.search(1, title);
+    this.props.getTotalPages(title);
+    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+  }
+
   renderMoviesWatched = () => {
     const render = this.props.user.movies_watched.map((item, index) => {
       return (
-        <h5 key={index}>
+        <h5  title="Search this Movie!"className="movieTitle" key={index} onClick={() => this.clickMovieHWL(index)}>
           {item.title}
           <span 
+            title="Remove From Have Watched list"
             className="material-icons-outlined"
             value={index}
             onClick={(e) => this.removeMHW(e, index)}
@@ -104,9 +128,10 @@ class Profile extends React.Component {
   renderMovieWatchList = () => {
     const render = this.props.user.watchlist.map((item, index) => {
       return (
-        <h5 key={index}>
+        <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={() => this.clickMovieWL(index)}>
           {item.title}
           <span
+            title="Remove From Watchlist"
             className="material-icons-outlined"
             value={index}
             onClick={(e) => this.removeWL(e, index)}

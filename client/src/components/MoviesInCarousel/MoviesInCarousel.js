@@ -4,10 +4,13 @@ import Carousel from "react-bootstrap/Carousel";
 import { moviesPlayingNow } from "../../utils/API";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import { useHistory } from "react-router-dom";
 
 const MoviesInCarousel = (props) => {
-  const { isMobile } = props;
+  const { isMobile, setSearchMovie, search, getTotalPages, setCurrentPage } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
+  let history = useHistory();
+  
   useEffect(() => {
     const getNowPlaying = async () => {
       const items = await moviesPlayingNow();
@@ -15,10 +18,21 @@ const MoviesInCarousel = (props) => {
     };
     getNowPlaying();
   }, []);
+
+  const clickMovie = (index) => {
+    const movie = nowPlaying[index];
+    const title = movie.title;
+    setSearchMovie(title);
+    window.scrollTo(0, 0);
+    setCurrentPage(1);
+    search(1, title);
+    getTotalPages(title);
+    setTimeout(() => {history.push("/moviesearch");}, 500)
+  }
   
   const moviesInCarousel = nowPlaying.map((item, index) => {
     return (
-      <Carousel.Item key={index} className="carousel-border">
+      <Carousel.Item key={index} className="carousel-border" onClick={() => clickMovie(index)}>
         <img className="d-block w-100" src={item.backPoster} alt={item.title} />
         <Carousel.Caption>
           <h3>{item.title}</h3>
@@ -30,7 +44,7 @@ const MoviesInCarousel = (props) => {
 
   const moviesInCarouselMobile = nowPlaying.map((item, index) => {
     return (
-        <Carousel.Item key={index} className="carousel-border">
+        <Carousel.Item key={index} className="carousel-border" onClick={() => clickMovie(index)}>
           <img className="d-block w-100" src={item.poster} alt={item.title} />
         </Carousel.Item>
     );

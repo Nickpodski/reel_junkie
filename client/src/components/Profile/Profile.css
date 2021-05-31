@@ -37,11 +37,17 @@ border-color: orange !important;
 .img-container{
     display: inline-flex;
 }
+
 .material-icons-outlined{
     color:red !important;
     cursor:pointer;
 }
+
 .icon{
     color:rgb(173, 182, 230) !important;
+    cursor:pointer;
+}
+
+.movieTitle {
     cursor:pointer;
 }
