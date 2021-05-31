@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: orange;
+}
+
 .tippy {
     color: orange !important;
 }
+
 .badgeIcon{
     height:4rem;
 }
+
 .tab {
 background-color: black!important;
 color:orange !important;
@@ -31,15 +40,11 @@ border-color: orange !important;
     border: orange !important;
 }
 
-.badgeContainer{
-    display:inline-flex;
-}
-.img-container{
-    display: inline-flex;
-}
+
 .material-icons-outlined{
     color:red !important;
 }
+
 .icon{
     color:rgb(173, 182, 230) !important;
 }
