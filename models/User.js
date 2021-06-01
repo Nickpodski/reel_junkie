@@ -4,64 +4,67 @@ const bcrypt = require('bcryptjs');
 // import { isEmail } from "validator";
 const SALT_WORK_FACTOR = 10;
 
-const UserSchema = new Schema( {
-    email: {
-      type: String,
-      trim: true,
-      lowercase: true,
-      unique: true,
-      required: true,
-      // validate: { validator: isEmail, message: "Invalid email." },
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please fill a valid email address",
-      ],
-    },
-    password: { 
-      type: String,
-      required: true 
-    },
-    
-    movies_watched: [
-      {
-        title: {
-          type: String,
-        },
-        movie_id: {
-          type: Number,
-        },
+const UserSchema = new Schema({
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    unique: true,
+    required: true,
+    // validate: { validator: isEmail, message: "Invalid email." },
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please fill a valid email address",
+    ],
+  },
+  password: {
+    type: String,
+    required: true
+  },
+
+  movies_watched: [
+    {
+      title: {
+        type: String,
+      },
+      movie_id: {
+        type: Number,
+      },
       //   movie_runtime: {
       //     type: Number,
       //     required: "In minutes"
       //   },
-        movie_genres: [
-          {
+      movie_genres: [
+        {
           type: Array
         }
       ],
+      poster: {
+        type: String,
       },
-    ],
-  
-    watchlist: [
-      {
-        title: {
-          type: String,
-        },
-        movie_id: {
-          type: Number,
-        },
-      },
-    ],
+    },
+  ],
 
-    // user_badges: [
-    //   {
-    //     genre_id: {
-    //       type: Number,
-    //     },
-    //   },
-    // ],
-    // will create new field in api routes
-    // timestamps: true
+  watchlist: [
+    {
+      title: {
+        type: String,
+      },
+      movie_id: {
+        type: Number,
+      },
+    },
+  ],
+
+  // user_badges: [
+  //   {
+  //     genre_id: {
+  //       type: Number,
+  //     },
+  //   },
+  // ],
+  // will create new field in api routes
+  // timestamps: true
 });
 
 // $group, $match, $aggregate

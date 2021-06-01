@@ -1,7 +1,6 @@
 import React from "react";
 import "./Profile.css";
 import Container from "react-bootstrap/Container";
-import Media from "react-bootstrap/Media";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Image from "react-bootstrap/Image";
@@ -10,6 +9,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Carousel from "react-bootstrap/Carousel";
 
 
 class Profile extends React.Component {
@@ -173,35 +173,27 @@ class Profile extends React.Component {
   getBadgeCount = () => {
     const email = this.props.user.email;
     axios.get(`/api/badge/badgeidcount/${email}`).then((badgeCounts) => {
-      // _id:count
       this.setState({ badgeCounts: badgeCounts.data });
-      // console.log(badgeCounts.data[0].count)
-      // =1 (as it should)
-      // if id# had count = 10
-      // for (let key in badgeCounts.data) {
-      //   let value = badgeCounts.data[key];
-      //   // let idCount = value.count;
-      //   if (value.count === 15) {
-      //     console.log(value._id + "genreID");
-      //   }
-      // }
     });
   };
+
+  HWListCarousel = this.props.user.movies_watched.map((item, index) => {
+    return (
+      <Carousel.Item  key={index} className="carousel-border" onClick={(e) => this.clickMovieHWL(e, index)}>
+        <img className="d-block" width={250} src={item.poster} alt={item.title} />
+      </Carousel.Item>
+    );
+  });
+
   render() {
     return (
       <>
-        <Row xs={1} md={2} className="m-0">
+        <Row xs={1} md={2} className="m-5">
           <Col lg={5} className="profileImageCol">
-            <Container className="p-4">
-              <Media className="justify-content-center">
-                <img
-                  width={250}
-                  height={250}
-                  className=" image-cont mr-3 mt-4 mb-2"
-                  src="https://cdn.pixabay.com/photo/2014/03/25/15/24/movie-296751__340.png"
-                  alt=""
-                />
-              </Media>
+            <Container className="d-flex justify-content-center">
+              <Carousel indicators={false} className="profileCarousel" fade>
+                {this.HWListCarousel}
+              </Carousel>
             </Container>
           </Col>
           <Col lg={7} className="pt-5 badgeCol">
