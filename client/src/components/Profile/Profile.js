@@ -38,7 +38,8 @@ class Profile extends React.Component {
     this.addMovieHWLReq(email, MHWlist);
   };
 
-  clickMovieHWL = (index) => {
+  clickMovieHWL = (e, index) => {
+    e.preventDefault();
     const movie = this.props.user.movies_watched[index];
     const title = movie.title;
     this.props.setSearchMovie(title);
@@ -46,10 +47,11 @@ class Profile extends React.Component {
     this.props.setCurrentPage(1);
     this.props.search(1, title);
     this.props.getTotalPages(title);
-    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+    setTimeout(() => { this.props.history.push("/moviesearch"); }, 500)
   }
 
-  clickMovieWL = (index) => {
+  clickMovieWL = (e, index) => {
+    e.preventDefault();
     const movie = this.props.user.watchlist[index];
     const title = movie.title;
     this.props.setSearchMovie(title);
@@ -57,23 +59,79 @@ class Profile extends React.Component {
     this.props.setCurrentPage(1);
     this.props.search(1, title);
     this.props.getTotalPages(title);
-    setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
+    setTimeout(() => { this.props.history.push("/moviesearch"); }, 500)
+  }
+
+  addMovieHWLReq = (email, moviesWatched) => {
+    axios.put('/api/user/addmoviewatched', { email, moviesWatched })
+      .then(res => {
+        this.props.notifySuccess(res.data.message);
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.props.notifyError(error.response.data.message);
+        } else if (error.request) {
+          this.props.notifyError('Server connection Issue!');
+        } else {
+          this.props.notifyError(error.message);
+        }
+      })
+  }
+
+  addMovieWLReq = (email, movieWatchList) => {
+    axios.put('/api/user/addmoviewatchlist', { email, movieWatchList })
+      .then(res => {
+        this.props.notifySuccess(res.data.message);
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.props.notifyError(error.response.data.message);
+        } else if (error.request) {
+          this.props.notifyError('Server connection Issue!');
+        } else {
+          this.props.notifyError(error.message);
+        }
+      })
+  }
+
+  removeMHW = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MHWlist = this.props.user.movies_watched;
+    MHWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieHWLReq(email, MHWlist);
+  }
+
+  removeWL = (e, index) => {
+    e.preventDefault();
+    const email = this.props.user.email;
+    const MWlist = this.props.user.watchlist;
+    MWlist.splice(index, 1);
+    this.props.setUserMW(this.props.user);
+    this.addMovieWLReq(email, MWlist);
   }
 
   renderMoviesWatched = () => {
     const render = this.props.user.movies_watched.map((item, index) => {
       return (
-        <h5  title="Search this Movie!"className="movieTitle" key={index} onClick={() => this.clickMovieHWL(index)}>
-          {item.title}
-          <span 
-            title="Remove From Have Watched list"
-            className="material-icons-outlined"
-            value={index}
-            onClick={(e) => this.removeMHW(e, index)}
-          >
-            clear
-          </span>
-        </h5>
+        <Row>
+          <Col>
+              <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={(e) => this.clickMovieHWL(e, index)}>
+                {item.title}
+              </h5>
+          </Col>
+          <Col>
+            <span
+              title="Remove From Have Watched list"
+              className="material-icons-outlined"
+              value={index}
+              onClick={(e) => this.removeMHW(e, index)}
+            >
+              clear
+            </span>
+          </Col>
+        </Row>
       );
     });
     return render;
@@ -82,25 +140,31 @@ class Profile extends React.Component {
   renderMovieWatchList = () => {
     const render = this.props.user.watchlist.map((item, index) => {
       return (
-        <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={() => this.clickMovieWL(index)}>
-          {item.title}
-          <span
-            title="Remove From Watchlist"
-            className="material-icons-outlined"
-            value={index}
-            onClick={(e) => this.removeWL(e, index)}
-          >
-            clear
-          </span>
-          <span
-            title="Add to Have Watched list"
-            className="material-icons-outlined icon"
-            value={index}
-            onClick={(e) => this.removeWLAddHWL(e, index)}
-          >
-            drive_file_move
-          </span>
-        </h5>
+        <Row>
+          <Col>
+            <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={(e) => this.clickMovieWL(e, index)}>
+              {item.title}
+            </h5>
+          </Col>
+          <Col>
+            <span
+              title="Remove From Watchlist"
+              className="material-icons-outlined"
+              value={index}
+              onClick={(e) => this.removeWL(e, index)}
+            >
+              clear
+            </span>
+            <span
+              title="Add to Have Watched list"
+              className="material-icons-outlined icon"
+              value={index}
+              onClick={(e) => this.removeWLAddHWL(e, index)}
+            >
+              drive_file_move
+            </span>
+          </Col>
+        </Row>
       );
     });
     return render;
@@ -126,7 +190,7 @@ class Profile extends React.Component {
     return (
       <>
         <Row xs={1} md={2} className="m-0">
-          <Col  lg={5} className="profileImageCol">
+          <Col lg={5} className="profileImageCol">
             <Container className="p-4">
               <Media className="justify-content-center">
                 <img
