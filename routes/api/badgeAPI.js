@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Badge } = require('../../models');
+const User = require('../../models/User');
 
 // CRUD : Create, Read, Update, Delete
 //        Post    Get    Put    Delete
@@ -71,13 +71,12 @@ router.get("/hourswatched", (req , res) => {
 // });
 
 // Works - gives back count for each id
-router.get('/badgeidcount', (req, res) => {
+router.get('/badgeidcount/:email', (req, res) => {
   User.aggregate([
       // optionaly filter records to apply on
-      //{
-      //    $match: { email: /rambo/ }
-      //             ^  logged in(user's id)
-      //},
+      {
+         $match: { email: req.params.email }
+      },
       {
         $project: {
           // project values you want to see in result
