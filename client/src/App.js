@@ -11,11 +11,8 @@ import Credits from "./components/Credits/Credits";
 import { fetchTotalPages, searchMovies } from "../src/utils/API";
 import Register from "./components/Register/Register";
 import { ToastContainer, toast } from 'react-toastify';
-// import UserContext from "./utils/UserContext";
 import 'react-toastify/dist/ReactToastify.css';
 import useCheckMobileScreen from "./utils/useCheckMobileScreen";
-
-// import { fetchMovies } from "../src/utils/API";
 
 function App() {
   const [searchMovie, setSearchMovie] = useState([]);
@@ -136,12 +133,8 @@ function App() {
     });
   }
 
-  // const isCredits = () => {
-
-  // }
 
   return (
-    // <UserContext.Provider>
       <div>
           <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData} notifySuccess={notifySuccess}/>
           <div>
@@ -174,8 +167,6 @@ function App() {
                 currentPage={currentPage}
                 onClick={moreResultsClick}
                 totalPages={totalPages}
-                // clickMovieRender={clickMovieRender}
-                // addMovie={addMovie}
                 user={userData}
                 setUserMW={saveUserMoviesWatched}
                 notifyError={notifyError}
@@ -209,7 +200,6 @@ function App() {
         </div>
        <ToastContainer />
     </div>
-    // </UserContext.Provider>
   );
 }
 
