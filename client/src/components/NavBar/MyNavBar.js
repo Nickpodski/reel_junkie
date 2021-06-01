@@ -41,7 +41,7 @@ const NavBar = (props) => {
               width={100}
               height={75}
               src="./images/reel-junkie-logo-2.jpg"
-              alt=""
+              alt="brand logo"
             />
           </Media>
         </Navbar.Brand>

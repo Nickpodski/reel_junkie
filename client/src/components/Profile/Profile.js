@@ -192,7 +192,12 @@ class Profile extends React.Component {
           <Col lg={5} className="profileImageCol">
             <Container className="d-flex justify-content-center">
               <Carousel indicators={false} className="profileCarousel" fade>
-                {this.HWListCarousel}
+                {this.props.user.movies_watched.length > 0 
+                ? (this.HWListCarousel )
+                : (<Carousel.Item className="carousel-border">
+                <img className="d-block" width={250} src="./images/reel-junkie-logo-2.jpg" alt="Brand Logo" />
+              </Carousel.Item>)
+                }
               </Carousel>
             </Container>
           </Col>
