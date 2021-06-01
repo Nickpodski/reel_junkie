@@ -204,7 +204,7 @@ function App() {
           </Switch>
           {location.pathname === '/credits'
           ? ""
-          : ( <Footer /> )
+          : ( <Footer history={history}/> )
           }
         </div>
        <ToastContainer />
