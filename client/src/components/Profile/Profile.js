@@ -126,7 +126,7 @@ class Profile extends React.Component {
     return (
       <>
         <Row xs={1} md={2} className="m-0">
-          <Col className="profileImageCol">
+          <Col  lg={5} className="profileImageCol">
             <Container className="p-4">
               <Media className="justify-content-center">
                 <img
@@ -139,11 +139,11 @@ class Profile extends React.Component {
               </Media>
             </Container>
           </Col>
-          <Col className="pt-5 badgeCol">
-            <Container className="pb-2 usersName">
+          <Col lg={7} className="pt-5 badgeCol">
+            <Container className="pb-2 pl-5 usersName">
               <h2>{this.props.user.email}</h2>
             </Container>
-            <Container className="badgeContainer">
+            <Container className="badgeContainer w-75">
               <Tippy
                 className="tippy"
                 content="Sustenance for a dedicated movie watcher! Here's your first badge, just for being a Reel Junkie! "

@@ -13,6 +13,16 @@ h2 {
     height:4rem;
 }
 
+.badgeContainer {
+    background-color: #312f2d;
+    border-style: inset;
+    width: 75%;
+}
+
+.badgeCol {
+    align-content: center;
+}
+
 .tab {
 background-color: black!important;
 color:orange !important;

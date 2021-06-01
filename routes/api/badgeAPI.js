@@ -1,11 +1,5 @@
 const router = require('express').Router();
 const { User, Badge } = require('../../models');
-// const withAuth = require('../../utils/auth');
-
-// let possibleBadges = [];
-// let ticket = ".public.badges/023-ticket.png"
-// ticket = false;
-// const testArr28 = [];
 
 // CRUD : Create, Read, Update, Delete
 //        Post    Get    Put    Delete
