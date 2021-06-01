@@ -34,7 +34,7 @@ function Register(props) {
       formRef.current.reset();
       axios.post('/api/user/register', { email, password })
         .then(res => {
-          notifySuccess(res.data.message);
+          notifySuccess(`You've successful register as ${email}`);
           history.push('/login');
         })
         .catch((error) => {

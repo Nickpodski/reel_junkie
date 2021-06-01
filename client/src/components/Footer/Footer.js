@@ -5,6 +5,11 @@ import Nav from "react-bootstrap/Nav"
 
 
 function Footer() {
+  const creditsClick = (e) => {
+    e.preventDefault();
+    window.scrollTo(0,0);
+  }
+
     return (
       
   <Navbar  className= "nav-footer justify-content-between bottom">
@@ -16,7 +21,7 @@ function Footer() {
  
  
     <Nav.Item >
-      <Nav.Link className="credit-link footerLink"  href="/credits">Credits</Nav.Link>
+      <Nav.Link className="credit-link footerLink"  href="/credits" onClick={(e) => creditsClick(e)}>Credits</Nav.Link>
       </Nav.Item>
       
      

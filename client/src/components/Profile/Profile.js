@@ -38,7 +38,8 @@ class Profile extends React.Component {
     this.addMovieHWLReq(email, MHWlist);
   };
 
-  clickMovieHWL = (index) => {
+  clickMovieHWL = (e, index) => {
+    e.preventDefault();
     const movie = this.props.user.movies_watched[index];
     const title = movie.title;
     this.props.setSearchMovie(title);
@@ -49,7 +50,8 @@ class Profile extends React.Component {
     setTimeout(() => {this.props.history.push("/moviesearch");}, 500)
   }
 
-  clickMovieWL = (index) => {
+  clickMovieWL = (e, index) => {
+    e.preventDefault();
     const movie = this.props.user.watchlist[index];
     const title = movie.title;
     this.props.setSearchMovie(title);
@@ -63,7 +65,7 @@ class Profile extends React.Component {
   renderMoviesWatched = () => {
     const render = this.props.user.movies_watched.map((item, index) => {
       return (
-        <h5  title="Search this Movie!"className="movieTitle" key={index} onClick={() => this.clickMovieHWL(index)}>
+        <h5  title="Search this Movie!"className="movieTitle" key={index} onClick={(e) => this.clickMovieHWL(e, index)}>
           {item.title}
           <span 
             title="Remove From Have Watched list"
@@ -82,7 +84,7 @@ class Profile extends React.Component {
   renderMovieWatchList = () => {
     const render = this.props.user.watchlist.map((item, index) => {
       return (
-        <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={() => this.clickMovieWL(index)}>
+        <h5 title="Search this Movie!" className="movieTitle" key={index} onClick={(e) => this.clickMovieWL(e, index)}>
           {item.title}
           <span
             title="Remove From Watchlist"
