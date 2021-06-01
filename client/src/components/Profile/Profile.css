@@ -56,6 +56,10 @@ border-color: orange !important;
     cursor:pointer;
 }
 
+.movieTitle{
+    cursor: pointer;
+}
+
 .icon{
     color:rgb(173, 182, 230) !important;
     cursor:pointer;
