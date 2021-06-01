@@ -171,19 +171,20 @@ class Profile extends React.Component {
   };
 
   getBadgeCount = () => {
-    axios.get("api/badge/badgeidcount").then((badgeCounts) => {
+    const email = this.props.user.email;
+    axios.get(`/api/badge/badgeidcount/${email}`).then((badgeCounts) => {
       // _id:count
       this.setState({ badgeCounts: badgeCounts.data });
       // console.log(badgeCounts.data[0].count)
       // =1 (as it should)
       // if id# had count = 10
-      for (let key in badgeCounts.data) {
-        let value = badgeCounts.data[key];
-        // let idCount = value.count;
-        if (value.count === 10) {
-          console.log(value._id + "genreID");
-        }
-      }
+      // for (let key in badgeCounts.data) {
+      //   let value = badgeCounts.data[key];
+      //   // let idCount = value.count;
+      //   if (value.count === 15) {
+      //     console.log(value._id + "genreID");
+      //   }
+      // }
     });
   };
   render() {
