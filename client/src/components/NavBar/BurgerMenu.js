@@ -28,7 +28,7 @@ const BurgerMenu = (props) => {
             <Link className="burgerLink" as={Link} to="/profile" onClick={() => setOpen(!isOpen)}>Profile</Link>
           </li>
           <li className="credits">
-            <Link className="burgerLink" as={Link} to="/credits" onClick={() => setOpen(!isOpen)}>Credits</Link>
+            <Link className="burgerLink" as={Link} to="/credits" onClick={() => {setOpen(!isOpen); window.scrollTo(0,0)}}>Credits</Link>
           </li>
           <li className="logout">
             <Link className="burgerLink" as={Link} to="/login" onClick={handleLogout}>Logout</Link>

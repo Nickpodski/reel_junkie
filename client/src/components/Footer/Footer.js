@@ -4,10 +4,11 @@ import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 
 
-function Footer() {
+function Footer(props) {
   const creditsClick = (e) => {
     e.preventDefault();
     window.scrollTo(0,0);
+    props.history.push('/credits');
   }
 
     return (
