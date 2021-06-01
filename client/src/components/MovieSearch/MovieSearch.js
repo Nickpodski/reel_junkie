@@ -85,10 +85,12 @@ function MovieSearch(props) {
       const title = movie.title;
       const email = user.email;
       const id = movie.id;
+      const poster = movie.poster;
       const movieData = {
         "title": title,
         "movie_id": id,
-        "movie_genres": genres
+        "movie_genres": genres,
+        "poster": poster,
       }
       const moviesWatched = props.user.movies_watched;
       const movieWatchList = user.watchlist;
@@ -130,12 +132,16 @@ function MovieSearch(props) {
     } else {
       const index = e.target.value;
       const movie = props.results[index];
+      const genres = movie.genres;
       const title = movie.title;
       const email = user.email;
       const id = movie.id;
+      const poster = movie.poster;
       const movieData = {
         "title": title,
-        "movie_id": id
+        "movie_id": id,
+        "movie_genres": genres,
+        "poster": poster,
       }
       const movieWatchList = user.watchlist;
       if (movieWatchList.some(e => e.movie_id === id)) {

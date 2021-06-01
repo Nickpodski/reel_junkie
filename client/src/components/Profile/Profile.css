@@ -64,3 +64,13 @@ border-color: orange !important;
     color:rgb(173, 182, 230) !important;
     cursor:pointer;
 }
+
+.carousel-border{
+    border: solid;
+    border-color: orange !important;
+}
+
+.profileCarousel{
+    width: 256px !important;
+    margin-right: 0px !important;
+}
