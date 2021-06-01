@@ -25,9 +25,6 @@ const BurgerMenu = (props) => {
             <Link className="burgerLink" as={Link} to="/" onClick={() => setOpen(!isOpen)}>Home</Link>
           </li>
           <li className="profile">
-            <Link className="burgerLink" as={Link} to="/home" onClick={() => setOpen(!isOpen)}>Home</Link>
-          </li>
-          <li className="profile">
             <Link className="burgerLink" as={Link} to="/profile" onClick={() => setOpen(!isOpen)}>Profile</Link>
           </li>
           <li className="credits">

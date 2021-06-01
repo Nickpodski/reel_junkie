@@ -67,7 +67,7 @@ function Register(props) {
         <Form.Control type="password" placeholder="Password"  onChange={onPassWordChange}/>
       </Form.Group>
       <Form.Group onSubmit={handleSubmit} controlId="formBasicPassword2">
-        <Form.Label className="form-text" >Verfiy Password</Form.Label>
+        <Form.Label className="form-text" >Verify Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={onPassWordVerChange}/>
       </Form.Group>
       <Button variant="warning" type="register" onClick={handleSubmit}>
