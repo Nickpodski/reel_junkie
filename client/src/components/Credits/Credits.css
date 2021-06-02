@@ -5,9 +5,6 @@
   position: absolute;
   top: 100%;
   width: 100%;
-  /* left: 50%; */
-  /* margin-left: -400px; */
-  /* font: 300 30px/1 "Open Sans Condensed", sans-serif; */
   text-align: center;
   text-transform: uppercase;
   color: #fff;
@@ -32,10 +29,14 @@
     margin-bottom: 100px;
 }
 
-.logoDesigner {
+.logoDesignedBy {
   font-size: 1.2rem;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.logoDesigner {
+  font-size: 1.7rem;
 }
 
 .artistName {
@@ -44,7 +45,7 @@
   
 }
 
-.creditsLinks, .devCreditsLinks {
+.creditsLinks, .devCreditsLinks, .thanksTo {
   color: orange;
   font-weight: 300;
 }
@@ -57,6 +58,10 @@
 .thanks {
   font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
+}
+
+.kelly, .famFriends {
+  margin: 0px 0px 2px 0px;
 }
 
 @keyframes credits {

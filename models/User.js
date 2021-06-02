@@ -54,17 +54,7 @@ const UserSchema = new Schema({
         type: Number,
       },
     },
-  ],
-
-  // user_badges: [
-  //   {
-  //     genre_id: {
-  //       type: Number,
-  //     },
-  //   },
-  // ],
-  // will create new field in api routes
-  // timestamps: true
+  ]
 });
 
 // $group, $match, $aggregate

@@ -27,14 +27,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reelJunkiesDB",
 
 app.use(routes);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/public/index.html"));
-//   //                                          ^ /build/
-// });
-
-
-// app.use(require("./routes/index.js"));
-
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
