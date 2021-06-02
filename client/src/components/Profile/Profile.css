@@ -1,8 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
 
 h2 {
     font-family: 'Poppins', sans-serif;
     color: orange;
+    text-align: -webkit-center;
+    padding-right: 35px;
+}
+
+h3 {
+    padding: 15px 0px 0px 0px;
+}
+
+h4 {
+    color: orange;
+    text-align: -webkit-center;
+    padding-right: 35px;
+    font-family: 'Poppins', sans-serif;
+}
+
+h5 {
+    padding-top: 25px;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #312f2d;
 }
 
 .tippy {
@@ -15,8 +40,10 @@ h2 {
 
 .badgeContainer {
     background-color: #312f2d;
+    border-color: orange;
     border-style: inset;
     width: 75%;
+    
 }
 
 .badgeCol {
@@ -45,15 +72,16 @@ border-color: orange !important;
     font-family: Arial;
     border-color:orange !important;
 }
+
 .cont-tab{
     border:solid !important;
     border: orange !important;
 }
 
-
-.material-icons-outlined{
-    color:red !important;
-    cursor:pointer;
+.material-icons-outlined {
+    color: red !important;
+    cursor: pointer;
+    padding-top: 25px;
 }
 
 .movieTitle{

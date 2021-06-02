@@ -204,6 +204,8 @@ class Profile extends React.Component {
           <Col lg={7} className="pt-5 badgeCol">
             <Container className="pb-2 pl-5 usersName">
               <h2>{this.props.user.email}</h2>
+              <hr/>
+              <h4>Badges</h4>
             </Container>
             <Container className="badgeContainer w-75">
               <Tippy
@@ -466,7 +468,7 @@ class Profile extends React.Component {
         <Container className="cont-tab p-5">
           <Tabs className="tabs" defaultActiveKey="description">
             <Tab className="tab" eventKey="description" title="Description">
-              <h3 className="text">Your Email: {this.props.user.email}</h3>
+              <h3 className="text">Search for movies to add to your lists</h3>
               <h5 className="text">
                 Movies Wached: {this.props.user.movies_watched.length}
               </h5>

@@ -26,7 +26,12 @@ function Credits() {
         </div>
         <br />
         <br />
-        <div className="logoDesigner">Reel Junkies Logo Designed by .......</div>
+        <div className="logoDesignedBy">Reel Junkie Logo Designed by</div>
+        <div>
+          <p
+            className="devCreditsLinks logoDesigner"
+            >Jeff Demming</p>
+        </div>
         <br />
         <div>
           <span className="madeBy">Icons from </span>
@@ -239,6 +244,19 @@ function Credits() {
             Freepik from Vecteezy
           </a>
         </div>
+        <br />
+        <div className="logoDesignedBy">Special Thanks to</div>
+        <div>
+          <p className="thanksTo kelly">Kelly,</p>
+          <p className="thanksTo">For catching a spelling error, "Verfiy" will live on in our hearts</p>
+         </div>
+         <br />
+         <br />
+         <div> 
+          <p className="thanksTo famFriends">Our family and friends,</p>
+          <p className="thanksTo">furry ones included</p>
+        </div>
+        <br />
         <br />
         <span className="madeBy">LICENSE</span>
         <div className="artistName">
