@@ -134,12 +134,14 @@ function App() {
   }
 
   const updateUserData = (data) => {
+    console.log('its hitting this')
     setUserData({
       email: data.email,
       movies_watched: data.movies_watched,
       watchlist: data.watchlist,
       isLoggedIn: true
     });
+    setWithExpiry('userData', userData, 3600000)
   }
 
 

@@ -19,9 +19,10 @@ export const updateUserRuntime = async (data) => {
         }
       });
       const moviesWatched = userMW;
+      console.log(moviesWatched);
       axios.put('/api/user/addmoviewatched', { email, moviesWatched })
         .then(() => {
-          console.log(moviesWatched);
+          
         })
         .catch((error) => {
           if (error.response) {
