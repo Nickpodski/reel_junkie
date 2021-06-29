@@ -30,6 +30,7 @@ function Login(props) {
       .then(async (res) => {
         notifySuccess(res.data.message);
         const needUpdate = await updateUserRuntime(res.data.user);
+        console.log(needUpdate);
         if (!needUpdate) {
           saveUserData(res.data);
         } else {
