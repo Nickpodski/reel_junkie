@@ -133,6 +133,15 @@ function App() {
     });
   }
 
+  const updateUserData = (data) => {
+    setUserData({
+      email: data.email,
+      movies_watched: data.movies_watched,
+      watchlist: data.watchlist,
+      isLoggedIn: true
+    });
+  }
+
 
   return (
       <div>
@@ -153,6 +162,7 @@ function App() {
                 saveUserData={saveUserData} 
                 notifyError={notifyError}
                 notifySuccess={notifySuccess}
+                updateUserData={updateUserData}
                 />
               </Route>
               <Route exact path={["/register"]}>

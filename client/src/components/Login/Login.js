@@ -7,7 +7,7 @@ import { updateUserRuntime } from '../../utils/updateUser';
 // import axios from 'axios';
 
 function Login(props) {
-  const { saveUserData, notifyError, notifySuccess } = props;
+  const { saveUserData, notifyError, notifySuccess, updateUserData } = props;
   let history = useHistory();
   const formRef = useRef();
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ function Login(props) {
         if (!needUpdate) {
           saveUserData(res.data);
         } else {
-          saveUserData(needUpdate);
+          updateUserData(needUpdate);
         }
         history.push('/profile');
       })

@@ -30,9 +30,7 @@ const UserSchema = new Schema({
       movie_id: {
         type: Number,
       },
-      movie_runtime: {
-        type: Number
-      },
+   
       movie_genres: [
         {
           type: Array
@@ -40,6 +38,9 @@ const UserSchema = new Schema({
       ],
       poster: {
         type: String,
+      },
+      movie_runtime: {
+        type: Number
       },
     },
   ],
