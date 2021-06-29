@@ -3,6 +3,7 @@ import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { getRunTime } from "../../utils/API";
 
 function MovieSearch(props) {
   const { user, notifyError, notifySuccess } = props;
@@ -75,7 +76,7 @@ function MovieSearch(props) {
     }
   }
 
-  const addMovieWatched = (e) => {
+  const addMovieWatched = async (e) => {
     if (!user.isLoggedIn) {
       history.push('/login');
     } else {
@@ -86,11 +87,13 @@ function MovieSearch(props) {
       const email = user.email;
       const id = movie.id;
       const poster = movie.poster;
+      const runTime = await getRunTime(id);
       const movieData = {
         "title": title,
         "movie_id": id,
         "movie_genres": genres,
         "poster": poster,
+        "movie_runtime": runTime,
       }
       const moviesWatched = props.user.movies_watched;
       const movieWatchList = user.watchlist;

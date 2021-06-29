@@ -31,4 +31,15 @@ router.get('/moviestotalpages/:title', async (req, res) => {
   }
 });
 
+router.get('/getruntime/:id', async (req, res) => {
+  const id = req.params.id;
+  try{
+    const data = await API.getRuntime(id);
+    res.status(200).json(data);
+  } catch(err) {
+    res.status().json({ message: err.message})
+  }
+});
+
+
 module.exports = router;
