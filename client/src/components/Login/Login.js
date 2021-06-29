@@ -27,13 +27,13 @@ function Login(props) {
     event.preventDefault();
     formRef.current.reset();
     axios.post('/api/user/logIn', { email, password } )
-      .then(res => {
+      .then(async (res) => {
         notifySuccess(res.data.message);
-        const needUpdate = updateUserRuntime(res.data.user);
+        const needUpdate = await updateUserRuntime(res.data.user);
         if (!needUpdate) {
           saveUserData(res.data);
         } else {
-          console.log(needUpdate);
+          saveUserData(needUpdate);
         }
         history.push('/profile');
       })

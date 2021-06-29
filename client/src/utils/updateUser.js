@@ -6,36 +6,33 @@ export const updateUserRuntime = async (data) => {
   const email = data.email;
   const userData = data;
   const userMW = data.movies_watched;
-  let newUser = false;
-  if (!userMW.movie_runtime) {
-    const updatedData = await userMW.map(item => {
-      let movieRunTime = item.movie_runtime;
-      if (!movieRunTime) {
-        const newRunTime = getRunTime(item.id);
-        console.log(newRunTime);
-        movieRunTime = newRunTime;
-        newUser = true;
-      } 
-    });
-    console.log(updatedData);
+  if (userMW.length > 0) {
+    let res = 'movie_runtime' in userMW;
+    if (!res) {
+      userMW.map(async (item, index) => {
+        let movieRunTime = item.movie_runtime;
+        if (!movieRunTime) {
+          const newRunTime = await getRunTime(item.movie_id);
+          console.log(newRunTime);
+          userMW[index].movie_runtime = newRunTime;
+        }
+      });
+      axios.put('/api/user/addmoviewatched', { email, userMW })
+        .then(() => {
+          console.log('Updated!');
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data.message);
+          } else if (error.request) {
+            console.log('Server connection Issue!');
+          } else {
+            console.log(error.message);
+          }
+        })
+      return userData;
+    } else {
+      return null;
+    }
   }
-  // if (newUser === true) {
-  //   userData.movies_watched = updatedUserMW;
-  //   axios.put('/api/user/addmoviewatched', { email, updatedUserMW })
-  //         .then(res => {
-  //           console.log('Updated!');
-  //         })
-  //         .catch((error) => {
-  //           if (error.response) {
-  //             console.log(error.response.data.message);
-  //           } else if (error.request) {
-  //             console.log('Server connection Issue!');
-  //           } else {
-  //             console.log(error.message);
-  //           }
-  //         })
-  //   return userData;
-  // } else {
-  //   return null;
-  // }
 }
