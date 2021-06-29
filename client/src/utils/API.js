@@ -58,3 +58,12 @@ export const fetchTotalPages = async (title) => {
     return data;
   } catch(err) {}
 }
+
+export const getRunTime = async (id) => {
+  const searchMoviesUrl = `/api/movies/getruntime/${id}`;
+  try {
+    const { data } = await axios.get(searchMoviesUrl, {
+    })
+    return data;
+  } catch(err) {}
+}

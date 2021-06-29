@@ -63,12 +63,26 @@ const fetchTotalPages = async (title) => {
         include_adult: false,
         query:title
       }
-
     })
     return data.total_pages;
   } catch(err) {}
 }
 
+const getRuntime = async (movie_id) => {
+  const runtimeURL = `${url}/movie/${movie_id}`;
+  try {
+    const { data } = await axios.get(runtimeURL, {
+      params: {
+        api_key: apiKey,
+        language: 'en_US',
+      }
+    })
+    const runTime = data.runtime;
+    return runTime;
+  } catch(err) {}
+}
+
+exports.getRuntime = getRuntime;
 exports.searchMovies = searchMovies;
 exports.moviesPlayingNow = moviesPlayingNow;
 exports.fetchTotalPages = fetchTotalPages;

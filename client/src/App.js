@@ -133,6 +133,17 @@ function App() {
     });
   }
 
+  const updateUserData = (data) => {
+    console.log('its hitting this')
+    setUserData({
+      email: data.email,
+      movies_watched: data.movies_watched,
+      watchlist: data.watchlist,
+      isLoggedIn: true
+    });
+    setWithExpiry('userData', userData, 3600000)
+  }
+
 
   return (
       <div>
@@ -153,6 +164,7 @@ function App() {
                 saveUserData={saveUserData} 
                 notifyError={notifyError}
                 notifySuccess={notifySuccess}
+                updateUserData={updateUserData}
                 />
               </Route>
               <Route exact path={["/register"]}>
