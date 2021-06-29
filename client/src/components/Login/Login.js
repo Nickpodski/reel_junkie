@@ -3,6 +3,7 @@ import "./Login.css";
 import { Form, Button, Container } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import { updateUserRuntime } from '../../utils/updateUser';
 // import axios from 'axios';
 
 function Login(props) {
@@ -28,7 +29,12 @@ function Login(props) {
     axios.post('/api/user/logIn', { email, password } )
       .then(res => {
         notifySuccess(res.data.message);
-        saveUserData(res.data);
+        const needUpdate = updateUserRuntime(res.data.user);
+        if (!needUpdate) {
+          saveUserData(res.data);
+        } else {
+          console.log(needUpdate);
+        }
         history.push('/profile');
       })
       .catch((error) => {

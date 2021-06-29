@@ -30,10 +30,9 @@ const UserSchema = new Schema({
       movie_id: {
         type: Number,
       },
-      //   movie_runtime: {
-      //     type: Number,
-      //     required: "In minutes"
-      //   },
+      movie_runtime: {
+        type: Number
+      },
       movie_genres: [
         {
           type: Array
