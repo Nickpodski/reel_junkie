@@ -3,6 +3,8 @@ import "./MyNavBar.css";
 import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
+import { BsSearch } from "react-icons/bs";
+
 
 const NavBar = (props) => {
   const { onChange, onSubmit, user, logout, notifySuccess } = props;
@@ -53,7 +55,7 @@ const NavBar = (props) => {
             className="mr-sm-2 justify-content-center search-input"
           />
           <Button className= "search-btn" variant="warning" onClick={handleSumbit}>
-            Search
+           <BsSearch />
           </Button>
         </Form>
         <Nav>

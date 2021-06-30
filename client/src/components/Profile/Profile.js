@@ -115,7 +115,7 @@ class Profile extends React.Component {
   renderMoviesWatched = () => {
     const render = this.props.user.movies_watched.map((item, index) => {
       return (
-        <Row key={index}>
+        <Row className="movieRow" key={index}>
           <Col>
               <h5 title="Search this Movie!" className="movieTitle"  onClick={(e) => this.clickMovieHWL(e, index)}>
                 {item.title}
@@ -140,7 +140,7 @@ class Profile extends React.Component {
   renderMovieWatchList = () => {
     const render = this.props.user.watchlist.map((item, index) => {
       return (
-        <Row key={index}>
+        <Row className="movieRow" key={index}>
           <Col >
             <h5 title="Search this Movie!" className="movieTitle"  onClick={(e) => this.clickMovieWL(e, index)}>
               {item.title}
@@ -178,6 +178,14 @@ class Profile extends React.Component {
   };
 
   HWListCarousel = this.props.user.movies_watched.map((item, index) => {
+    // let boop = this.props.user.movies_watched.count;
+    // console.log(index);
+    // if(index >= 160){
+    //   console.log("yep")
+    // }else {
+    //   console.log("noop")
+    // }
+
     return (
       <Carousel.Item  key={index} className="carousel-border" onClick={(e) => this.clickMovieHWL(e, index)}>
         <img className="d-block" width={250} src={item.poster} alt={item.title} />
@@ -214,6 +222,9 @@ class Profile extends React.Component {
               >
                 <Image className="badgeIcon p-2" src="./badges/popcorn.png" />
               </Tippy>
+            {/* if {this.props.user.movies_watched.length >= #}
+              
+            */}
               {this.state.badgeCounts.map((value) => {
                 if (value.count >= 15) {
                   switch (parseInt(value._id)) {

@@ -81,7 +81,7 @@ border-color: orange !important;
 .material-icons-outlined {
     color: red !important;
     cursor: pointer;
-    padding-top: 25px;
+    padding: 25px 20px 0px 0px;
 }
 
 .movieTitle{
@@ -101,4 +101,8 @@ border-color: orange !important;
 .profileCarousel{
     width: 256px !important;
     margin-right: 0px !important;
+}
+
+.movieRow:hover {
+    background-color: dimgray;
 }

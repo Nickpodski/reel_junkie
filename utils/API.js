@@ -5,6 +5,7 @@ const nowPlayingURl = `${url}/movie/now_playing`;
 const searchMoviesUrl = `${url}/search/movie`;
 
 
+
 // Returns movies that are playing now (Poster + data)
 const moviesPlayingNow = async () => {
   try {
@@ -37,6 +38,21 @@ const searchMovies = async (title, page) => {
     return data;
   } catch(err) {}
 }
+
+// const getRuntime = async () => {
+//   try {
+//     const { data } = await axios.get(nowPlayingURl, {
+//       params: {
+//         api_key: apiKey,
+//         language: 'en_US',
+//         page: 1,
+//         include_adult: false
+//       }
+//     })
+//     return data;
+//   } catch(err) {}
+
+// }
 
 const fetchTotalPages = async (title) => {
   try {

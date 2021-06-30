@@ -1,4 +1,4 @@
-# Reel Junkie (Porject 3)
+# Reel Junkie (Project 3)
 
 ![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg) <br>
 
