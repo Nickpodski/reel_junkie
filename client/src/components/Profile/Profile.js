@@ -115,7 +115,7 @@ class Profile extends React.Component {
   renderMoviesWatched = () => {
     const render = this.props.user.movies_watched.map((item, index) => {
       return (
-        <Row key={index}>
+        <Row className="movieRow" key={index}>
           <Col>
               <h5 title="Search this Movie!" className="movieTitle"  onClick={(e) => this.clickMovieHWL(e, index)}>
                 {item.title}
@@ -140,7 +140,7 @@ class Profile extends React.Component {
   renderMovieWatchList = () => {
     const render = this.props.user.watchlist.map((item, index) => {
       return (
-        <Row key={index}>
+        <Row className="movieRow" key={index}>
           <Col >
             <h5 title="Search this Movie!" className="movieTitle"  onClick={(e) => this.clickMovieWL(e, index)}>
               {item.title}
