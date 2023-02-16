@@ -17,7 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^6.2.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "@tippyjs/react": "^4.2.5",
