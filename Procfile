@@ -1,2 +1,2 @@
 <process type>: <command>
-web: node server.js
+web: npm start
