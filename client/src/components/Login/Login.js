@@ -8,7 +8,7 @@ import { updateUserRuntime } from '../../utils/updateUser';
 
 function Login(props) {
   const { saveUserData, notifyError, notifySuccess, updateUserData } = props;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");

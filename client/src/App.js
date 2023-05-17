@@ -23,7 +23,7 @@ function App() {
   const [width, setWidth] = useState(window.innerWidth);
   const isMobile = useCheckMobileScreen(width, setWidth);
   const location = useLocation();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const notifyError = (mes) => {
     toast.error(mes, {
