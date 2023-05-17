@@ -48,6 +48,7 @@ This is our Full Stack project 3. It is a movie junkies dream! With a simple sea
 
 ## Links
 GitHub  (https://github.com/Nickpodski/reel_junkie)
+Live - https://reeljunkie.herokuapp.com/
 
 
 
