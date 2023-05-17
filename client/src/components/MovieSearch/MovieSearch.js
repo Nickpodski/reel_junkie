@@ -10,7 +10,7 @@ function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
-  let history = useNavigate();
+  let navigate = useNavigate();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
@@ -78,7 +78,7 @@ function MovieSearch(props) {
 
   const addMovieWatched = async (e) => {
     if (!user.isLoggedIn) {
-      history.push('/login');
+      navigate('/login');
     } else {
       const index = e.target.value;
       const movie = props.results[index];
@@ -131,7 +131,7 @@ function MovieSearch(props) {
 
   const addMovieWatchList = (e) => {
     if (!user.isLoggedIn) {
-      history.push('/login');
+      navigate('/login');
     } else {
       const index = e.target.value;
       const movie = props.results[index];

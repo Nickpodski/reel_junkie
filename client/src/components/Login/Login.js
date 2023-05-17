@@ -8,7 +8,7 @@ import { updateUserRuntime } from '../../utils/updateUser';
 
 function Login(props) {
   const { saveUserData, notifyError, notifySuccess, updateUserData } = props;
-  let history = useNavigate();
+  let navigate = useNavigate();
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
@@ -36,7 +36,7 @@ function Login(props) {
         } else {
           updateUserData(needUpdate);
         }
-        history.push('/profile');
+        navigate('/profile');
       })
       .catch((error) => {
         if (error.response) {
@@ -51,7 +51,7 @@ function Login(props) {
 
   const handleRegisterClick = (event) => {
     event.preventDefault();
-    history.push("/register");
+    navigate("/register");
   };
 
   return (

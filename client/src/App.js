@@ -23,7 +23,7 @@ function App() {
   const [width, setWidth] = useState(window.innerWidth);
   const isMobile = useCheckMobileScreen(width, setWidth);
   const location = useLocation();
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const notifyError = (mes) => {
     toast.error(mes, {
@@ -212,7 +212,7 @@ function App() {
                 search={getSearchResults}
                 getTotalPages={getTotalPages}
                 setCurrentPage={setCurrentPage}
-                history={history}
+                navigate={navigate}
                 /> ) 
               : ( <Navigate to='/login' />)
               }>
@@ -224,7 +224,7 @@ function App() {
           </Routes>
           {location.pathname === '/credits'
           ? ""
-          : ( <Footer history={history}/> )
+          : ( <Footer navigate={navigate}/> )
           }
         </div>
        {/* <ToastContainer /> */}

@@ -8,7 +8,7 @@ function Footer(props) {
   const creditsClick = (e) => {
     e.preventDefault();
     window.scrollTo(0,0);
-    props.history.push('/credits');
+    props.navigate('/credits');
   }
 
     return (

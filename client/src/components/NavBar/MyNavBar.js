@@ -8,12 +8,12 @@ import { BsSearch } from "react-icons/bs";
 
 const NavBar = (props) => {
   const { onChange, onSubmit, user, logout, notifySuccess } = props;
-  let history = useNavigate();
+  let navigate = useNavigate();
   const formRef = useRef();
 
   const handleSumbit = (event) => {
     event.preventDefault();
-    history.push("/moviesearch");
+    navigate("/moviesearch");
     onSubmit();
     formRef.current.reset();
   };

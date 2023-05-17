@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const MoviesInCarousel = (props) => {
   const { isMobile, setSearchMovie, search, getTotalPages, setCurrentPage } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
-  let history = useNavigate();
+  let navigate = useNavigate();
   
   useEffect(() => {
     const getNowPlaying = async () => {
@@ -27,7 +27,7 @@ const MoviesInCarousel = (props) => {
     setCurrentPage(1);
     search(1, title);
     getTotalPages(title);
-    setTimeout(() => {history.push("/moviesearch");}, 500)
+    setTimeout(() => {navigate("/moviesearch");}, 500)
   }
   
   const moviesInCarousel = nowPlaying.map((item, index) => {

@@ -32,6 +32,7 @@ hr {
 
 .tippy {
     color: orange !important;
+    background-color: black !important;
 }
 
 .badgeIcon{
