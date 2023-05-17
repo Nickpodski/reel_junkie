@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import "./Register.css";
 import { Button, Form, Container } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 function Register(props) {
   const { notifySuccess, notifyError } = props;
-  let history = useHistory();
+  const navigate = useNavigate();
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
@@ -35,7 +35,7 @@ function Register(props) {
       axios.post('/api/user/register', { email, password })
         .then(res => {
           notifySuccess(`You've successful register as ${email}`);
-          history.push('/login');
+          navigate('/login');
         })
         .catch((error) => {
           if (error.response) {

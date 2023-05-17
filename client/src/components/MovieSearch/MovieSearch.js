@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getRunTime } from "../../utils/API";
 
@@ -10,7 +10,7 @@ function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
-  let history = useHistory();
+  const navigate = useNavigate();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
@@ -78,7 +78,7 @@ function MovieSearch(props) {
 
   const addMovieWatched = async (e) => {
     if (!user.isLoggedIn) {
-      history.push('/login');
+      navigate('/login');
     } else {
       const index = e.target.value;
       const movie = props.results[index];
@@ -131,7 +131,7 @@ function MovieSearch(props) {
 
   const addMovieWatchList = (e) => {
     if (!user.isLoggedIn) {
-      history.push('/login');
+      navigate('/login');
     } else {
       const index = e.target.value;
       const movie = props.results[index];

@@ -1,19 +1,19 @@
 import React, { useRef } from "react";
 import "./MyNavBar.css";
-import { Nav, Button, Navbar, Form, FormControl, Media } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Nav, Button, Navbar, Form, FormControl, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
 import { BsSearch } from "react-icons/bs";
 
 
 const NavBar = (props) => {
   const { onChange, onSubmit, user, logout, notifySuccess } = props;
-  let history = useHistory();
+  const navigate = useNavigate();
   const formRef = useRef();
 
   const handleSumbit = (event) => {
     event.preventDefault();
-    history.push("/moviesearch");
+    navigate("/moviesearch");
     onSubmit();
     formRef.current.reset();
   };
@@ -38,16 +38,16 @@ const NavBar = (props) => {
         className="navbar border-bottom border-warning justify-content-between"
       >
         <Navbar.Brand as={Link} to="/home" onClick={() => window.scrollTo(0, 0)}>
-          <Media>
+          <Card>
             <img
               width={100}
               height={75}
               src="./images/reel-junkie-logo-2.jpg"
               alt="brand logo"
             />
-          </Media>
+          </Card>
         </Navbar.Brand>
-        <Form inline onSubmit={handleSumbit} ref={formRef}>
+        <Form inline="true" onSubmit={handleSumbit} ref={formRef}>
           <FormControl
             onChange={onChange}
             type="text"

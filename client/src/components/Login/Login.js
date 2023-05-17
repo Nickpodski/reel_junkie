@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
 import "./Login.css";
 import { Form, Button, Container } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { updateUserRuntime } from '../../utils/updateUser';
 // import axios from 'axios';
 
 function Login(props) {
   const { saveUserData, notifyError, notifySuccess, updateUserData } = props;
-  let history = useHistory();
+  const navigate = useNavigate();
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
@@ -36,7 +36,7 @@ function Login(props) {
         } else {
           updateUserData(needUpdate);
         }
-        history.push('/profile');
+        navigate('/profile');
       })
       .catch((error) => {
         if (error.response) {
@@ -51,7 +51,7 @@ function Login(props) {
 
   const handleRegisterClick = (event) => {
     event.preventDefault();
-    history.push("/register");
+    navigate("/register");
   };
 
   return (

@@ -4,12 +4,12 @@ import Carousel from "react-bootstrap/Carousel";
 import { moviesPlayingNow } from "../../utils/API";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MoviesInCarousel = (props) => {
   const { isMobile, setSearchMovie, search, getTotalPages, setCurrentPage } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
-  let history = useHistory();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const getNowPlaying = async () => {
@@ -27,7 +27,7 @@ const MoviesInCarousel = (props) => {
     setCurrentPage(1);
     search(1, title);
     getTotalPages(title);
-    setTimeout(() => {history.push("/moviesearch");}, 500)
+    setTimeout(() => {navigate("/moviesearch");}, 500)
   }
   
   const moviesInCarousel = nowPlaying.map((item, index) => {
