@@ -10,7 +10,7 @@ function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {

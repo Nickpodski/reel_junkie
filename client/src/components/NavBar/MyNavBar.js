@@ -8,7 +8,7 @@ import { BsSearch } from "react-icons/bs";
 
 const NavBar = (props) => {
   const { onChange, onSubmit, user, logout, notifySuccess } = props;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const formRef = useRef();
 
   const handleSumbit = (event) => {

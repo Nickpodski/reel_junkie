@@ -6,7 +6,7 @@ import axios from "axios";
 
 function Register(props) {
   const { notifySuccess, notifyError } = props;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");

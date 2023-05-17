@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const MoviesInCarousel = (props) => {
   const { isMobile, setSearchMovie, search, getTotalPages, setCurrentPage } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const getNowPlaying = async () => {
