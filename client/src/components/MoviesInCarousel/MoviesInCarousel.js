@@ -4,12 +4,12 @@ import Carousel from "react-bootstrap/Carousel";
 import { moviesPlayingNow } from "../../utils/API";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MoviesInCarousel = (props) => {
   const { isMobile, setSearchMovie, search, getTotalPages, setCurrentPage } = props;
   const [nowPlaying, setNowPlaying] = useState([]);
-  let history = useHistory();
+  let history = useNavigate();
   
   useEffect(() => {
     const getNowPlaying = async () => {

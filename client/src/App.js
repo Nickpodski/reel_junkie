@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Redirect, Route, Switch, useLocation , useHistory} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation , useNavigate} from "react-router-dom";
 import Navbar from "./components/NavBar/MyNavBar";
 import MoviesInCarousel from "./components/MoviesInCarousel/MoviesInCarousel";
 import MovieSearch from "./components/MovieSearch/MovieSearch";
@@ -14,18 +14,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useCheckMobileScreen from "./utils/useCheckMobileScreen";
 
+
 function App() {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const isMobile = useCheckMobileScreen();
+  const [width, setWidth] = useState(window.innerWidth);
+  const isMobile = useCheckMobileScreen(width, setWidth);
   const location = useLocation();
-  let history = useHistory();
+  let history = useNavigate();
 
   const notifyError = (mes) => {
     toast.error(mes, {
-      position: 'top-right',
+      position: toast.POSITION.TOP_RIGHT,
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -37,7 +39,7 @@ function App() {
 
   const notifySuccess = (mes) => {
     toast.success(mes, {
-      position: "top-right",
+      position: toast.POSITION.TOP_RIGHT,
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -149,32 +151,45 @@ function App() {
       <div>
           <Navbar onChange={handleInputChange} onSubmit={handleSumbit} user={userData} logout={setUserData} notifySuccess={notifySuccess}/>
           <div>
-            <Switch>
-              <Route exact path={["/", "/home"]}>
+            <Routes>
+              <Route exact path="/" element={
                 <MoviesInCarousel 
                 isMobile={isMobile}
                 setSearchMovie={setSearchMovie}
                 search={getSearchResults}
                 getTotalPages={getTotalPages}
                 setCurrentPage={setCurrentPage}
-                />
+                />}>
               </Route>
-              <Route exact path={["/login"]}>
+              <Route exact path="/home" element={
+                <MoviesInCarousel 
+                isMobile={isMobile}
+                setSearchMovie={setSearchMovie}
+                search={getSearchResults}
+                getTotalPages={getTotalPages}
+                setCurrentPage={setCurrentPage}
+                />}>
+              </Route>
+              <Route exact path="/login" element={
                 <Login 
                 saveUserData={saveUserData} 
                 notifyError={notifyError}
                 notifySuccess={notifySuccess}
                 updateUserData={updateUserData}
                 />
+              }>
+
               </Route>
-              <Route exact path={["/register"]}>
+              <Route exact path="/register" element={
                 <Register 
                 notifyError={notifyError}
                 notifySuccess={notifySuccess} 
                 />
+              }>
+
               </Route>
-            <Route exact path={["/moviesearch"]}>
-            <MovieSearch
+            <Route exact path="/moviesearch" element={
+                <MovieSearch
                 results={searchResults}
                 currentPage={currentPage}
                 onClick={moreResultsClick}
@@ -184,9 +199,10 @@ function App() {
                 notifyError={notifyError}
                 notifySuccess={notifySuccess} 
               />
+            }>
+
             </Route>
-            <Route exact path={["/profile"]}>
-              {userData.isLoggedIn 
+            <Route exact path="/profile" element={userData.isLoggedIn 
               ? ( <Profile 
                 user={userData} 
                 setUserMW={saveUserMoviesWatched}
@@ -198,19 +214,20 @@ function App() {
                 setCurrentPage={setCurrentPage}
                 history={history}
                 /> ) 
-              : ( <Redirect to='/login' />)
-              }
+              : ( <Navigate to='/login' />)
+              }>
+
             </Route>
-            <Route exact path={["/credits"]}>
-              <Credits />
+            <Route exact path="/credits" element={<Credits />}>
+
             </Route>
-          </Switch>
+          </Routes>
           {location.pathname === '/credits'
           ? ""
           : ( <Footer history={history}/> )
           }
         </div>
-       <ToastContainer />
+       {/* <ToastContainer /> */}
     </div>
   );
 }

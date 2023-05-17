@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./MovieSearch.css";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getRunTime } from "../../utils/API";
 
@@ -10,7 +10,7 @@ function MovieSearch(props) {
   const [moreResults, setMoreResults] = useState(false);
   // const [propsMoreResults] = useReducer(props.isMoreResults);
 
-  let history = useHistory();
+  let history = useNavigate();
   const checkMoreResults = () => {
     props.onClick();
     if (props.currentPage < props.totalPages) {
